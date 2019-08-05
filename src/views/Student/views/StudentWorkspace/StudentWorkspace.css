@@ -1,0 +1,144 @@
+.StudentWorkspace{
+  width: 100%; height: auto;
+}
+.swsSection{
+  width: 100%; height: auto;
+  display: flex; flex-wrap: wrap;
+  margin-top: 20px;
+}
+.swsSectionCourse{
+  width: 350px; height: 218.75px;
+  margin: 0 16px 16px 0;
+  overflow: hidden; border-radius: 10px;
+  background-size: cover;
+  display: flex; flex-wrap: wrap;
+  background-color: #ccc;
+}
+.swsSectionCourse1{
+  width: 100%; display: flex;
+  margin: 0 0 auto 0;
+}
+.swsSectionCourse1 h3{
+  width: 100%; padding: 5px 10px 6px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px; color: goldenrod;
+}
+.swsSectionCourse1:nth-child(2){
+  margin: auto 0 0 0; padding: 10px;
+  box-sizing: border-box;
+  justify-content: flex-end;
+}
+.swsSectionCourse1 button{
+  width: 50px; height: 50px;
+  border-radius: 100%;
+  font-size: 22px; color: goldenrod;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#swsCourseInfo{
+  width: 100%; height: auto;
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+.swsCancelBtn{
+  margin: 0 0 0 auto; color: red;
+  font-size: 20px; padding: 0 6px;
+  background-color: transparent;
+}
+#swsCourseInfo h2{
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: normal;
+  font-size: 38px;
+}
+.swsSectionCInfo{
+  width: 50%; height: auto;
+  box-sizing: border-box;
+}
+.swsSectionCInfo:nth-child(1){padding-right: 15px}
+.swsSectionCInfo:nth-child(2){padding-left: 15px}
+.swsSectionCInfoField{
+  width: 100%; height: auto;
+  margin-bottom: 15px;
+}
+.swsSectionCInfoField h5{
+  letter-spacing: 2px;
+}
+.swsSectionCInfoField h3{
+  font-weight: normal;
+  font-size: 28px;
+  letter-spacing: 1.5px;
+}
+.ssci1 .swsSectionCInfoField{text-align: right}
+.ssci1 .swsSectionCInfoField h5{padding-right: 2px}
+.ssci2 .swsSectionCInfoField h5{padding-left: 2px}
+.progressBars{
+  width: 80%; height: 30px;
+  background-color: #aaa;
+  margin-top: 6px; position: relative;
+  border-radius: 0 20px 20px 0;
+}
+.progressBar{
+  position: absolute; height: 100%;
+  box-sizing: border-box;
+  font-weight: bold; letter-spacing: 2px;
+  padding: 4px 0 0 10px;
+  border-radius: 0 20px 20px 0;
+}
+.progressBar:nth-child(1){
+  background-color: #ddd;
+  padding: 0px;
+}
+.swsSectionCInfoField textarea{
+  margin-top: 6px; width: 80%;
+  background-color: #ddd;
+  resize: none; font-weight: bold;
+  font-size: 15px; padding: 6px 10px;
+  letter-spacing: 1.3px; border-radius: 5px;
+  border: 2px solid transparent;
+  transition: all 0.25s;
+}
+.swsSectionCInfoField textarea:focus{
+  border: 2px solid black;
+}
+.swsSectionCInfoField button{
+  margin: 10px 20% 0 auto;
+  width: 75px; height: 30px;
+  border-radius: 5px; font-weight: bold;
+  letter-spacing: 1px; padding-left: 2px;
+}
+.swsMssgBtn{
+  width: 60px; height: 60px;
+  margin: 0 auto; border-radius: 100%;
+  font-size: 25px; padding: 3px 0 0 2px;
+  box-shadow: 0px 2px 5px black;
+}
+
+@media screen and (max-width: 420px) {
+  .swsSection{justify-content: center}
+  .swsSectionCourse{margin: 0 0 20px 0}
+  .swsCancelBtn{
+    margin-right: 20px;
+    font-size: 25px;
+  }
+  #swsCourseInfo h2{
+    margin: 20px 0 25px 25px;
+    text-align: left;
+  }
+  .swsSectionCInfo:nth-child(1){padding-right: 0px}
+  .swsSectionCInfo:nth-child(2){padding-left: 0px}
+  .swsSectionCInfo{width: 100%}
+  .ssci1 .swsSectionCInfoField,
+  .swsSectionCInfoField{
+    text-align: left; padding: 0 25px;
+    box-sizing: border-box;
+  }
+  .progressBars,
+  .swsSectionCInfoField textarea{width: 100%}
+  #swsCourseInfo .swsSectionCInfo{margin-bottom: 20px}
+  .swsSectionCInfoField button{
+    margin: 15px 0 0 auto;
+    width: 150px; height: 50px;
+    font-size: 20px; letter-spacing: 2px;
+  }
+}

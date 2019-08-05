@@ -1,0 +1,15 @@
+.Snackbar{
+  width: 100%; height: auto;
+  position: fixed; top: 0px;
+  left: 0px; z-index: 1400;
+  display: none; justify-content: center;
+}
+.Snackbar p{
+  width: 300px; height: auto;
+  background-color: black; text-align: center;
+  color: white; letter-spacing: 1.5px;
+  padding: 8px 17px 9px 17px; border-radius: 10px;
+  transform-origin: top center; line-height: 20px;
+  transform: translateY(0px) scale(0);
+  transition: all 0.3s;
+}

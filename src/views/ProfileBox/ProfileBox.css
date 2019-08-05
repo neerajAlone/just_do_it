@@ -1,0 +1,98 @@
+.profileBoxes{
+  width: 100%; display: flex;
+  margin-top: 20px;
+}
+.profileBox{
+  width: 50%; height: auto;
+}
+.profileBox:nth-child(1){text-align: center}
+.profileBox:nth-child(1) img{
+  width: 60%; margin-bottom: 20px;
+}
+.profileBox:nth-child(1) p{
+  width: 80%; margin: 0 auto;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.profileBox:nth-child(2){height: 750px}
+.profileBox:nth-child(2) p{
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding-left: 1.5px;
+  color: orangered;
+}
+.profileForm{
+  width: 90%; margin: 0 auto;
+}
+.profileImageDiv{
+  width: 100%; display: flex;
+  margin: 20px 0;
+}
+.profileImage{
+  width: 125px; height: 125px;
+  background-color: #ccc;
+  border-radius: 100%;
+  overflow: hidden; margin-right: 5px;
+}
+.profileImage img{
+  width: 100%; height: 100%;
+}
+.profileImageCntrl button{
+  width: 40px; height: 40px;
+  border-radius: 100%; color: white;
+  background-color: green;
+}
+.profileImageCntrl button:nth-child(2){
+  margin: 2.5px 0 2.5px 20px;
+  background-color: red;
+}
+.profileImageCntrl button:nth-child(3){
+  background-color: royalblue;
+  padding: 0 0 2px 1px;
+}
+.pImgUploadStatus{margin: auto 0 auto 10px}
+.pImgUploadStatus h3{
+  letter-spacing: 1px;
+  font-weight: normal;
+  color: gray;
+}
+.formField{
+  width: 100%;
+  margin-top: 20px;
+}
+.formField h5{
+  letter-spacing: 2.5px;
+  color: gray;
+  padding-left: 1.5px;
+}
+.formField input{
+  width: 100%; font-size: 26px;
+  letter-spacing: 1.5px; padding: 5px 0;
+  border-right: 5px solid transparent;
+  background-color: transparent;
+  transition: all 0.25s;
+}
+.formField input:focus{
+  border-right-color: gray;
+}
+.formField button{
+  width: 250px; height: 55px;
+  padding-bottom: 2px; color: white;
+  background-color: #3cba54;
+  font-size: 17px; font-weight: bold;
+  letter-spacing: 3px; border-radius: 7px;
+  box-shadow: 0px 3px 10px -3px black;
+}
+.ph4Tag{
+  width: 170px; cursor: pointer;
+  color: #db3236;
+  letter-spacing: 1px;
+}
+.prBtns{
+  width: 100%; display: flex;
+  justify-content: space-between;
+}
+.prBtns button{width: 180px}

@@ -1,0 +1,109 @@
+.SignBoxTitle{
+  font-weight: normal;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  color: gray;
+}
+.SignBoxContainer{
+  width: 100%; display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.SignBoxs{
+  width: 45%; height: 600px;
+}
+.SignBoxs img{
+  width: 100%;
+  margin-bottom: 30px;
+}
+.SignBoxsQuote p{
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-align: right;
+  color: royalblue;
+}
+.SignBoxsQuote h4{
+  letter-spacing: 2px;
+  text-align: right;
+  margin-top: 5px;
+}
+
+.sErrorP{
+  font-weight: bold;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+.SignBoxForms{
+  width: 100%; height: 380px;
+  position: relative;
+  display: flex; align-items: center;
+  justify-content: center;
+}
+.SignBoxForm{
+  width: 100%; height: 100%;
+  position: absolute;
+  background-color: white;
+  transform-origin: center center;
+  transition: all 0.3s;
+}
+.formField{
+  width: 100%;
+  margin-top: 20px;
+}
+.formField h5{
+  letter-spacing: 2.5px;
+  color: gray;
+}
+.formField input{
+  width: 100%; font-size: 26px;
+  letter-spacing: 1.5px;
+  background-color: transparent;
+  margin-left: -1px; padding: 5px 0;
+  border-right: 5px solid transparent;
+  transition: all 0.25s;
+}
+.formField input:focus{
+  border-right-color: gray;
+}
+.formField button{
+  width: 150px; height: 50px;
+  padding-bottom: 1px; color: white;
+  background-color: #3cba54;
+  font-size: 17px; font-weight: bold;
+  letter-spacing: 3px; border-radius: 7px;
+  box-shadow: 0px 3px 10px -3px black;
+}
+.formField p{
+  font-weight: bold; letter-spacing: 2px;
+  margin-bottom: 18px; font-size: 20px;
+}
+.googleSign button{
+  background-color: #4885ed;
+  color: white;
+}
+.formField h4{
+  letter-spacing: 2px;
+  cursor: pointer;
+  color: royalblue;
+  width: 100px;
+}
+.formField ul{margin-top: 15px}
+.formField ul li{
+  list-style: unset;
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+@media screen and (max-width: 420px) {
+  .SignBoxTitle{text-align: center}
+  .SignBoxContainer{flex-wrap: wrap}
+  .SignBoxs{
+    width: 100%; padding: 0 25px;
+    box-sizing: border-box;
+    height: auto; margin-top: 30px;
+  }
+  .SignBoxs:nth-child(2){margin-top: 80px}
+}

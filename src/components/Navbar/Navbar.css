@@ -1,0 +1,53 @@
+.Navbar{
+  width: 100%; height: 65px;
+  background-color: orangered;
+  position: fixed; top: 0px;
+  left: 0px; z-index: 1000;
+}
+.Navbar1{
+  max-width: 1150px; height: 100%;
+  margin: 0 auto; display: flex;
+  box-sizing: border-box;
+  padding: 0 25px; align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+.sideBarBtn{
+  display: none; font-size: 29px;
+  width: 50px; height: 50px; color: white;
+  background-color: transparent;
+}
+.NavbarLogo{
+  width: 50px; height: 50px;
+}
+.NavbarLogo img{
+  width: 100%; height: 100%;
+}
+.NavbarLink{
+  display: flex;
+  align-items: center;
+}
+.NavbarLink li{
+  margin-left: 15px;
+  padding-bottom: 1px;
+}
+.NavbarLink li a{
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.NavbarLink li img{
+  width: 38px; height: 38px;
+  border-radius: 100%;
+  margin-top: 5px;
+}
+.NavbarLink li button{
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 420px) {
+  .NavbarLink{display: none}
+  .sideBarBtn{display: block}
+}

@@ -1,0 +1,43 @@
+.homeBox{
+  width: 100%; display: flex;
+  align-items: center;
+}
+.homeBox1{
+  width: 50%; height: 60vh;
+  display: flex; align-items: center;
+  justify-content: center;
+}
+.homeBox1 img{
+  width: 400px; height: auto;
+}
+.homeBox1 p{
+  font-size: 28px;
+  width: 70%;
+}
+.hb2 .homeBox1 p{
+  text-align: right;
+}
+
+@media screen and (max-width: 420px) {
+  .homeHeader{
+    flex-wrap: wrap-reverse;
+    margin-bottom: 20px;
+  }
+  .homeHeader1{width: 100%; height: 40vh}
+  .quotes{width: 80%}
+  .quotes p,.quotes h4{
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .homeBox{flex-wrap: wrap}
+  .hb2{flex-wrap: wrap-reverse}
+  .homeBox1{
+    width: 100%; height: auto;
+    text-align: center;
+    margin-top: 70px;
+  }
+  .hb2 .homeBox1 p{text-align: center}
+  .homeBox1 img,.homeBox1 p{width: 85%}
+  .extraBox{width: 100%; height: 50px;}
+}

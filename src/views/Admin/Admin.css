@@ -1,0 +1,398 @@
+.parentGrid{
+  width: 1000px; height: 1000px;
+  margin: 0 auto; overflow: hidden;
+  display: grid; border-radius: 10px;
+  grid-gap: 5px;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+}
+
+.childGrid1{
+  background-color: #4285F4;
+  grid-column: 1/6; grid-row: 1/5;
+}
+.adminProfile{
+  width: 100%; height: 100%;
+}
+.adminProfile img{
+  width: 100px; height: 100px;
+  border-radius: 100%;
+}
+.adminProfileInfo{
+  width: 100%; display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.adminProfileInfo h4{
+  background-color: white;
+  letter-spacing: 1.5px;
+  padding: 6px 8px 6px 17px;
+  border-radius: 50px 0 0 50px;
+}
+.adminProfileInfo h4 i{
+  color: goldenrod; padding-left: 2px;
+  width: 20px; text-align: center;
+}
+
+.childGrid2{
+  background-color: #DB4437;
+  grid-column: 6/10; grid-row: 1/6;
+}
+.addCourse{
+  width: 100%; height: 100%;
+  box-sizing: border-box;
+  padding: 25px 15px 10px 20px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.addCourse::-webkit-scrollbar,
+.adminMssgsBox::-webkit-scrollbar,
+.addCourseField textarea::-webkit-scrollbar,
+.adminCourseBoxes::-webkit-scrollbar{width: 5px;}
+.addCourse::-webkit-scrollbar-thumb,
+.adminMssgsBox::-webkit-scrollbar-thumb,
+.addCourseField textarea::-webkit-scrollbar-thumb{
+  background-color:#F4B400;
+  border-radius: 10px;
+}
+.addCourseField{
+  width: 100%;
+  margin-bottom: 15px;
+}
+.imgUploadBox{
+  width: 400px; height: 250px;
+  background-color: black;
+  margin-top: 5px; position: relative;
+  border-radius: 5px; overflow: hidden;
+}
+.imgUploadBox1{
+  width: 100%; height: 100%;
+  display: flex; align-items: center;
+  justify-content: center;
+  position: absolute; top: 0; left: 0;
+}
+.imgUploadBox1 img{
+  width: 100%; height: 100%;
+}
+.imgUploadBox1 div{display: flex}
+.imgUploadBox1:nth-child(2){
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.imgUploadBox1 div button{
+  width: 60px; height: 60px;
+  border-radius: 100%;
+  box-shadow: 0px 3px 7px black;
+  font-size: 20px; color: white;
+}
+.imgUploadBox1 div button:nth-child(2){margin: 0 20px}
+.addCourseField h5{
+  letter-spacing: 2px;
+  padding-left: 1px;
+}
+.addCourseField input,
+.addCourseField textarea{
+  width: 100%; font-size: 20px;
+  overflow-x: hidden; overflow-y: scroll;
+  background-color: transparent;
+  color: white; letter-spacing: 1px;
+  padding: 1px 0 5px 0; resize: none;
+  border-bottom: 2px solid transparent;
+}
+.addCourseField input:focus,
+.addCourseField textarea:focus{
+  border-bottom: 2px solid white;
+}
+.addCourseField input::-webkit-input-placeholder,
+.addCourseField textarea::-webkit-input-placeholder{
+  color: yellow;
+}
+.addCourseField ul{
+  width: 100%; box-sizing: border-box;
+  background-color: rgb(255, 126, 115);
+  padding: 4px 10px 5px 10px; border-radius: 7px;
+}
+.addCourseField ul li{
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.addCourseFieldGroup{
+  width: 100%; display: flex;
+  justify-content: space-between;
+}
+.addCourseFieldGroup .addCourseField{width: 49%}
+.fieldLabelGroup{
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.fieldLabelGroup button{
+  width: 55px; height: 25px; color: #DB4437;
+  padding-bottom: 1px; padding-left: 3px;
+  margin-left: 10px; font-weight: bold;
+  border-radius: 20px; letter-spacing: 2px;
+  box-shadow: 0px 0px 5px -1px black;
+  background-color: white;
+}
+.courseSBtn{
+  width: 100%; height: 60px; border-radius: 7px;
+  margin-top: 25px; font-weight: bold;
+  letter-spacing: 3px; font-size: 19px;
+  background-color: #F4B400; color: white;
+}
+
+.childGrid3{
+  background-color: white;
+  grid-column: 5/6; grid-row: 5/6;
+  display: flex; align-items: center;
+  justify-content: center;
+}
+.childGrid3 img{
+  width: 85px; height: 85px;
+}
+
+.childGrid4{
+  box-sizing: border-box;
+  padding: 15px 10px 10px 15px;
+  background-color: #F4B400;
+  grid-column: 5/10; grid-row: 6/10;
+}
+.adminCourseBoxes{
+  width: 100%; height: 100%;
+  display: flex; flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: scroll; overflow-x: hidden;
+}
+.adminCourseBox{
+  width: 256px; height: 160px;
+  overflow: hidden; border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+}
+.adminCourseBox1{
+  width: 100%; height: 100%;
+  box-sizing: border-box; padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.acb1Div{
+  width: 100%; height: 50%;
+  display: flex; 
+}
+.acb1Div button{
+  width: 50px; height: 50px;
+  border-radius: 100%;
+  background-color: black;
+  color: white; font-size: 22px;
+  box-shadow: 0px 0px 7px white;
+}
+.acb1Div:nth-child(2){
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.childGrid5{
+  background-color: #0F9D58;
+  grid-column: 1/5; grid-row: 5/10;
+  box-sizing: border-box;
+  padding: 10px 15px;
+}
+.childGrid5 h2{
+  letter-spacing: 3px;
+  color: white;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+.adminMssgsBox{
+  width: 100%; height: 490px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.adminMssgBox{
+  width: 100%; height: auto;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 10px; margin-bottom: 10px;
+  border-radius: 10px;
+}
+.adminMssgBoxHead{
+  width: 100%; display: flex;
+}
+.adminMssgBoxHead img{
+  width: 52px; height: 52px;
+  border-radius: 100%;
+}
+.hFiveDiv{display: flex;}
+.hFiveDiv h5{
+  background-color: #4285F4;
+  margin-bottom: 5px;
+  padding: 3px 10px 4px 10px;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  margin-left: 5px;
+}
+.adminMssgBoxBody{
+  width: 100%; margin: 5px 0;
+}
+.adminMssgBoxFoot{
+  width: 100%; display: flex;
+  justify-content: flex-end;
+}
+.adminMssgBoxFoot button{
+  width: 65px; height: 24px;
+  padding: 0 0 1px 1px;
+  letter-spacing: 2px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: bold; color: white;
+  background-color: #DB4437;
+}
+
+/* MAIN ADMIN */
+
+.maChildGrid1{
+  background-color: #4285F4;
+  grid-column: 1/6; grid-row: 1/5;
+  box-sizing: border-box;
+  padding: 6px 50px;
+}
+.maAddUserAdmin h1{
+  font-weight: normal;
+  letter-spacing: 3px;
+  margin-top: 30px;
+  color: #F4B400;
+}
+.maAddUserAdmin .formField{
+  width: 100%;
+  margin-top: 20px;
+}
+.maAddUserAdmin .formField h5{
+  letter-spacing: 2.5px;
+  color: white; padding-left: 1px;
+}
+.maAddUserAdmin .formField input{
+  width: 100%; font-size: 26px;
+  letter-spacing: 1.5px; color: white;
+  background-color: transparent;
+  margin-left: -1px; padding: 5px 0;
+  border-right: 5px solid transparent;
+  transition: all 0.25s;
+}
+.maAddUserAdmin .formField input::-webkit-input-placeholder{color: white}
+.maAddUserAdmin .formField input:focus{
+  border-right-color: white;
+}
+.maAddUserAdmin .formField button{
+  width: 200px; height: 50px;
+  padding-bottom: 1px; color: white;
+  background-color: #3cba54;
+  font-size: 17px; font-weight: bold;
+  letter-spacing: 3px; border-radius: 7px;
+  box-shadow: 0px 3px 10px -3px black;
+}
+
+
+.maChildGrid2{
+  background-color: #DB4437;
+  grid-column: 6/10; grid-row: 1/6;
+  box-sizing: border-box;
+  padding: 10px 0px 10px 12px;
+}
+.userAdminsList{
+  width: 100%; height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.userAdminsList::-webkit-scrollbar,
+.userAdminMssgsBox::-webkit-scrollbar{width: 5px}
+.userAdminsList::-webkit-scrollbar-thumb,
+.userAdminMssgsBox::-webkit-scrollbar-thumb{
+  background-color: black;
+  border-radius: 20px;
+}
+.userAdminBox{
+  width: 98%; height: auto;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 15px 17px 13px 17px;
+  border-radius: 10px;
+  margin: 5px 0 15px 0;
+}
+.maFlexIconText{
+  width: 100%; display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.maFlexIconText i{
+  width: 16px;
+  text-align: center;
+  margin-right: 10px;
+}
+.maFlexIconText h5{
+  font-size: 15px;
+  line-height: 17px;
+  letter-spacing: 1px;
+}
+.maFlexIconText button{
+  display: flex; color: #DB4437;
+  background-color: transparent;
+  align-items: center;
+  margin: 0 0 0 auto;
+}
+.maFlexIconText button h5{
+  font-size: 14px;
+  margin-left: -6px;
+}
+
+.maChildGrid4{
+  background-color: #F4B400;
+  grid-column: 5/10; grid-row: 6/10;
+}
+
+
+.maChildGrid5{
+  background-color: #0F9D58;
+  grid-column: 1/5; grid-row: 5/10;
+  box-sizing: border-box;
+  padding: 10px 0px 10px 12px;
+}
+.userAdminMssgsBox{
+  width: 100%; height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.userAdminMssgBox{
+  width: 98%; height: auto;
+  background-color: white;
+  margin: 5px 0 15px 0;
+  box-sizing: border-box;
+  border-radius: 10px; padding: 15px;
+}
+.userAdminMssgBoxHead{
+  width: 100%; display: flex;
+  justify-content: space-between;
+}
+.userAdminMssgBoxHead button{
+  margin: 0 0 auto 0; color: white;
+  width: 35px; height: 35px;
+  padding: 0 0 1px 2px;
+  border-radius: 100%;
+  background-color: #4285F4;
+}
+.userAdminMssgBoxHead1{
+  display: flex;
+  align-items: center;
+}
+.userAdminMssgBoxHead1 img{
+  width: 35px; height: 35px;
+  border-radius: 100%;
+  margin-right: 7px;
+}
+.userAdminMssgBoxHead1 h5{
+  letter-spacing: 1.5px;
+  color: #DB4437;
+}
+.userAdminMssgBoxBody{
+  padding-left: 42px; font-weight: bold;
+  letter-spacing: 1px; color: #4285F4;
+  font-size: 15px; margin-top: 6px;
+}

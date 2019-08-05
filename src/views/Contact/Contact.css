@@ -1,0 +1,76 @@
+.homeBox{
+  width: 100%; display: flex;
+  align-items: center;
+}
+.homeBox1{
+  width: 50%; height: 60vh;
+  display: flex; align-items: center;
+  justify-content: center;
+}
+.homeBox1 img{
+  width: 400px; height: auto;
+}
+.homeBox1 p{
+  font-size: 28px;
+  width: 70%;
+}
+.contactForm{
+  width: 100%; display: flex;
+  flex-wrap: wrap;
+}
+.contactFormBlock{
+  width: 100%; display: flex;
+  box-sizing: border-box;
+  padding: 0 100px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+.oddBlock{justify-content: flex-end}
+.contactFormBlock1{
+  width: 70%;
+  display: flex;
+}
+.contactFormBlock1 img{
+  width: 240px; height: 300px;
+  transform-origin: top center;
+  transform: rotateY(180deg);
+  margin-right: 20px;
+}
+.oddBlock .contactFormBlock1 img{
+  transform: rotateY(0deg);
+  margin-right: 0px;
+  margin-left: 20px;
+}
+.contactForm1Field{margin-top: 15px}
+.oddBlock .contactForm1Field{text-align: right}
+.contactForm1Field h5{
+  color: royalblue;
+  letter-spacing: 3px;
+  padding-left: 1.5px;
+}
+.contactForm1Field h2{
+  font-weight: normal;
+  letter-spacing: 1.5px;
+}
+
+@media screen and (max-width: 420px) {
+  .homeBox{flex-wrap: wrap}
+  .hb2{flex-wrap: wrap-reverse}
+  .homeBox1{
+    width: 100%; height: auto;
+    text-align: center;
+    margin-top: 70px;
+  }
+  .homeBox1 img,.homeBox1 p{width: 85%}
+  .contactForm{margin-top: 80px}
+  .contactFormBlock1{
+    width: 100%; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .oddBlock .contactFormBlock1{
+    width: 100%;
+    flex-wrap: wrap-reverse;
+  }
+  .contactForm1Field,
+  .oddBlock .contactForm1Field{text-align: center}
+}

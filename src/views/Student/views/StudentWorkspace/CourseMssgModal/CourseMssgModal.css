@@ -1,0 +1,97 @@
+.CourseMssgModal{
+  width: 100%; height: 100vh;
+  position: fixed; top: 0px;
+  left: 0px; z-index: 1500;
+  display: none; align-items: center;
+  justify-content: center;
+}
+.CourseMssgModal1{
+  position: absolute;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.CourseMssgModal2{
+  position: absolute; overflow: hidden;
+  width: 800px; height: 94vh;
+  background-color: white;
+  border-radius: 10px; display: flex;
+  justify-content: space-between;
+}
+.CourseMssgModal21{
+  width: 405px; height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: 0 5px 10px 5px;
+}
+.CourseMssgModal21::-webkit-scrollbar{width: 5px}
+.CourseMssgModal21::-webkit-scrollbar-thumb{
+  background-color: black;
+  border-radius: 10px;
+}
+.cmm21MssgBoxes{
+  width: 100%; display: flex;
+  margin-top: 10px;
+}
+.myMssg{justify-content: flex-end}
+.cmm21MssgBox{
+  width: 85%; height: auto;
+  background-color: #ccc;
+  box-sizing: border-box;
+  padding: 5px; border-radius: 10px;
+}
+.cmm21MssgBoxHead{
+  width: 100%; display: flex;
+}
+.cmm21MssgBoxHead img{
+  width: 35px; height: 35px;
+  margin-right: 5px;
+  border-radius: 100%;
+}
+.cmm21MssgBoxHead h5{letter-spacing: 1px}
+.cmm21MssgBoxBody p{
+  padding-left: 40px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.CourseMssgModal22{
+  width: 395px; height: auto;
+  box-sizing: border-box;
+  padding: 8px 10px;
+}
+.CourseMssgModal22 h2{
+  font-weight: normal;
+  line-height: 26px;
+  letter-spacing: 1px;
+}
+.CourseMssgModal22 textarea{
+  width: 100%; resize: none; color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 6px 10px; letter-spacing: 1.5px;
+  font-size: 15px; font-weight: bold;
+  border-radius: 7px; margin: 10px 0 5px 0;
+}
+.CourseMssgModal22 textarea::-webkit-input-placeholder{
+  color: white;
+}
+.CourseMssgModal22 button{
+  margin: 0 0 0 auto; color: green;
+  padding: 0 5px; font-size: 30px;
+  background-color: transparent;
+  text-shadow: 2px 2px 5px black;
+}
+
+
+@media screen and (max-width: 420px) {
+  .CourseMssgModal2{
+    width: 90%; display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .CourseMssgModal21{width: 100%}
+  .CourseMssgModal22{
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

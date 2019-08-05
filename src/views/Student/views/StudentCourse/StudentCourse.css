@@ -1,0 +1,83 @@
+.StudentCourse{
+  width: 100%; display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.scSection{
+  width: 48%; height: auto;
+}
+.scSection:nth-child(1) img{
+  border-radius: 5px;
+}
+.scSection:nth-child(1) h3{
+  font-weight: normal;
+  font-size: 30px;
+  margin: 10px 0;
+  letter-spacing: 1.5px;
+}
+.scSection:nth-child(1) p{
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+.scSection:nth-child(1) button{
+  width: 250px; height: 55px;
+  margin-top: 20px; font-weight: bold;
+  letter-spacing: 4px; font-size: 18px;
+  padding-bottom: 2px; border-radius: 7px;
+  background-color: white; color: goldenrod;
+  box-shadow: 0px 2px 8px goldenrod;
+}
+
+.scSection:nth-child(2) h2{
+  letter-spacing: 2px;
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 36px;
+  margin-bottom: 30px;
+}
+.eachCourseDetail,
+.eachCourseDetailList{
+  width: 100%; box-sizing: border-box;
+  padding: 0 2px; margin-bottom: 15px;
+}
+.eachCourseDetail h5,
+.eachCourseDetailList h5{
+  padding-left: 1px;
+  color: royalblue;
+  letter-spacing: 2px;
+}
+.eachCourseDetail h3{
+  font-weight: normal;
+  font-size: 25px;
+  letter-spacing: 0.8px;
+}
+.eachCourseDetailGrp{
+  width: 100%; display: flex;
+  justify-content: space-between;
+}
+.eachCourseDetailGrp .eachCourseDetail{width: 48%}
+.eachCourseDetailList{ margin-bottom: 20px }
+.eachCourseDetailList ul{
+  width: 100%; margin-top: 10px;
+}
+.eachCourseDetailList ul li{
+  display: flex;
+  margin-bottom: 10px;
+}
+.eachCourseDetailList ul li p{
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: -5.5px;
+  margin-left: 10px;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 420px) {
+  .StudentCourse{flex-wrap: wrap}
+  .scSection{
+    width: 100%; padding: 0 15px;
+    box-sizing: border-box;
+  }
+  .scSection:nth-child(1) p{font-size: 18px}
+  .scSection:nth-child(2){margin-top: 50px}
+}

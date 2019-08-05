@@ -1,0 +1,18 @@
+.studentHead{
+  width: 100%; display: flex;
+  align-items: center; letter-spacing: 1.5px;
+  justify-content: space-between;
+}
+.studentHead h1{font-weight: normal}
+.studentHead ul li{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+@media screen and (max-width: 420px) {
+  .studentHead{
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+}
