@@ -67,7 +67,7 @@ class ProfileBox extends Component {
         }).then(()=>{
           if(sessionStorage.getItem('roleAs')) {
             return firestore().collection('User-Admin').doc(profile._id)
-              .update({username, mobile})
+              .update({username, mobile, image})
           } else {
             return firestore().collection('Students').doc(profile._id)
               .update({image, username, mobile})

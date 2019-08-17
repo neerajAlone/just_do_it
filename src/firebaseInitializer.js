@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import 'firebase/app';
 
 export default initializeApp({
   apiKey: "AIzaSyBqB8nWfcKLLS-U5FZDHYFM4SjVe3yoj7s",

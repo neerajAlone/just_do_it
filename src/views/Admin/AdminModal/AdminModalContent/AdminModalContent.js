@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { auth, firestore } from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 import './AdminModalContent.css';
 import defaultImage from '../../../../amar/orangeLogo.png';
@@ -11,7 +15,7 @@ class AdminModalContent extends Component {
       addOffer: false,
       removeCourse: false,
       batch: '', offer: '',
-      email: '', password: '',
+      password: '', mErrorP: '',
       raEmail: '', raPassword: ''
     }
   }
@@ -22,17 +26,31 @@ class AdminModalContent extends Component {
     if(getProps.index===4) {
       this.setState({
         resetBatch: false, addOffer: false,
-        removeCourse: false
+        removeCourse: false, mErrorP: ''
       })
     }
+  }
+
+  // 4
+  removeCourseConfirmed =(cUid)=> {
+    const { password } = this.state;
+    let credential = auth.EmailAuthProvider.credential(auth().currentUser.email, password);
+    auth().currentUser.reauthenticateWithCredential(credential)
+      .then(res=>{
+        if(res.user.uid === auth().currentUser.uid) {
+          firestore().collection('Courses').doc(cUid).delete()
+            .then(()=>window.location.reload());
+        }
+      }).catch(err=>this.setState({mErrorP: err.message}))
   }
 
   render() {
     const { 
       resetBatch, addOffer, removeCourse,
-      batch, offer, email, password,
-      raEmail, raPassword
+      batch, offer, password,
+      raEmail, raPassword, mErrorP
     } = this.state;
+    const { profileEmail, mData } = this.props;
     switch(this.props.index) {
       case 2:
         return <div className="addCourseInfoList">
@@ -49,6 +67,10 @@ class AdminModalContent extends Component {
             <li>
               <i className="fas fa-check"></i>
               <p><b>Description</b> should have <b>atleast 10 words</b>.</p>
+            </li>
+            <li>
+              <i className="fas fa-check"></i>
+              <p><b>Category</b> should contain <b>Web Development</b> or <b>Computer Science</b> word init.</p>
             </li>
             <li>
               <i className="fas fa-check"></i>
@@ -88,10 +110,10 @@ class AdminModalContent extends Component {
         return <div className="resCourseInfoPopup">
           <h2>React and Redux full course</h2>
           <div className="popTextFlex">
-            <h5>Vf1qI476obyW7iSIdz60</h5>
+            <h5>{mData && mData.id}</h5>
           </div>
           <div className="popTextFlex">
-            <h5>Active Batch 12-01-1996 11:30 PM</h5>
+            <h5>Active Batch {mData && mData.batch}</h5>
           </div>
           <div className="adminMoveBox">
             {resetBatch?
@@ -99,10 +121,6 @@ class AdminModalContent extends Component {
                 <input type="text" autoComplete="off"
                   placeholder="dd-mm-yyyy hr:mn AM|PM"
                   name="batch" value={batch} style={{color: 'green',
-                  backgroundColor: 'rgba(0, 128, 0, 0.3)'}}
-                  onChange={this.inputChanged} />
-                <input type="text" autoComplete="off" placeholder="EMAIL"
-                  name="email" value={email} style={{color: 'green',
                   backgroundColor: 'rgba(0, 128, 0, 0.3)'}}
                   onChange={this.inputChanged} />
                 <input type="text" autoComplete="off" placeholder="PASSWORD"
@@ -114,7 +132,7 @@ class AdminModalContent extends Component {
                     onClick={()=>this.setState({resetBatch: false})}
                     ref={r=>{this.resetCancelBtn=r}}>CANCEL</button>
                   <button type="button" style={{color: 'green'}}
-                    onClick={()=>{console.log(batch, email, password)
+                    onClick={()=>{console.log(batch, password)
                     }}>RESET</button>
                 </div>
               </div>:
@@ -138,10 +156,6 @@ class AdminModalContent extends Component {
                   name="offer" value={offer} style={{color: 'goldenrod',
                   backgroundColor: 'rgba(218, 165, 32, 0.3)'}}
                   onChange={this.inputChanged} />
-                <input type="text" autoComplete="off" placeholder="EMAIL"
-                  name="email" value={email} style={{color: 'goldenrod',
-                  backgroundColor: 'rgba(218, 165, 32, 0.3)'}}
-                  onChange={this.inputChanged} />
                 <input type="text" autoComplete="off" placeholder="PASSWORD"
                   name="password" value={password} style={{color: 'goldenrod',
                   backgroundColor: 'rgba(218, 165, 32, 0.3)'}}
@@ -151,7 +165,7 @@ class AdminModalContent extends Component {
                     onClick={()=>this.setState({addOffer: false})}
                     ref={r=>{this.offerCancelBtn=r}}>CANCEL</button>
                   <button type="button" style={{color: 'green'}}
-                    onClick={()=>{console.log(offer, email, password)
+                    onClick={()=>{console.log(offer, password)
                     }}>ADD</button>
                 </div>
               </div>:
@@ -171,21 +185,17 @@ class AdminModalContent extends Component {
           <div className="adminMoveBox">
             {removeCourse?
               <div>
-                <input type="text" autoComplete="off" placeholder="EMAIL"
-                  name="email" value={email} style={{color: 'red',
-                  backgroundColor: 'rgba(255, 0, 0, 0.3)'}}
-                  onChange={this.inputChanged} />
                 <input type="text" autoComplete="off" placeholder="PASSWORD"
                   name="password" value={password} style={{color: 'red',
                   backgroundColor: 'rgba(255, 0, 0, 0.3)'}}
                   onChange={this.inputChanged} />
                 <div className="admbBtns">
                   <button type="button" style={{color: 'red'}}
-                    onClick={()=>this.setState({removeCourse: false})}
+                    onClick={()=>this.setState({removeCourse: false, mErrorP: ''})}
                     ref={r=>{this.removeCancelBtn=r}}>CANCEL</button>
                   <button type="button" style={{color: 'green'}}
-                    onClick={()=>{console.log(email, password)
-                    }}>CONFIRM</button>
+                    onClick={()=>this.removeCourseConfirmed(mData.id)}
+                    >CONFIRM</button>
                 </div>
               </div>:
               <button type="button" style={{color: 'red'}}
@@ -201,6 +211,8 @@ class AdminModalContent extends Component {
               </button>
             }
           </div>
+          <p className="mErrorP" style={{color: mErrorP?'red':'gray'}}
+            >{mErrorP?mErrorP:'Did You See it !'}</p>
         </div>
       case 5:
         return <div className="replyToStudent">
@@ -238,4 +250,14 @@ class AdminModalContent extends Component {
   }
 }
 
-export default AdminModalContent
+function mapStateToProps(state) {
+  return {
+    profileEmail: state.profile.email
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminModalContent);

@@ -1,11 +1,11 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment, useState} from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { auth } from 'firebase/app';
 import 'firebase/auth';
 
 import './StudentWorkspace.css';
 import CMM from './CourseMssgModal/CourseMssgModal';
-import cImage from '../../../../amar/course_image.png';
 
 function StudentWorkspace(props) {
   let [cmmOpen, setcmmOpen] = useState(false);
@@ -21,25 +21,23 @@ function StudentWorkspace(props) {
     props.history.push('/student/workspace');
 
   }
-
   if(auth().currentUser) {
     return <Fragment>
       <div className="StudentWorkspace">
         <div className="swsSection">
-          <div className="swsSectionCourse"
-            style={{backgroundImage: `url(${cImage})`}}>
-            <div className="swsSectionCourse1">
-              <h3>React and Redux full course</h3>
+          {props.courseArray && props.courseArray.map(eCourse=>{
+            return <div className="swsSectionCourse" key={eCourse._id}
+              style={{backgroundImage: `url(${eCourse.image})`}}>
+              <div className="swsSectionCourse1">
+                <h3>{eCourse.courseName}</h3>
+              </div>
+              <div className="swsSectionCourse1">
+                <button type="button" onClick={goDown}>
+                  <i className="fas fa-egg"></i>
+                </button>
+              </div>
             </div>
-            <div className="swsSectionCourse1">
-              <button type="button" onClick={goDown}>
-                <i className="fas fa-egg"></i>
-              </button>
-            </div>
-          </div>
-          <div className="swsSectionCourse"></div>
-          <div className="swsSectionCourse"></div>
-          <div className="swsSectionCourse"></div>
+          })}
         </div>
         <div id="swsCourseInfo">
           <button type="button"
@@ -101,4 +99,10 @@ function StudentWorkspace(props) {
   } else return <Redirect to="/signbox" />
 }
 
-export default StudentWorkspace;
+function mapStateToProps(state) {
+  return {
+    courseArray: state.reqArrays.allCourses
+  }
+}
+
+export default connect(mapStateToProps, null)(StudentWorkspace);

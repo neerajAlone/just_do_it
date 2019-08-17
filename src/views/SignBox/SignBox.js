@@ -25,7 +25,7 @@ class SignBox extends Component {
     let provider = new auth.GoogleAuthProvider();
     auth().signInWithPopup(provider)
       .then(()=>{window.location.reload()})
-      .catch(()=>null)
+      .catch((err)=>console.log(err))
   }
   signUp =()=> {
     const { email, password, re_password } = this.state;

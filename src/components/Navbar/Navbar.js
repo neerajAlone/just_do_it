@@ -1,11 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { auth } from 'firebase/app';
+import { auth, firestore } from 'firebase/app';
 import 'firebase/auth';
 
 import './Navbar.css';
 import defaultImg from '../../amar/undraw_profile_pic.svg';
+
+function signOut(props) {
+  let ssRole = sessionStorage.getItem('roleAs');
+  if(ssRole==='signedInAsUserAdmin') {
+    firestore().collection('User-Admin').doc(auth().currentUser.uid)
+      .update({available: false})
+      .then(()=>{
+        auth().signOut().then(()=>{
+          sessionStorage.removeItem('roleAs');
+          window.location.reload();
+        })
+      })
+  } else {
+    auth().signOut().then(()=>{
+      props.removeProfile();
+      sessionStorage.removeItem('roleAs');
+      window.location.reload();
+    })
+  }
+}
 
 function Navbar(props) {
   let [signedIn, setsignedIn] = useState(false);
@@ -42,6 +62,9 @@ function Navbar(props) {
           <NavLink to="/student">STUDENT</NavLink>
         </li>
         <li>
+          <NavLink to="/blog">BLOG</NavLink>
+        </li>
+        <li>
           <NavLink to="/client">CLIENT</NavLink>
         </li>
         {admin?
@@ -58,13 +81,7 @@ function Navbar(props) {
           </li>:
           <li>
             <button type="button"
-              onClick={()=>{
-                auth().signOut().then(()=>{
-                  props.removeProfile();
-                  sessionStorage.removeItem('roleAs');
-                  window.location.reload();
-                })
-              }}
+              onClick={()=>signOut(props)}
               >SIGN-OUT</button>
           </li>
         }

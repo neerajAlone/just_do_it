@@ -1,17 +1,35 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { auth } from 'firebase/app';
+import { auth, firestore } from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 import './StudentCourse.css';
 
-function payFunc(cFee) {
+function payFunc(props, cFee, cOffer) {
   let razorWay = new window.Razorpay({
     key: 'rzp_test_gKZidK34j76Nt3',
     amount: cFee*100,
     name: 'GROW_UP',
     handler: (razorRes)=>{
       console.log(razorRes)
+      Promise.all([
+        firestore().collection('Courses').doc(props.match.params.c_id)
+          .collection('eStudents').doc(auth().currentUser.uid)
+          .set({
+            joined_on: Date.now(), payment_id: razorRes.razorpay_payment_id,
+            progress: 0, submit_box: []
+          }),
+        firestore().collection('Students').doc(auth().currentUser.uid)
+          .collection('courses').doc(props.match.params.c_id)
+          .set({
+            completed_on: null, joined_on: Date.now(),
+            payment: {
+              id: razorRes.razorpay_payment_id,
+              payed: cFee, with_offer: cOffer
+            }
+          })
+      ]).then(()=>props.snackbarPop('SUCCESSFULLY ENROLLED'))
     }
   })
   razorWay.open();
@@ -26,7 +44,6 @@ function StudentCourse(props) {
     setcourseObj(cObject)
   }, [])
   return <Fragment>
-    {console.log(courseObj)}
     <div className="StudentCourse">
       <div className="scSection">
         <img src={courseObj && courseObj.image}
@@ -36,8 +53,11 @@ function StudentCourse(props) {
           <p>{courseObj && courseObj.description}</p>
         </div>
         <button type="button" onClick={()=>{
-          if(auth().currentUser) payFunc(100);
-            else props.history.push('/signbox');
+          if(auth().currentUser) {
+            if(!props.profile.username||!props.profile.image||!props.profile.mobile) {
+              props.snackbarPop('Please Update Your Profile first.')
+            } else payFunc(props, 100, courseObj.offer);
+          } else props.history.push('/signbox');
         }}>ENROLL</button>
       </div>
       <div className="scSection">
@@ -71,7 +91,7 @@ function StudentCourse(props) {
           </div>
           <div className="eachCourseDetail">
             <h5>CONTACT</h5>
-            <h3>COURSEFIELD</h3>
+            <h3>{courseObj && (courseObj.createdBy && courseObj.createdBy.contact)}</h3>
           </div>
         </div>
         <div className="eachCourseDetailGrp">
@@ -128,7 +148,13 @@ function StudentCourse(props) {
 
 function mapStateToProps(state) {
   return {
-    courseArray: state.aUserAdmins.allCourses
+    courseArray: state.reqArrays.allCourses,
+    profile: state.profile
   }
 }
-export default connect(mapStateToProps, null)(StudentCourse);
+function mapDispatchToProps(dispatch) {
+  return {
+    snackbarPop: (payload)=>{dispatch({type: 'SNACK_IT', payload})}
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(StudentCourse);

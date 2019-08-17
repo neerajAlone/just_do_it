@@ -21,17 +21,19 @@ function Student(props) {
   let [student, setstudent] = useState(false);
   useEffect(()=>{
     if(auth().currentUser) setstudent(true);
-    firestore().collection('Courses').get()
-      .then(allCourse=>{
-        let emptyArray = []
-        allCourse.docs.forEach(eCourse=>{
-          emptyArray.push({
-            _id: eCourse.id,
-            ...eCourse.data()
+    if(props.courseArray.length === 0) {
+      firestore().collection('Courses').get()
+        .then(allCourse=>{
+          let emptyArray = []
+          allCourse.docs.forEach(eCourse=>{
+            emptyArray.push({
+              _id: eCourse.id,
+              ...eCourse.data()
+            })
           })
+          props.getAllCourses(emptyArray);
         })
-        props.getAllCourses(emptyArray);
-      })
+    }
   }, [])
   return <Fragment>
     <div className="studentHead">
@@ -53,7 +55,7 @@ function Student(props) {
 
 function mapStateToProps(state) {
   return {
-    courseArray: state.aUserAdmins.allCourses
+    courseArray: state.reqArrays.allCourses
   }
 }
 function mapDispatchToProps(dispatch) {

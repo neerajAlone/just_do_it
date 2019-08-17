@@ -9,7 +9,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Snackbar from './components/Snackbar/Snackbar';
 import Sidebar from './components/Sidebar/Sidebar';
-import Routes from './routes';
+import { Routes } from './routes';
 import Loading from './components/Loading/Loading';
 
 class App extends Component {
@@ -31,19 +31,32 @@ class App extends Component {
             // main-admin OR user-admin
             if(result.claims.roleA$ === 'U$ER-ADM!N') {
               // user-admin
-              firestore().collection('User-Admin').doc(auth().currentUser.uid).get()
-                .then(uData=>{
-                  this.props.add_profile({
-                    _id: auth().currentUser.uid,
-                    username: auth().currentUser.displayName,
-                    image: auth().currentUser.photoURL,
-                    email: auth().currentUser.email,
-                    mobile: uData.data().mobile,
-                    joined_at: uData.data().joined_at
-                  })
-                  if(!sessionStorage.getItem('roleAs')) {
-                    sessionStorage.setItem('roleAs', 'signedInAsUserAdmin')
-                    window.location.href = '/'
+              firestore().collection('User-Admin').doc(auth().currentUser.uid)
+                .onSnapshot(snapShot=>{
+                  if(!snapShot.data().disabled) {
+                    firestore().collection('User-Admin').doc(auth().currentUser.uid)
+                      .update({available: true}).then(()=>{
+                        this.props.add_profile({
+                          _id: auth().currentUser.uid,
+                          username: auth().currentUser.displayName,
+                          image: auth().currentUser.photoURL,
+                          email: auth().currentUser.email,
+                          mobile: snapShot.data().mobile,
+                          joined_at: snapShot.data().joined_at
+                        })
+                        if(!sessionStorage.getItem('roleAs')) {
+                          sessionStorage.setItem('roleAs', 'signedInAsUserAdmin')
+                          window.location.href = '/'
+                        }
+                      })
+                  } else {
+                    firestore().collection('User-Admin').doc(auth().currentUser.uid)
+                      .update({available: false})
+                      .then(()=>auth().signOut())
+                      .then(()=>{
+                        sessionStorage.removeItem('roleAs');
+                        window.location.reload();
+                      })
                   }
                 })
             } else if(result.claims.roleA$ === 'MA!N-ADM!N') {

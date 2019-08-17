@@ -28,12 +28,12 @@ function AdminModal(props) {
   return <div className="AdminModal">
     <div className="AdminModal1"
       onClick={()=>{
-        props.mFunc(false, props.modIndex);
-        setTimeout(()=>{props.mFunc(false, 0)}, 440);
+        props.mFunc(false, props.modIndex, props.mData);
+        setTimeout(()=>{props.mFunc(false, 0, null)}, 440);
       }}>
     </div>
     <div className="AdminModal2">
-      <AdminModalContent index={props.modIndex} />
+      <AdminModalContent index={props.modIndex} mData={props.mData?props.mData:null} />
     </div>
   </div>
 }

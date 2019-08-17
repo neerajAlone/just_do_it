@@ -6,7 +6,6 @@ import './StudentHome.css';
 
 function StudentHome(props) {
   return <Fragment>
-    {console.log(props)}
     <div className="homeBox">
       <div className="homeBox1">
         <img src={require('../../../../amar/pic9.png')} alt="" />
@@ -32,19 +31,19 @@ function StudentHome(props) {
                 }}>
                 <div className="sCourseTag">
                   <div>
-                    <h5>WEB DEVELOPMENT</h5>
+                    <h5>{eCourse.category.toUpperCase()}</h5>
                     <i className="fas fa-code"></i>
                   </div>
                 </div>
                 <div className="sCourseTag">
                   <div>
-                    <h5>BATCH</h5>
+                    <h5>{eCourse.startsFrom}</h5>
                     <i className="fas fa-users"></i>
                   </div>
                 </div>
                 <div className="sCourseTag">
                   <div>
-                    <h5>4.5</h5>
+                    <h5>{eCourse.rating}</h5>
                     <i className="fas fa-star"></i>
                   </div>
                 </div>
@@ -62,7 +61,7 @@ function StudentHome(props) {
 
 function mapStateToProps(state) {
   return {
-    courseArray: state.aUserAdmins.allCourses
+    courseArray: state.reqArrays.allCourses
   }
 }
 
