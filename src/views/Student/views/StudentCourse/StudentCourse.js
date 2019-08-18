@@ -7,32 +7,38 @@ import 'firebase/firestore';
 import './StudentCourse.css';
 
 function payFunc(props, cFee, cOffer) {
-  let razorWay = new window.Razorpay({
-    key: 'rzp_test_gKZidK34j76Nt3',
-    amount: cFee*100,
-    name: 'GROW_UP',
-    handler: (razorRes)=>{
-      console.log(razorRes)
-      Promise.all([
-        firestore().collection('Courses').doc(props.match.params.c_id)
-          .collection('eStudents').doc(auth().currentUser.uid)
-          .set({
-            joined_on: Date.now(), payment_id: razorRes.razorpay_payment_id,
-            progress: 0, submit_box: []
-          }),
-        firestore().collection('Students').doc(auth().currentUser.uid)
-          .collection('courses').doc(props.match.params.c_id)
-          .set({
-            completed_on: null, joined_on: Date.now(),
-            payment: {
-              id: razorRes.razorpay_payment_id,
-              payed: cFee, with_offer: cOffer
-            }
-          })
-      ]).then(()=>props.snackbarPop('SUCCESSFULLY ENROLLED'))
+  if(auth().currentUser) {
+    if(!props.profile.username||!props.profile.image||!props.profile.mobile) {
+      props.snackbarPop('Please Update Your Profile first.')
+    } else {
+      let razorWay = new window.Razorpay({
+        key: 'rzp_test_gKZidK34j76Nt3',
+        amount: cFee*100,
+        name: 'GROW_UP',
+        handler: (razorRes)=>{
+          console.log(razorRes)
+          Promise.all([
+            firestore().collection('Courses').doc(props.match.params.c_id)
+              .collection('eStudents').doc(auth().currentUser.uid)
+              .set({
+                joined_on: Date.now(), payment_id: razorRes.razorpay_payment_id,
+                progress: 0, submit_box: []
+              }),
+            firestore().collection('Students').doc(auth().currentUser.uid)
+              .collection('courses').doc(props.match.params.c_id)
+              .set({
+                completed_on: null, joined_on: Date.now(),
+                payment: {
+                  id: razorRes.razorpay_payment_id,
+                  payed: cFee, with_offer: cOffer
+                }
+              })
+          ]).then(()=>window.location.href = '/student/workspace')
+        }
+      });
+      razorWay.open();
     }
-  })
-  razorWay.open();
+  } else props.history.push('/signbox');
 } 
 
 function StudentCourse(props) {
@@ -43,6 +49,7 @@ function StudentCourse(props) {
     })
     setcourseObj(cObject)
   }, [])
+  console.log(props);
   return <Fragment>
     <div className="StudentCourse">
       <div className="scSection">
@@ -52,13 +59,9 @@ function StudentCourse(props) {
           <h3>{courseObj && courseObj.courseName}</h3>
           <p>{courseObj && courseObj.description}</p>
         </div>
-        <button type="button" onClick={()=>{
-          if(auth().currentUser) {
-            if(!props.profile.username||!props.profile.image||!props.profile.mobile) {
-              props.snackbarPop('Please Update Your Profile first.')
-            } else payFunc(props, 100, courseObj.offer);
-          } else props.history.push('/signbox');
-        }}>ENROLL</button>
+        <button type="button"
+          onClick={()=>payFunc(props, courseObj.courseFee, courseObj.offer)}
+          >ENROLL</button>
       </div>
       <div className="scSection">
         <h2>COURSE DETAILS</h2>

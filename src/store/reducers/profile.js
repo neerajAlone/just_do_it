@@ -5,7 +5,7 @@ const initialSate = {
   image: null,
   mobile: null,
   joined_at: null,
-  courses: null
+  courses: []
 }
 
 export default function(state=initialSate, actions) {
@@ -23,7 +23,7 @@ export default function(state=initialSate, actions) {
     case 'ADD_PROFILE_COURSES':
       return {
         ...state,
-        courses: actions.payload.courses
+        courses: actions.payload
       }
     case 'REMOVE_PROFILE':
       return {

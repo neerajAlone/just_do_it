@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { auth } from 'firebase/app';
@@ -9,6 +9,20 @@ import CMM from './CourseMssgModal/CourseMssgModal';
 
 function StudentWorkspace(props) {
   let [cmmOpen, setcmmOpen] = useState(false);
+  let [pCoursesBox, setpCoursesBox] = useState([]);
+  useEffect(()=>{
+    if(auth().currentUser) {
+      if(props.pCourses !== 0) {
+        props.pCourses.forEach(cId=>{
+          let cObject = props.courseArray.find(eCourse=>{
+            return eCourse._id === cId
+          })
+          setpCoursesBox([cObject, ...pCoursesBox])
+        })
+      }
+    }
+  }, [])
+  console.log(pCoursesBox)
   
   function cmmToggle(openStatus) {
     setcmmOpen(openStatus);
@@ -25,11 +39,11 @@ function StudentWorkspace(props) {
     return <Fragment>
       <div className="StudentWorkspace">
         <div className="swsSection">
-          {props.courseArray && props.courseArray.map(eCourse=>{
-            return <div className="swsSectionCourse" key={eCourse._id}
-              style={{backgroundImage: `url(${eCourse.image})`}}>
+          {pCoursesBox && pCoursesBox.map(eCourse=>{
+            return <div className="swsSectionCourse" key={eCourse && eCourse._id}
+              style={{backgroundImage: `url(${eCourse && eCourse.image})`}}>
               <div className="swsSectionCourse1">
-                <h3>{eCourse.courseName}</h3>
+                <h3>{eCourse && eCourse.courseName}</h3>
               </div>
               <div className="swsSectionCourse1">
                 <button type="button" onClick={goDown}>
@@ -101,8 +115,13 @@ function StudentWorkspace(props) {
 
 function mapStateToProps(state) {
   return {
-    courseArray: state.reqArrays.allCourses
+    courseArray: state.reqArrays.allCourses,
+    pCourses: state.profile.courses
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
   }
 }
 
-export default connect(mapStateToProps, null)(StudentWorkspace);
+export default connect(mapStateToProps, mapDispatchToProps)(StudentWorkspace);
