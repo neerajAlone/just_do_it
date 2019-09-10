@@ -79,6 +79,14 @@ function Sidebar(props) {
             </div>
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/blog" onClick={()=>props.sFunc(false)}>
+            <div className="s2Link">
+              <i className="fas fa-theater-masks"></i>
+              <h4>BLOGS</h4>
+            </div>
+          </NavLink>
+        </li>
         {admin?
           <li>
             <NavLink to="/admin" onClick={()=>props.sFunc(false)}>

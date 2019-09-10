@@ -49,10 +49,16 @@
   border-radius: 100%;
 }
 .cmm21MssgBoxHead h5{letter-spacing: 1px}
+.cmm21MssgBoxHead h4{
+  margin-left: 40px; font-size: 12px;
+  line-height: 13px; background-color: orangered;
+  letter-spacing: 1.5px; color: white;
+  padding: 3px 6px; border-radius: 5px;
+  margin-bottom: 3px;
+}
 .cmm21MssgBoxBody p{
-  padding-left: 40px;
-  font-size: 15px;
-  letter-spacing: 0.5px;
+  margin-left: 41px; font-size: 15px;
+  letter-spacing: 0.8px; color: royalblue;
 }
 
 .CourseMssgModal22{
@@ -60,10 +66,10 @@
   box-sizing: border-box;
   padding: 8px 10px;
 }
-.CourseMssgModal22 h2{
-  font-weight: normal;
-  line-height: 26px;
-  letter-spacing: 1px;
+.CourseMssgModal22 h3{
+  font-weight: normal; line-height: 26px;
+  letter-spacing: 1px; padding-left: 1px;
+  font-size: 25px;
 }
 .CourseMssgModal22 textarea{
   width: 100%; resize: none; color: white;
@@ -75,11 +81,17 @@
 .CourseMssgModal22 textarea::-webkit-input-placeholder{
   color: white;
 }
-.CourseMssgModal22 button{
-  margin: 0 0 0 auto; color: green;
+.CourseMssgModal221{
+  width: 100%; display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.CourseMssgModal221 button{
   padding: 0 5px; font-size: 30px;
   background-color: transparent;
-  text-shadow: 2px 2px 5px black;
+}
+.CourseMssgModal221 button:nth-child(2){
+  font-size: 35px; color: green;
 }
 
 

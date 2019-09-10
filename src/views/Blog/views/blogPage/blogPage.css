@@ -3,7 +3,11 @@
   margin: 0 auto;
   height: auto;
 }
-.blogPageHead h2{
+.blogPageHead1{
+  width: 100%; display: flex;
+}
+.blogPageHead1 button{display: none}
+.blogPageHead1 h2{
   font-weight: normal;
   letter-spacing: 1px;
   font-size: 27px;
@@ -28,11 +32,15 @@
 }
 .blogBodySection1 h5{
   letter-spacing: 0.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .blogBodySection1 button{
   font-size: 27px; margin-left: 15px;
   background-color: transparent;
 }
+.blogBodySection1 button:nth-child(1){margin-right: 30px}
 .blogBodySection2{margin-top: 30px}
 .blogBodySection21{margin-bottom: 15px}
 .blogBodySection21 p{
@@ -43,4 +51,17 @@
 .blogBodySection21 h3{
   font-weight: normal;
   font-size: 25px;
+}
+
+
+@media screen and (max-width: 420px) {
+  .blogPage{width: 95%;}
+  .blogBodySection1 button:nth-child(1){margin-right: 10px}
+  .blogPageHead1 button{
+    width: 75px; height: 50px;
+    display: block; font-size: 23px;
+    margin: 7px 10px auto 0;
+    padding-bottom: 1px; color: white;
+    background-color: orangered;
+  }
 }

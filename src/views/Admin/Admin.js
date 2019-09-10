@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { firestore } from 'firebase/app';
+import { firestore, auth } from 'firebase/app';
 import 'firebase/firestore';
 
 import UserAdmin from './UserAdmin/UserAdmin';
@@ -22,6 +22,7 @@ class Admin extends Component {
     else if(ssRole === 'signedInAsUserAdmin') this.setState({userAdmin: true});
   }
   componentDidMount() {
+    let ssRole = sessionStorage.getItem('roleAs');
     if(this.props.courseArray.length === 0) {
       firestore().collection('Courses').get()
         .then(allCourse=>{
@@ -35,6 +36,38 @@ class Admin extends Component {
           this.props.getAllCourses(emptyArray);
         })
     }
+    if(ssRole === 'signedInAsUserAdmin') {
+      if(this.props.profileCourses.length === 0) {
+        firestore().collection('User-Admin').doc(auth().currentUser.uid)
+          .collection('courses').get()
+          .then(cArray=>{
+            if(!cArray.empty) {let helpArray = [];
+              cArray.docs.forEach(doc=>{helpArray.push({_id: doc.id, ...doc.data()})});
+              this.props.addProfileCourses(helpArray);
+            }
+          })
+      }
+      if(this.props.adminMssgBox.length === 0) {
+        firestore().collection('User-Admin').doc(auth().currentUser.uid)
+          .collection('conversations').onSnapshot(mArray=>{
+            if(!mArray.empty) {let helpArray = [];
+              mArray.docs.forEach(doc=>{helpArray.push({time: doc.id, ...doc.data()})});
+              this.props.getAllAdminMssg(helpArray);
+            }
+          })
+          
+      }
+      if(this.props.adminSubmitsBox.length === 0) {
+        firestore().collection('User-Admin').doc(auth().currentUser.uid)
+          .collection('submits').get()
+          .then(sArray=>{
+            if(!sArray.empty) {let helpArray = [];
+              sArray.docs.forEach(doc=>{helpArray.push({_id: doc.id, ...doc.data()})});
+              this.props.getAllAdminSubmits(helpArray);
+            }
+          })
+      }
+    }
   }
   render() {
     const {userAdmin, mainAdmin} = this.state;
@@ -46,12 +79,18 @@ class Admin extends Component {
 
 function mapStateToProps(state) {
   return {
-    courseArray: state.reqArrays.allCourses
+    courseArray: state.reqArrays.allCourses,
+    profileCourses: state.profile.courses,
+    adminMssgBox: state.reqArrays.adminMssgBox,
+    adminSubmitsBox: state.reqArrays.adminSubmitsBox,
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getAllCourses: (payload)=>{dispatch({type: 'RETRIEVE_ALL_COURSES', payload})}
+    getAllCourses: (payload)=>{dispatch({type: 'RETRIEVE_ALL_COURSES', payload})},
+    addProfileCourses: (payload)=>{dispatch({type: 'ADD_PROFILE_COURSES', payload})},
+    getAllAdminMssg: (payload)=>{dispatch({type: 'ADMIN_MSSG_BOX', payload})},
+    getAllAdminSubmits: (payload)=>{dispatch({type: 'ADMIN_SUBMITS_BOX', payload})}
   }
 }
 

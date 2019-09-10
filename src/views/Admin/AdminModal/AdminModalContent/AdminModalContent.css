@@ -139,3 +139,41 @@
   letter-spacing: 3px; border-radius: 7px;
   box-shadow: 0px 3px 10px -3px black;
 }
+
+.maBlogConfirmation{
+  width: 100%; height: auto;
+}
+.maBlogConfirmation h2{
+  letter-spacing: 1.5px;
+  color: gray;
+}
+.maBlogConfirmation img{
+  width: 100%; height: auto;
+  border-radius: 5px; margin: 10px 0;
+}
+.maBlogConfirmation hr{
+  width: 70%; height: 3px;
+  background-color: gray;
+  margin: 25px auto 10px auto;
+  border-radius: 10px;
+}
+.blogQuote{
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.blogPara{
+  letter-spacing: 0.7px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.maRespForBlogBtns{
+  width: 40%; display: flex;
+  align-items: center; margin: 0 auto;
+  justify-content: space-between;
+}
+.maRespForBlogBtns button{
+  font-size: 43px; color: red;
+  background-color: transparent;
+}
+.maRespForBlogBtns button:nth-child(2){color: green}

@@ -89,16 +89,15 @@
   background-color: #ddd;
   padding: 0px;
 }
-.swsSectionCInfoField textarea{
+.swsSectionCInfoField input{
   margin-top: 6px; width: 80%;
-  background-color: #ddd;
-  resize: none; font-weight: bold;
-  font-size: 15px; padding: 6px 10px;
-  letter-spacing: 1.3px; border-radius: 5px;
+  background-color: #ddd; font-weight: bold;
+  font-size: 15px; padding: 10px 12px;
+  letter-spacing: 1.5px; border-radius: 5px;
   border: 2px solid transparent;
   transition: all 0.25s;
 }
-.swsSectionCInfoField textarea:focus{
+.swsSectionCInfoField input:focus{
   border: 2px solid black;
 }
 .swsSectionCInfoField button{
@@ -112,6 +111,71 @@
   margin: 0 auto; border-radius: 100%;
   font-size: 25px; padding: 3px 0 0 2px;
   box-shadow: 0px 2px 5px black;
+}
+
+.ruleForGitSubmit{
+  width: 100%; display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.ruleForGitSubmit i{
+  font-size: 15px; margin-top: 1px;
+  margin-right: 5px; color: red;
+}
+.ruleForGitSubmit h5{letter-spacing: 1px}
+.ruleForGitSubmit h5 b{color: red}
+
+.swsSubmitContainer{
+  width: 100%; height: auto;
+  margin-top: 50px;
+}
+.swsSubmitContainer h3{
+  letter-spacing: 1px;
+  font-size: 25px;
+}
+.swsSubmitContainer h3:nth-child(1){
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding-left: 2px;
+}
+.swsSubmitBoxes{
+  width: 100%; height: auto;
+  display: flex; flex-wrap: wrap;
+  margin-top: 20px;
+}
+.swsSubmitBox{
+  width: 260px; height: auto;
+  margin: 0 15px 15px 0; padding: 7px 10px;
+  overflow: hidden; box-sizing: border-box;
+  overflow: hidden; border-radius: 10px;
+  background-color: #ccc;
+}
+.swsSubmitBox1{
+  width: 100%;
+  margin-bottom: 10px;
+}
+.swsSubmitBox1 h6{
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding-left: 2px;
+  margin-bottom: 3px;
+}
+.swsSubmitBox2{
+  width: 100%; display: flex;
+}
+.swsSubmitBox2 h5{
+  background-color: white;
+  padding: 4px 8px 5px 7px;
+  border-radius: 5px; color: royalblue;
+  letter-spacing: 1px; font-size: 16px;
+}
+.swsSubmitBox button{
+  background-color: orangered;
+  color: white; font-size: 14px;
+  width: 125px; height: 35px;
+  font-weight: bold; letter-spacing: 2px;
+  margin-bottom: 5px; border-radius: 8px;
 }
 
 @media screen and (max-width: 420px) {

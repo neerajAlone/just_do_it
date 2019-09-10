@@ -31,7 +31,7 @@ function payFunc(props, cFee, cOffer) {
                 payment: {
                   id: razorRes.razorpay_payment_id,
                   payed: cFee, with_offer: cOffer
-                }
+                }, submit_box: []
               })
           ]).then(()=>window.location.href = '/student/workspace')
         }
@@ -46,10 +46,16 @@ function StudentCourse(props) {
   useEffect(()=>{
     let cObject = props.courseArray && props.courseArray.find(co=>{
       return co._id === props.match.params.c_id
-    })
-    setcourseObj(cObject)
+    });
+    
+    setcourseObj(cObject);
+    if(props.profile.courses.length !== 0) {
+      let payedCourseIndex = props.profile.courses.findIndex(cId=>{
+        return cId === props.match.params.c_id
+      })
+      if(payedCourseIndex !== -1) props.history.push('/student/workspace');
+    }
   }, [])
-  console.log(props);
   return <Fragment>
     <div className="StudentCourse">
       <div className="scSection">

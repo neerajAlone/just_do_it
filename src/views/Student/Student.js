@@ -20,19 +20,6 @@ function lazyComponent(Component) {
 function Student(props) {
   let [student, setstudent] = useState(false);
   useEffect(()=>{
-    if(auth().currentUser) {
-      setstudent(true);
-      if(props.pCourses.length === 0) {
-        firestore().collection('Students').doc(auth().currentUser.uid)
-          .collection('courses').get().then(res=>{
-            if(!res.empty) {
-              let eArray = [];
-              res.docs.forEach(doc=>{eArray.push(doc.id)});
-              props.addProfileCourses(eArray);
-            }
-          })
-      }
-    }
     if(props.courseArray.length === 0) {
       firestore().collection('Courses').get()
         .then(allCourse=>{
@@ -45,7 +32,21 @@ function Student(props) {
           })
           props.getAllCourses(emptyArray);
         })
-    }  
+    }
+    if(auth().currentUser) {
+      setstudent(true);
+      if(props.pCourses.length === 0) {
+        firestore().collection('Students').doc(auth().currentUser.uid)
+          .collection('courses').get().then(resData=>{
+            if(!resData.empty) {
+              let eArray = []
+              resData.docs.forEach(doc=>{eArray.push(doc.id)});
+              props.addProfileCourses(eArray);
+            }
+          })
+      }
+    }
+
   }, [])
   return <Fragment>
     <div className="studentHead">

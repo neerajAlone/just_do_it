@@ -16,7 +16,8 @@ class AdminModalContent extends Component {
       removeCourse: false,
       batch: '', offer: '',
       password: '', mErrorP: '',
-      raEmail: '', raPassword: ''
+      raEmail: '', raPassword: '',
+      replyTextArea: ''
     }
   }
   inputChanged =e=> {
@@ -43,14 +44,32 @@ class AdminModalContent extends Component {
         }
       }).catch(err=>this.setState({mErrorP: err.message}))
   }
+  // 5
+  replyToComment =(pObj, mssg, cFunc)=> {
+    Promise.all([
+      firestore().collection('Courses').doc(pObj.c_id)
+        .collection('conversations').doc(Date.now().toString())
+        .set({
+          uid: auth().currentUser.uid, mssg, to: pObj.to,
+          username: auth().currentUser.displayName,
+          image: auth().currentUser.photoURL
+        }),
+      firestore().collection('User-Admin').doc(auth().currentUser.uid)
+        .collection('conversations').doc(pObj.time)
+        .update({replied: mssg})
+    ]).then(()=>{
+      this.setState({replyTextArea: ''});
+      cFunc();
+    })
+  }
 
   render() {
     const { 
       resetBatch, addOffer, removeCourse,
-      batch, offer, password,
+      batch, offer, password, replyTextArea,
       raEmail, raPassword, mErrorP
     } = this.state;
-    const { profileEmail, mData } = this.props;
+    const { mData, cFunc } = this.props;
     switch(this.props.index) {
       case 2:
         return <div className="addCourseInfoList">
@@ -108,12 +127,18 @@ class AdminModalContent extends Component {
         </div>
       case 4:
         return <div className="resCourseInfoPopup">
-          <h2>React and Redux full course</h2>
+          <h2>{mData.course_name}</h2>
           <div className="popTextFlex">
-            <h5>{mData && mData.id}</h5>
+            <h5>{mData && mData._id}</h5>
           </div>
           <div className="popTextFlex">
-            <h5>Active Batch {mData && mData.batch}</h5>
+            <h5>Active Batch {mData && mData.active_batch}</h5>
+          </div>
+          <div className="popTextFlex">
+            <h5>Course Fees {mData && mData.course_fee} Rs</h5>
+          </div>
+          <div className="popTextFlex">
+            <h5>Current Offer {mData && mData.offer}% ({mData && (Number(mData.offer)!==0?((Number(mData.course_fee)-(Number(mData.offer)/100)*Number(mData.course_fee))):mData.course_fee)} Rs)</h5>
           </div>
           <div className="adminMoveBox">
             {resetBatch?
@@ -194,7 +219,7 @@ class AdminModalContent extends Component {
                     onClick={()=>this.setState({removeCourse: false, mErrorP: ''})}
                     ref={r=>{this.removeCancelBtn=r}}>CANCEL</button>
                   <button type="button" style={{color: 'green'}}
-                    onClick={()=>this.removeCourseConfirmed(mData.id)}
+                    onClick={()=>this.removeCourseConfirmed(mData._id)}
                     >CONFIRM</button>
                 </div>
               </div>:
@@ -217,9 +242,12 @@ class AdminModalContent extends Component {
       case 5:
         return <div className="replyToStudent">
           <h1>REPLYING</h1>
-          <h3>To, StudentName</h3>
-          <textarea rows="10" placeholder="Your Mssg..." />
-          <button type="button">SEND</button>
+          <h3>To, {mData.to}</h3>
+          <textarea rows="10" placeholder="Your Mssg..." value={replyTextArea}
+            onChange={e=>this.setState({replyTextArea: e.target.value})} />
+          <button type="button"
+            onClick={()=>this.replyToComment(mData, replyTextArea, cFunc)}
+            >SEND</button>
         </div>
       case 7:
         return <div className="confirmAdminRemove">
@@ -240,6 +268,33 @@ class AdminModalContent extends Component {
             <div className="formField">
               <button type="button">CONFIRM</button>
             </div>
+          </div>
+        </div>
+      case 10:
+        return <div className="maBlogConfirmation">
+          <h2>This is respective Blog Title in Bolb.</h2>
+          <img src={require('../../../../amar/notebook.png')} alt="" />
+          <p className="blogQuote">" This is the expected Quote required from User-Admin. "</p>
+          <p className="blogPara">
+            This is the expected Para's First Line required from User-Admin.
+            This is the expected Para's Three Line required from User-Admin.
+            This is the expected Para's Fifth Line required from User-Admin.
+          </p>
+          <img src={require('../../../../amar/react.jpg')} alt="" />
+          <p className="blogQuote">" This is the expected Quote required from User-Admin. "</p>
+          <p className="blogPara">
+            This is the expected Para's First Line required from User-Admin.
+            This is the expected Para's Three Line required from User-Admin.
+            This is the expected Para's Fifth Line required from User-Admin.
+          </p>
+          <hr />
+          <div className="maRespForBlogBtns">
+            <button type="button">
+              <i className="far fa-times-circle"></i>
+            </button>
+            <button type="button">
+              <i className="far fa-check-circle"></i>
+            </button>
           </div>
         </div>
       default:

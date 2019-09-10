@@ -1,8 +1,7 @@
 .blogTitle{
-  width: 100%; display: flex;
+  max-width: 990px; display: flex;
   align-items: center;
-  padding-left: 55px;
-  margin-bottom: 40px;
+  margin: 0 auto 40px auto;
 }
 .blogTitle h3{
   width: 40px; text-align: center;
@@ -17,7 +16,7 @@
   padding-bottom: 1px;
 }
 .blogContainer{
-  width: 990px; margin: 0 auto;
+  max-width: 990px; margin: 0 auto;
   display: flex; flex-wrap: wrap;
 }
 .blogBox{
@@ -63,4 +62,15 @@
 .blogSupport i{
   color: red;
   margin-left: 5px;
+}
+
+@media screen and (max-width: 420px) {
+  .blogContainer,.blogTitle{
+    width: 100%; height: auto;
+    justify-content: center;
+  }
+  .blogBox{
+    width: 90%; height: auto;
+    margin: 0 auto 40px auto;
+  }
 }

@@ -3,6 +3,11 @@ import React, {useEffect} from 'react';
 import './AdminModal.css';
 import AdminModalContent from './AdminModalContent/AdminModalContent';
 
+function closeModal(props) {
+  props.mFunc(false, props.modIndex, props.mData);
+  setTimeout(()=>{props.mFunc(false, 0, null)}, 440);
+}
+
 function AdminModal(props) {
   useEffect(()=>{
     let AdminModal = document.querySelector('.AdminModal');
@@ -27,13 +32,12 @@ function AdminModal(props) {
   }, [props.openMod]);
   return <div className="AdminModal">
     <div className="AdminModal1"
-      onClick={()=>{
-        props.mFunc(false, props.modIndex, props.mData);
-        setTimeout(()=>{props.mFunc(false, 0, null)}, 440);
-      }}>
+      onClick={()=>closeModal(props)}>
     </div>
     <div className="AdminModal2">
-      <AdminModalContent index={props.modIndex} mData={props.mData?props.mData:null} />
+      <AdminModalContent index={props.modIndex}
+        mData={props.mData?props.mData:null}
+        cFunc={()=>closeModal(props)} />
     </div>
   </div>
 }

@@ -25,8 +25,8 @@ class MainAdmin extends Component {
   inputChanged =e=> {
     this.setState({[e.target.name]: e.target.value});
   }
-  toggleModal =(showModal, modalIndex)=> {
-    this.setState({showModal, modalIndex});
+  toggleModal =(showModal, modalIndex, mData)=> {
+    this.setState({showModal, modalIndex, mData});
   }
   createAdmin =()=> {
     const { maEmail, maPassword, maRePassword } = this.state;
@@ -219,7 +219,8 @@ class MainAdmin extends Component {
               <div className="blogBox">
                 <div className="blogBoxHead">
                   <img src={userImg} alt="" />
-                  <button type="button">
+                  <button type="button"
+                    onClick={()=>this.toggleModal(true, 10, {})}>
                     <i className="fas fa-eye"></i>
                   </button>
                 </div>

@@ -22,13 +22,19 @@ function shareBlog(company) {
   }
 }
 
-function BlogPage() {
+function BlogPage(props) {
   let [heart, setHeart] = useState(false);
 
   return <Fragment>
     <div className="blogPage">
       <div className="blogPageHead">
-        <h2>Tailwind CSS is a highly customizable.</h2>
+        <div className="blogPageHead1">
+          <button type="button"
+            onClick={()=>props.history.push('/blog')}>
+            <i className="fas fa-chevron-left"></i>
+          </button>
+          <h2>Tailwind CSS is a highly customizable.</h2>
+        </div>
         <img alt="" src={blogImg} />
       </div>
       <div className="blogBody">
@@ -42,7 +48,6 @@ function BlogPage() {
           </div>
           <div className="blogBodySection1">
             <button type="button"
-              style={{marginRight: 30}}
               onClick={()=>setHeart(!heart)}>
               {heart?
                 <i style={{color: 'red'}}
