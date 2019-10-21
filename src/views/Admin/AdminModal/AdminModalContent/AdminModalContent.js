@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Converter } from 'showdown';
 import { auth, firestore } from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
 import './AdminModalContent.css';
-import defaultImage from '../../../../amar/orangeLogo.png';
+import defaultImage from '../../../../amar/developerWizardsLogoOrange.png';
+
 
 class AdminModalContent extends Component {
   constructor(props) {
@@ -17,7 +19,10 @@ class AdminModalContent extends Component {
       batch: '', offer: '',
       password: '', mErrorP: '',
       raEmail: '', raPassword: '',
-      replyTextArea: ''
+      replyTextArea: '',
+
+      rpRow: '', rpCol: '',
+      rpText: '', rpArray: [],
     }
   }
   inputChanged =e=> {
@@ -62,12 +67,31 @@ class AdminModalContent extends Component {
       cFunc();
     })
   }
+  // 9
+  addReport =()=> {
+    const { rpRow, rpCol, rpText } = this.state;
+    this.setState((preState)=>{
+      return {
+        rpArray: [...preState.rpArray, {rpRow,rpCol,
+          rpText: new Converter().makeHtml(rpText)}],
+        rpRow: '', rpCol: '', rpText: ''
+      }
+    })
+  }
+  coverting2Html =text=> {
+    let reactDiv = document.createElement('div');
+    reactDiv.className = 'eachReportBox';
+    reactDiv.append('<p>PARAGRAPH</p>');
+    console.dir(reactDiv)
+    return reactDiv;
+  }
 
   render() {
     const { 
       resetBatch, addOffer, removeCourse,
       batch, offer, password, replyTextArea,
-      raEmail, raPassword, mErrorP
+      raEmail, raPassword, mErrorP,
+      rpRow, rpCol, rpText, rpArray
     } = this.state;
     const { mData, cFunc } = this.props;
     switch(this.props.index) {
@@ -132,10 +156,10 @@ class AdminModalContent extends Component {
             <h5>{mData && mData._id}</h5>
           </div>
           <div className="popTextFlex">
-            <h5>Active Batch {mData && mData.active_batch}</h5>
+            <h5>Active Batch {mData && mData.batch}</h5>
           </div>
           <div className="popTextFlex">
-            <h5>Course Fees {mData && mData.course_fee} Rs</h5>
+            <h5>Course Fees {mData && mData.courseFee} Rs</h5>
           </div>
           <div className="popTextFlex">
             <h5>Current Offer {mData && mData.offer}% ({mData && (Number(mData.offer)!==0?((Number(mData.course_fee)-(Number(mData.offer)/100)*Number(mData.course_fee))):mData.course_fee)} Rs)</h5>
@@ -207,35 +231,6 @@ class AdminModalContent extends Component {
               </button>
             }
           </div>
-          <div className="adminMoveBox">
-            {removeCourse?
-              <div>
-                <input type="text" autoComplete="off" placeholder="PASSWORD"
-                  name="password" value={password} style={{color: 'red',
-                  backgroundColor: 'rgba(255, 0, 0, 0.3)'}}
-                  onChange={this.inputChanged} />
-                <div className="admbBtns">
-                  <button type="button" style={{color: 'red'}}
-                    onClick={()=>this.setState({removeCourse: false, mErrorP: ''})}
-                    ref={r=>{this.removeCancelBtn=r}}>CANCEL</button>
-                  <button type="button" style={{color: 'green'}}
-                    onClick={()=>this.removeCourseConfirmed(mData._id)}
-                    >CONFIRM</button>
-                </div>
-              </div>:
-              <button type="button" style={{color: 'red'}}
-                onClick={()=>{
-                  this.setState({
-                    removeCourse: true, resetBatch: false,
-                    addOffer: false, batch: '', offer: '',
-                    email: '', password: ''
-                  })
-                }}>
-                <h4>REMOVE COURSE</h4>
-                <i className="fas fa-users"></i>
-              </button>
-            }
-          </div>
           <p className="mErrorP" style={{color: mErrorP?'red':'gray'}}
             >{mErrorP?mErrorP:'Did You See it !'}</p>
         </div>
@@ -270,31 +265,90 @@ class AdminModalContent extends Component {
             </div>
           </div>
         </div>
+      case 9:
+        return <div className="submitReport">
+          <div className="submitReportHead">
+            <h2>SUBMIT REPORT</h2>
+            <p>for</p>
+            <div className="submitReportHead1">
+              <div className="submitReportHead1Img"></div>
+              <div>
+                <h5>Username</h5>
+                <h5>Filename.git</h5>
+              </div>
+            </div>
+          </div>
+          <div className="submitReportBody">
+            <div className="submitReportBody1"
+              ref={r=>this.reportArray=r}>
+              <div className="eachReportBox">
+                <div className="eachReportrc">
+                  <h5>0000</h5>
+                  <h5>00</h5>
+                </div>
+                <div className="eachReportPre">
+                  Ehe paragraph is a self-contained unit of a
+                  discourse in writing dealing with a
+                  particular point or idea.
+                </div>
+                <button type="button">
+                  <i className="fas fa-trash-alt"></i>
+                </button>
+              </div>
+              {rpArray && rpArray.map((eReport, index)=>{
+                return <div className="eachReportBox"
+                  key={index}>
+                  <div className="eachReportrc">
+                    <h5>{eReport.rpRow}</h5>
+                    <h5>{eReport.rpCol}</h5>
+                  </div>
+                  <button type="button" onClick={()=>{
+                    this.setState(preState=>{
+                      preState.rpArray.splice(index, 1)
+                      return { rpArray: [...preState.rpArray] }
+                    })
+                    }}> <i className="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              })}
+            </div>
+            <div className="submitReportBody2">
+              <div className="submitReportBody21">
+                <input type="text" placeholder="ROW"
+                  name="rpRow" value={rpRow}
+                  onChange={this.inputChanged} />
+                <input type="text" placeholder="COL"
+                  name="rpCol" value={rpCol}
+                  onChange={this.inputChanged} />
+                <button type="button" onClick={this.addReport}>ADD</button>
+              </div>
+              <textarea rows="5" placeholder="REPORT"
+                name="rpText" value={rpText}
+                onChange={this.inputChanged} />
+            </div>
+            <div className="submitReportBody3">
+              <button type="button">CANCEL</button>
+              <button type="button" onClick={this.coverting2Html}
+                >REPORT</button>
+            </div>
+          </div>
+        </div>
       case 10:
         return <div className="maBlogConfirmation">
-          <h2>This is respective Blog Title in Bolb.</h2>
-          <img src={require('../../../../amar/notebook.png')} alt="" />
-          <p className="blogQuote">" This is the expected Quote required from User-Admin. "</p>
-          <p className="blogPara">
-            This is the expected Para's First Line required from User-Admin.
-            This is the expected Para's Three Line required from User-Admin.
-            This is the expected Para's Fifth Line required from User-Admin.
+          <h3>Blog Title is Here ...</h3>
+          <div className="maBlogImage">
+            <img src={require('../../../../amar/course_image.png')} alt="" />
+          </div>
+          <p>
+            A paragraph is a self-contained unit of a
+            discourse in writing dealing with a particular
+            point or idea. A paragraph consists of one or
+            more sentences.
           </p>
-          <img src={require('../../../../amar/react.jpg')} alt="" />
-          <p className="blogQuote">" This is the expected Quote required from User-Admin. "</p>
-          <p className="blogPara">
-            This is the expected Para's First Line required from User-Admin.
-            This is the expected Para's Three Line required from User-Admin.
-            This is the expected Para's Fifth Line required from User-Admin.
-          </p>
-          <hr />
-          <div className="maRespForBlogBtns">
-            <button type="button">
-              <i className="far fa-times-circle"></i>
-            </button>
-            <button type="button">
-              <i className="far fa-check-circle"></i>
-            </button>
+          <textarea rows="5" value={`Hello NAno`} disabled />
+          <div className="blogResButns">
+            <button type="button">CANCEL</button>
+            <button type="button">APPROVE</button>
           </div>
         </div>
       default:

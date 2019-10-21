@@ -1,6 +1,6 @@
 .Navbar{
   width: 100%; height: 65px;
-  background-color: orangered;
+  background-color: #ff4500;
   position: fixed; top: 0px;
   left: 0px; z-index: 1000;
 }
@@ -18,7 +18,7 @@
   background-color: transparent;
 }
 .NavbarLogo{
-  width: 50px; height: 50px;
+  width: 150px; height: 60px;
 }
 .NavbarLogo img{
   width: 100%; height: 100%;
@@ -32,18 +32,19 @@
   padding-bottom: 1px;
 }
 .NavbarLink li a{
+  color: #2e3033;
   font-weight: bold;
   letter-spacing: 2px;
 }
+.NavbarLink li .active{ color: white }
 .NavbarLink li img{
   width: 38px; height: 38px;
   border-radius: 100%; margin-top: 5px;
   background-color: rgb(255, 93, 34);
 }
 .NavbarLink li button{
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 2px;
+  font-size: 16px; font-weight: bold;
+  letter-spacing: 2px; color: #2e3033;
   background-color: transparent;
 }
 

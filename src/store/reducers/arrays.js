@@ -7,7 +7,8 @@ const initialState = {
   },
   adminMssgBox: [],
   adminSubmitsBox: [],
-  studentSubmitsBox: []
+  studentSubmitsBox: null,
+  inquiryBox: []
 }
 
 export default function(state=initialState, actions) {
@@ -46,10 +47,20 @@ export default function(state=initialState, actions) {
         ...state,
         adminSubmitsBox: actions.payload
       }
-    case 'STUDENT_SUBMITS_BOX':
+    case 'RETRIEVE_ALL_STUDENT_SUBMITS':
       return {
         ...state,
         studentSubmitsBox: actions.payload
+      }
+    case 'REMOVE_ALL_STUDENT_SUBMITS':
+      return {
+        ...state,
+        studentSubmitsBox: actions.payload
+      }
+    case 'RETRIEVE_ALL_INQUIRIES':
+      return {
+        ...state,
+        inquiryBox: actions.payload
       }
     default:
       return state

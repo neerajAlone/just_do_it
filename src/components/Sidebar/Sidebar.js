@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { auth } from 'firebase/app';
 import 'firebase/auth';
@@ -9,29 +9,25 @@ import Userpic from '../../amar/undraw_profile_pic.svg';
 
 function Sidebar(props) {
   let [signedIn, setsignedIn] = useState(false);
-  let [admin, setadmin] = useState(false);
   useEffect(()=>{
-    if(auth().currentUser) {
-      setsignedIn(true);
-      let ssRole = sessionStorage.getItem('roleAs');
-      if(ssRole==='signedInAsUserAdmin'||ssRole==='signedInAsMainAdmin') {
-        setadmin(true);
-      }
-    }
+    if(auth().currentUser) setsignedIn(true);
   }, [])
   useEffect(()=>{
-    let Sidebar = document.querySelector('.Sidebar'),
+    let body = document.querySelector('body'),
+        Sidebar = document.querySelector('.Sidebar'),
         Sidebar1 = Sidebar.querySelector('.Sidebar1'),
         Sidebar2 = Sidebar.querySelector('.Sidebar2');
     if(props.open) {
+      body.style.overflow = 'hidden';
       Sidebar.style.display = 'flex';
       setTimeout(()=>{
         Sidebar1.style.left = '0%';
         Sidebar2.style.left = '0px';
       }, 25)
     } else {
+      body.style.overflow = 'hidden scroll';
       Sidebar1.style.left = '-100%';
-      Sidebar2.style.left = '-320px';
+      Sidebar2.style.left = '-260px';
       setTimeout(()=>{
         Sidebar.style.display = 'none';
       }, 345)
@@ -41,95 +37,91 @@ function Sidebar(props) {
     <div className="Sidebar1"
       onClick={()=>props.sFunc(false)}></div>
     <div className="Sidebar2">
-      <NavLink to="/profile">
-        <div className="s2ProfileLink">
-          <img alt="" src={props.profileImg?props.profileImg:Userpic} />
-          <div>
-            <div className="s2FlexDiv">
-              <h5>UserName</h5>
-            </div>
-            <div className="s2FlexDiv">
-              <h5>email@test.com</h5>
-            </div>
+      <div className="Sidebar2Head">
+        <Link to="/profile">
+          <div className="s2HeadImg">
+            <img src={Userpic} alt="" />
           </div>
-        </div>
-      </NavLink>
-      <ul>
+        </Link>
+      </div>
+      <div className="Sidebar2Body">
         <li>
-          <NavLink to="/" onClick={()=>props.sFunc(false)}>
-            <div className="s2Link">
-              <i className="fas fa-home"></i>
-              <h4>HOME</h4>
-            </div>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/student" onClick={()=>props.sFunc(false)}>
-            <div className="s2Link">
+          <NavLink to="/courses">
+            <div className="s2Link"
+              onClick={()=>props.sFunc(false)}>
               <i className="fas fa-graduation-cap"></i>
-              <h4>STUDENT</h4>
+              <h4>COURSE</h4>
             </div>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/client" onClick={()=>props.sFunc(false)}>
-            <div className="s2Link">
-              <i className="fas fa-user-tie"></i>
-              <h4>CLIENT</h4>
+          <NavLink to="/courses">
+            <div className="s2Link"
+              onClick={()=>props.sFunc(false)}>
+              <i className="fas fa-calendar-day"></i>
+              <h4>EVENTS</h4>
             </div>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blog" onClick={()=>props.sFunc(false)}>
-            <div className="s2Link">
-              <i className="fas fa-theater-masks"></i>
+          <NavLink to="/blogs">
+            <div className="s2Link"
+              onClick={()=>props.sFunc(false)}>
+              <i className="fas fa-book"></i>
               <h4>BLOGS</h4>
             </div>
           </NavLink>
         </li>
-        {admin?
-          <li>
-            <NavLink to="/admin" onClick={()=>props.sFunc(false)}>
-              <div className="s2Link">
-                <i className="fas fa-user-cog"></i>
-                <h4>ADMIN</h4>
-              </div>
-            </NavLink>
-          </li>:null
-        }
         <li>
-          <NavLink to="/contact" onClick={()=>props.sFunc(false)}>
-            <div className="s2Link">
-              <i className="fas fa-phone"></i>
+          <NavLink to="/portfolio">
+            <div className="s2Link"
+              onClick={()=>props.sFunc(false)}>
+              <i className="fas fa-file-code"></i>
+              <h4>PORTFOLIO</h4>
+            </div>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact">
+            <div className="s2Link"
+              onClick={()=>props.sFunc(false)}>
+              <i className="fas fa-mobile"></i>
               <h4>CONTACT-US</h4>
             </div>
           </NavLink>
         </li>
-        {signedIn?
-          <li>
+        <li>
+          {signedIn?
             <button type="button"
-              style={{backgroundColor: 'transparent'}}
-              onClick={()=>auth().signOut().then(()=>{
-                props.removeProfile();
-                sessionStorage.removeItem('roleAs');
-                window.location.reload();
-              })}>
-              <div className="s2Link">
-                <i className="fas fa-sign-out-alt"></i>
-                <h4>SIGN-OUT</h4>
-              </div>
-            </button>
-          </li>:
-          <li>
-            <NavLink to="/signbox" onClick={()=>props.sFunc(false)}>
-              <div className="s2Link">
-                <i className="fas fa-sign-in-alt"></i>
-                <h4>SIGN-IN</h4>
-              </div>
-            </NavLink>
-          </li>
-        }
-      </ul>
+              onClick={()=>{
+                props.sFunc(false);
+                auth().signOut();
+              }}>SIGN-OUT</button>:
+            <Link to="/signbox">
+              <button type="button"
+                onClick={()=>props.sFunc(false)}
+                >SIGN-IN</button>
+            </Link>
+          }
+        </li>
+      </div>
+      <div className="Sidebar2Foot">
+        <button type="button" style={{color: '#4267B2'}}>
+          <i className="fab fa-facebook-f"></i>
+        </button>
+        <button type="button" style={{color: '#833AB4'}}>
+          <i className="fab fa-instagram"></i>
+        </button>
+        <button type="button" style={{color: '#2867B2'}}>
+          <i className="fab fa-linkedin-in"></i>
+        </button>
+        <button type="button" style={{color: '#D44638'}}>
+          <i className="fas fa-envelope"></i>
+        </button>
+        <button type="button" style={{color: '#4AC959'}}>
+          <i className="fab fa-whatsapp"></i>
+        </button>
+      </div>
     </div>
   </div>
 }

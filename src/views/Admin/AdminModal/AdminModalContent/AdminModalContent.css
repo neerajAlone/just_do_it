@@ -88,14 +88,11 @@
   font-weight: bold; letter-spacing: 1px;
   padding: 12px 15px 13px 15px; transition: 0.25s;
 }
-.adminMoveBox:nth-child(4) input:focus{
+.adminMoveBox:nth-child(6) input:focus{
   border-color: green;
 }
-.adminMoveBox:nth-child(5) input:focus{
+.adminMoveBox:nth-child(7) input:focus{
   border-color: goldenrod;
-}
-.adminMoveBox:nth-child(6) input:focus{
-  border-color: red;
 }
 .admbBtns{
   display: flex;
@@ -140,40 +137,148 @@
   box-shadow: 0px 3px 10px -3px black;
 }
 
-.maBlogConfirmation{
+/* 9 */
+.submitReportHead{
   width: 100%; height: auto;
 }
-.maBlogConfirmation h2{
-  letter-spacing: 1.5px;
+.submitReportHead h2{
+  letter-spacing: 2px;
+  font-weight: normal;
+  margin-bottom: 10px;
   color: gray;
 }
-.maBlogConfirmation img{
-  width: 100%; height: auto;
-  border-radius: 5px; margin: 10px 0;
-}
-.maBlogConfirmation hr{
-  width: 70%; height: 3px;
-  background-color: gray;
-  margin: 25px auto 10px auto;
-  border-radius: 10px;
-}
-.blogQuote{
-  font-size: 20px;
-  letter-spacing: 1.5px;
-  margin-bottom: 12px;
-}
-.blogPara{
-  letter-spacing: 0.7px;
+.submitReportHead p{
   font-weight: bold;
-  margin-bottom: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 3px;
 }
-.maRespForBlogBtns{
-  width: 40%; display: flex;
-  align-items: center; margin: 0 auto;
-  justify-content: space-between;
+.submitReportHead1{
+  width: 100%; display: flex;
+  align-items: center;
 }
-.maRespForBlogBtns button{
-  font-size: 43px; color: red;
+.submitReportHead1Img{
+  width: 32px; height: 32px;
+  background-color: gray;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+.submitReportHead1 h5{
+  letter-spacing: 1px;
+}
+.submitReportBody1{
+  margin-bottom: 20px;
+}
+.eachReportBox{
+  width: 100%; display: flex;
+  align-items: flex-start;
+  background-color: #ccc;
+  box-sizing: border-box;
+  border-radius: 5px; padding: 10px;
+  margin-top: 10px;
+}
+.eachReportrc h5{
+  text-align: right;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 14px;
+  margin-bottom: 2px;
+  margin-top: 1px;
+}
+.eachReportPre{
+  background-color: white;
+  box-sizing: border-box;
+  padding: 5px 8px; margin: 0 5px;
+  border-radius: 5px;
+}
+.eachReportBox button{
+  font-size: 16px; color: red;
   background-color: transparent;
 }
-.maRespForBlogBtns button:nth-child(2){color: green}
+.submitReportBody21{
+  width: 100%; display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.submitReportBody21 input{
+  width: 80px; height: 40px;
+  font-weight: bold; text-align: center;
+  background-color: #ddd;
+  letter-spacing: 2px; margin-left: 5px;
+  border: solid 2px #aaa;
+  border-radius: 7px;
+}
+.submitReportBody21 button{
+  width: 80px; height: 40px; color: white;
+  margin-left: 5px; font-weight: bold;
+  font-size: 13px; letter-spacing: 2px;
+  padding-left: 3px; border-radius: 5px;
+  background-color: brown;
+}
+.submitReportBody2 textarea{
+  width: 100%; font-size: 13px;
+  font-weight: bold; padding: 3px 6px;
+  background-color: #ddd;
+  border: solid 2px #aaa;
+  border-radius: 7px; letter-spacing: 1px;
+  margin: 5px 0 15px 0;
+}
+
+.submitReportBody3{
+  width: 100%; display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.submitReportBody3 button{
+  font-weight: bold; width: 100px;
+  height: 40px; margin-left: 10px;
+  letter-spacing: 3px; padding-left: 3px;
+  border-radius: 5px; color: white;
+  background-color: red;
+}
+.submitReportBody3 button:nth-child(2){
+  background-color: green;
+}
+
+
+
+
+.maBlogConfirmation{
+  width: 100%; height: auto;
+  text-align: center;
+}
+.maBlogConfirmation h3{
+  letter-spacing: 1.5px;
+  color: gray; font-size: 20px;
+  margin-bottom: 7px;
+  font-weight: normal;
+}
+.maBlogImage,.maBlogImage img{
+  width: 100%; height: auto;
+  border-radius: 7px; display: block;
+}
+.maBlogConfirmation p{
+  margin-top: 7px; font-size: 17px;
+  letter-spacing: 0.6px;
+}
+.maBlogConfirmation textarea{
+  width: 100%; font-size: 14px;
+  letter-spacing: 1px; resize: none;
+  background-color: #ddd;
+  box-sizing: border-box;
+  padding: 9px 15px; font-weight: bold;
+  border-radius: 7px; margin-top: 7px;
+}
+.blogResButns{
+  width: 100%; display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.blogResButns button{
+  width: 120px; height: 40px; color: white;
+  font-weight: bold; border-radius: 5px;
+  letter-spacing: 2px; margin: 0 10px;
+  background-color: rgb(248, 3, 3);
+}
+.blogResButns button:nth-child(2){
+  background-color: green;
+}

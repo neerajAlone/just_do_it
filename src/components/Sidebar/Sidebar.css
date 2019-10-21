@@ -10,55 +10,59 @@
   transition: all 0.3s;
 }
 .Sidebar2{
-  width: 320px; height: 100%;
-  position: absolute; top: 0; left: -300px;
+  width: 260px; height: 100%;
+  position: absolute; top: 0; left: -260px;
   background-color: orangered;
-  transition: all 0.25s;
+  box-sizing: border-box; padding: 10px 12px;
+  transition: all 0.25s; overflow: hidden scroll;
 }
-.s2ProfileLink{
-  width: 100%; height: auto;
-  background-color: #4285F4;
-  box-sizing: border-box; padding: 20px;
-  border-radius: 0 0 25px 0;
-}
-.s2ProfileLink img{
-  width: 65px; height: 65px;
-  margin-right: 8px;
+.s2HeadImg{
+  width: 100px; height: 100px;
   border-radius: 100%;
+  margin: 10px auto 35px auto;
 }
-.s2FlexDiv{
-  display: flex;
-  margin-top: 10px;
+.s2HeadImg img{
+  width: 100%; height: 100%;
 }
-.s2FlexDiv h5{
-  overflow: hidden; text-overflow: ellipsis;
-  background-color: white; white-space: nowrap;
-  font-size: 18px; letter-spacing: 2px;
-  padding: 3px 12px 4px 8px; color: #DB4437;
-  border-radius: 0 20px 20px 0;
-}
-.s2FlexDiv:nth-child(2) h5{padding-bottom: 5px}
-
-.Sidebar2 ul{margin-top: 30px}
-.Sidebar2 ul li{
+.Sidebar2Body li{
   width: 100%; display: flex;
-  box-sizing: border-box;
-  padding-left: 25px;
+  justify-content: center;
   margin-bottom: 15px;
 }
 .s2Link{
-  width: 250px; display: flex;
-  align-items: center; color: white;
-  padding: 10px 0px 12px 8px;
-  box-sizing: border-box;
+  display: flex; align-items: center;
+  background-color: white;
+  padding: 7px 16px; color: orangered;
+  border-radius: 30px;
 }
-.s2Link i{
-  width: 35px;
-  font-size: 25px;
-  text-align: center;
+.s2Link i{ 
+  margin-right: 10px;
+  font-size: 16px;
 }
-.s2Link h4{
-  font-size: 22px;
-  margin: -1px 0 0 10px;
+.s2Link h4{ 
   letter-spacing: 3px;
+  font-size: 18px;
+}
+.active .s2Link{
+  background-color: #2e3033;
+  padding: 7px 16px 8px 16px;
+  color: white;
+}
+.Sidebar2Body li button{
+  font-size: 18px; font-weight: bold;
+  letter-spacing: 3px; color: orangered;
+  padding: 8px 18px; border-radius: 30px;
+  background-color: white;
+}
+
+.Sidebar2Foot{
+  width: 100%; display: flex;
+  justify-content: center;
+  flex-wrap: wrap; margin-top: 40px;
+}
+.Sidebar2Foot button{
+  width: 60px; height: 60px;
+  border-radius: 100%;
+  margin: 5px 5px 0 5px;
+  font-size: 26px;
 }

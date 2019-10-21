@@ -115,9 +115,11 @@
   margin-top: 6px;
 }
 .usDisplayh5 h5{
+  overflow: hidden; text-overflow: ellipsis;
   background-color: rgba(219, 69, 55, 0.5);
-  letter-spacing: 1.4px; color: white;
-  padding: 4px 8px 6px 8px; border-radius: 7px;
+  letter-spacing: 1.4px; border-radius: 7px;
+  color: white; white-space: nowrap;
+  padding: 4px 8px 6px 8px;
 }
 
 
@@ -154,31 +156,27 @@
 }
 .mssgAnduaHistory1Body1{
   width: 100%; display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; padding: 0 1% 0 2%;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 .maReplyBox{
-  width: 48%; height: auto; background-color: white;
-  border-radius: 5px; padding: 8px 8px 10px 8px;
-  box-sizing: border-box; margin: 0 auto 10px auto;
+  width: 49%; height: auto; margin: 0 0 11px 0;
+  border-radius: 5px; padding: 3px 8px 10px 8px;
+  box-sizing: border-box; background-color: white;
   box-shadow: 0px 3px 10px -1px rgb(209, 154, 15);
 }
-.userAdminMssgBoxHead1{
-  display: flex;
-  align-items: center;
-}
-.userAdminMssgBoxHead1 h5{
-  color: goldenrod;
-  letter-spacing: 1.5px;
-}
-.userAdminMssgBoxHead1 img{
-  width: 35px; height: 35px;
-  border-radius: 100%; margin-right: 7px;
-  box-shadow: 0px 3px 10px -1px rgb(187, 135, 2);
-}
 .maReplyBox p{
-  font-weight: bold; margin-top: 5px;
-  font-size: 13px; color: gray;
-  letter-spacing: 1px; margin-left: 42px;
+  background-color: rgba(219, 69, 55, 0.5);
+  letter-spacing: 1px; border-radius: 7px;
+  color: white; padding: 4px 8px 6px 8px;
+  font-weight: bold; font-size: 13px;
+}
+.usDisplayh5 button{
+  width: 100%; height: 40px; padding-left: 5px;
+  font-size: 14px; font-weight: bold;
+  letter-spacing: 2px; border-radius: 7px;
+  background-color: #0F9D58; color: white;
 }
 
 .maChildGrid5{
@@ -186,10 +184,6 @@
   grid-column: 1/5; grid-row: 5/10;
   box-sizing: border-box;
   padding: 10px 0px 10px 5px;
-}
-.blogContainerHead{
-  width: 100%; height: 10%;
-  background-color: #aaa;
 }
 .blogContainer{
   width: 100%; height: 90%;
@@ -204,9 +198,9 @@
   justify-content: space-between;
 }
 .blogBox{
-  width: 49%; height: auto;
+  width: 48.8%; height: auto;
   background-color: white;
-  border-radius: 10px; margin-top: 10px;
+  border-radius: 10px; margin-bottom: 10px;
   box-sizing: border-box; padding: 8px;
 }
 .blogBoxHead{

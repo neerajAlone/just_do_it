@@ -1,67 +1,138 @@
-.blogPage{
-  max-width: 600px;
-  margin: 0 auto;
-  height: auto;
-}
-.blogPageHead1{
+.blogPageContainer{
   width: 100%; display: flex;
-}
-.blogPageHead1 button{display: none}
-.blogPageHead1 h2{
-  font-weight: normal;
-  letter-spacing: 1px;
-  font-size: 27px;
-}
-.blogPageHead img{
-  width: 100%; margin: 10px 0;
-  border-radius: 10px;
-}
-.blogBodySection{
-  width: 100%; display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
-.blogBodySection1{
+.blogPageBox{
+  width: 530px; height: auto;
+  margin-top: 20px; border-radius: 10px;
+  overflow: hidden;
+}
+.blogPageBoxImage{
+  width: 100%; height: 318px;
+  background-color: #2e3033;
+  position: relative;
+  border-radius: 10px;
+}
+.blogPageBoxImage1{
+  width: 100%; height: 50px;
+  position: absolute;
+  top: 15px; left: 0px; display: flex;
+  justify-content: flex-end;
+}
+.blogPageBoxImage1 button{
+  width: 50px; height: 100%;
+  margin-right: 15px; color: white;
+  border-radius: 100%; font-size: 24px;
+  background-color: transparent;
+  border: 1.5px solid white;
+}
+.blogPageBoxHead{
+  width: 100%; height: 60px;
+  display: flex; padding: 0 10px;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.blogPageBoxHead1{
   display: flex;
   align-items: center;
 }
-.blogBodySection1 img{
-  width: 37px; height: 37px;
-  border-radius: 100%;
-  margin-right: 5px;
+.blogPageBoxHead1Img{
+  width: 45px; height: 45px;
+  background-color: #2e3033;
+  margin-right: 5px; border-radius: 5px;
 }
-.blogBodySection1 h5{
-  letter-spacing: 0.5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.blogPageBoxHead1 h5{
+  line-height: 15px;
+  letter-spacing: 1px;
+  color: #2e3033;
 }
-.blogBodySection1 button{
-  font-size: 27px; margin-left: 15px;
+.blogPageBoxHead1 button{
+  width: 45px; height: 45px;
+  margin-left: 5px; font-size: 33px;
+  border-radius: 7px;
   background-color: transparent;
 }
-.blogBodySection1 button:nth-child(1){margin-right: 30px}
-.blogBodySection2{margin-top: 30px}
-.blogBodySection21{margin-bottom: 15px}
-.blogBodySection21 p{
-  font-size: 20px;
-  letter-spacing: 0.7px;
-  margin-bottom: 15px;
+.blogPageBoxHead1 button:hover{
+  background-color: #ddd;
 }
-.blogBodySection21 h3{
+.blogPageBoxBody{
+  width: 100%; height: auto;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+.blogPageBoxBody h2{
   font-weight: normal;
-  font-size: 25px;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  color: #2e3033;
+}
+.blogPageBoxBody p{
+  font-size: 17px; font-weight: bold;
+  letter-spacing: 0.6px;
+  margin-top: 15px; color: #2e3033;
+}
+.blogPageBox textarea{
+  width: 100%; font-size: 16px;
+  background-color: #ccc;
+  padding: 8px 12px; font-weight: bold;
+  letter-spacing: 1px; resize: vertical;
+  border-radius: 10px; color: #2e3033;
+}
+.blogPageBoxCommentsBox h4{
+  letter-spacing: 2px;
+  margin: 20px 0; color: #2e3033;
+}
+.blogPageBoxCommentBox{
+  width: 100%; height: auto;
+  margin-top: 15px;
+}
+.blogPageBoxCommentBoxHead{
+  width: 100%; display: flex;
+  align-items: center;
+}
+.blogPageBoxCommentBoxHeadImg{
+  width: 32px; height: 32px;
+  background-color: #2e3033;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+.blogPageBoxCommentBoxHead h5{
+  line-height: 15px;
+  letter-spacing: 1px;
+  color: #2e3033;
+}
+.blogPageBoxCommentBox p{
+  width: 100%; padding-left: 38px;
+  box-sizing: border-box;
+  margin-top: 5px; padding-right: 10px;
+  letter-spacing: 0.5px; color: #2e3033;
 }
 
-
-@media screen and (max-width: 420px) {
-  .blogPage{width: 95%;}
-  .blogBodySection1 button:nth-child(1){margin-right: 10px}
-  .blogPageHead1 button{
-    width: 75px; height: 50px;
-    display: block; font-size: 23px;
-    margin: 7px 10px auto 0;
-    padding-bottom: 1px; color: white;
-    background-color: orangered;
+@media screen and (max-width: 420px){
+  .blogPageContainer{ flex-wrap: wrap }
+  .blogPageBox{
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .blogPageBoxHead{
+    flex-wrap: wrap; height: auto;
+    margin-top: 10px; padding: 0px;
+    margin-bottom: 30px;
+  }
+  .blogPageBoxHead1Img{
+    width: 60px; height: 60px;
+    margin-right: 10px;
+  }
+  .blogPageBoxHead1 h5{
+    font-size: 17px;
+    line-height: 20px;
+  }
+  .blogPageBoxHead1{ width: 100% }
+  .blogPageBoxHead1:nth-child(2){ justify-content: flex-end }
+  .blogPageBoxHead1 button{
+    width: 50px; height: 50px;
+    font-size: 40px;
   }
 }

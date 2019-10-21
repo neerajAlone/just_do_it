@@ -1,65 +1,52 @@
-.homeBox{
-  width: 100%; display: flex;
-  align-items: center;
-}
-.homeBox1{
-  width: 50%; height: 60vh;
-  display: flex; align-items: center;
-  justify-content: center;
-}
-.homeBox1 img{
-  width: 400px;
-  height: auto;
-}
-.homeBox1 p{
-  font-size: 28px;
-  width: 75%;
-}
-
-.studentCourses h1{
-  font-size: 38px;
-  font-weight: normal;
-  letter-spacing: 3px;
-  margin-top: 10px;
-  margin-bottom: 50px;
-}
 .studentCoursesBox{
   width: 100%; display: flex;
   flex-wrap: wrap;
   padding-bottom: 50px;
+  margin-top: 40px;
 }
-.sCourseBox{
-  width: 330px; height: auto;
-  background-color: white;
-  margin-right: 36px; overflow: hidden;
-  border-radius: 10px; margin-bottom: 36px;
-  box-shadow: 0px 0px 10px -3px black;
+.studentCourseContainer{
+  width: calc(1100px / 3); height: auto;
+  box-sizing: border-box; padding: 0 13.3px;
 }
-.sCourseImage{
-  width: 100%; height: 200px;
-  background-size: cover;
-  background-position: center;
+.studentCourseBox{
+  width: 100%; height: 100%;
+  border-radius: 7px;
+  background-color: #bbb;
+  overflow: hidden;
+  padding-bottom: 20px;
 }
-.sCourseTag,.sCourseTag div{display: flex}
-.sCourseTag div{
-  background-color: rgba(218, 165, 32, 0.9);
-  margin: 10px 0 0 10px; color: white;
-  padding: 7px 10px 7px 13px; letter-spacing: 2px;
-  border-radius: 5px;
+.studentCourseBox p{
+  font-size: 26px; line-height: 30px;
+  letter-spacing: 1.5px;
+  color: black; padding: 9px 13px;
 }
-.sCourseTag div i{
-  margin-left: 5px;
+.scbImageBox{
+  width: 100%; height: 204px;
+  background-color: #2e3033;
+  position: relative; overflow: hidden;
+  overflow: hidden; border-radius: 5px;
 }
-.sCourseContent{
-  width: 100%; height: auto;
+.scbImageBox img{width: 100%; height: 100%;}
+.scbImageBox1{
+  width: 100%; height: 100%; padding: 10px;
+  position: absolute; top: 0px; left: 0px;
   box-sizing: border-box;
-  padding: 6px 12px 9px 12px;
 }
-.sCourseContent h3{
-  letter-spacing: 2px;
-  color: gray;
+.scbiIconText{
+  width: 100%; display: flex;
+  margin-bottom: 7px;
 }
-
+.scbiIconText1{
+  display: flex; align-items: center;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: black; border-radius: 4px;
+  padding: 3px 8px 4px 8px;
+}
+.scbiIconText1 i{
+  font-size: 15px;
+  margin-right: 5px;
+}
+.scbiIconText1 h4{ letter-spacing: 1px }
 @media screen and (max-width: 420px) {
   .homeBox{flex-wrap: wrap}
   .hb2{flex-wrap: wrap-reverse}
@@ -69,7 +56,7 @@
     margin-top: 70px;
   }
   .homeBox1 img,.homeBox1 p{width: 85%}
-  .studentCourses{margin-top: 80px}
+  .studentCourses{margin-top: 50px}
   .studentCourses h1{text-align: center}
   .studentCoursesBox{justify-content: center}
   .sCourseBox{margin: 0 0 40px 0}

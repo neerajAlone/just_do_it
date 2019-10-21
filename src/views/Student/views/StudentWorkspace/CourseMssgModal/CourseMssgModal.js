@@ -5,7 +5,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 import './CourseMssgModal.css';
-import pImg from '../../../../../amar/pic14.png';
+import pImg from '../../../../../amar/undraw_profile_pic.svg';
 
 function addMessage(props, mssg, mssgFunc, toAdmin, toAdminFunc) {
   if(toAdmin) {
@@ -38,6 +38,7 @@ function addMessage(props, mssg, mssgFunc, toAdmin, toAdminFunc) {
 }
 
 function CourseMssgModal(props) {
+  // 
   let [textArea, settextArea] = useState('');
   let [toAdmin, settoAdmin] = useState(false);
   let cUid = auth().currentUser.uid;
@@ -84,11 +85,11 @@ function CourseMssgModal(props) {
         <div className="CourseMssgModal221">
           <button type="button" onClick={()=>settoAdmin(!toAdmin)}
             style={{color: toAdmin?'orangered':'grey'}}>
-            <i className="fas fa-lemon"></i>
+            <i className="fas fa-user-astronaut"></i>
           </button>
           <button type="button"
             onClick={()=>addMessage(props, textArea, settextArea, toAdmin, settoAdmin)}>
-            <i className="fas fa-envelope"></i>
+            <i className="fas fa-paper-plane"></i>
           </button>
         </div>
       </div>
@@ -105,7 +106,7 @@ function CourseMssgModal(props) {
                 </div>
               </div>
               {eMssg.to?<div className="cmm21MssgBoxHead">
-                <h4>To {eMssg.to}</h4>
+                <h4>To: {eMssg.to}</h4>
               </div>:null}
               <div className="cmm21MssgBoxBody">
                 <p>{eMssg.mssg}</p>

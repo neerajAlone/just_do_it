@@ -47,25 +47,18 @@ function Navbar(props) {
       </button>
       <div className="NavbarLogo">
         <Link to="/">
-          <img src={require('../../amar/whiteLogo.png')} alt="" />
+          <img src={require('../../amar/developerWizardsLogo.png')} alt="" />
         </Link>
       </div>
       <div className="NavbarLink">
-        {signedIn?
-          <li>
-            <Link to="/profile">
-              <img src={props.profileImg?props.profileImg:defaultImg} alt="" />
-            </Link>
-          </li>:null
-        }
         <li>
-          <NavLink to="/student">STUDENT</NavLink>
+          <NavLink to="/courses">COURSES</NavLink>
         </li>
         <li>
-          <NavLink to="/blog">BLOG</NavLink>
+          <NavLink to="/blogs">BLOGS</NavLink>
         </li>
         <li>
-          <NavLink to="/client">CLIENT</NavLink>
+          <NavLink to="/portfolio">PORTFOLIO</NavLink>
         </li>
         {admin?
           <li>
@@ -84,6 +77,13 @@ function Navbar(props) {
               onClick={()=>signOut(props)}
               >SIGN-OUT</button>
           </li>
+        }
+        {signedIn?
+          <li>
+            <Link to="/profile">
+              <img src={props.profileImg?props.profileImg:defaultImg} alt="" />
+            </Link>
+          </li>:null
         }
       </div>
     </div>

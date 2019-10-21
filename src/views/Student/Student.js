@@ -50,18 +50,18 @@ function Student(props) {
   }, [])
   return <Fragment>
     <div className="studentHead">
-      <h1><Link to="/student">STUDENT</Link></h1>
+      <h1><Link to="/courses">COURSES</Link></h1>
       <ul>
         {student?
-          <li><NavLink to="/student/workspace">workSpace</NavLink></li>
+          <li><NavLink to="/courses/workspace">workSpace</NavLink></li>
           :null
         }
       </ul>
     </div>
     <div>
-      <Route exact path="/student" component={lazyComponent(StudentHome)} />
-      <Route path="/student/workspace" component={lazyComponent(StudentWorkspace)} />
-      <Route path="/student/course/:c_id" component={lazyComponent(StudentCourse)} />
+      <Route exact path="/courses" component={lazyComponent(StudentHome)} />
+      <Route path="/courses/workspace" component={lazyComponent(StudentWorkspace)} />
+      <Route path="/courses/course/:c_id" component={lazyComponent(StudentCourse)} />
     </div>
   </Fragment>
 }

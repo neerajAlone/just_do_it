@@ -126,7 +126,7 @@ class App extends Component {
                 } else window.location.reload()
               })
           }
-        })
+        }).catch(err=>console.log('ERROR', err.message))
     }
   }
   render() {
@@ -136,6 +136,25 @@ class App extends Component {
       <Navbar sFunc={this.sidebarToggle} />
       <div className="Router_View">
         <Routes />
+      </div>
+      <div className="companySocialLinks">
+        <div>
+          <button type="button">
+            <i className="fab fa-facebook-f"></i>
+          </button>
+          <button type="button">
+            <i className="fab fa-whatsapp"></i>
+          </button>
+          <button type="button">
+            <i className="fab fa-instagram"></i>
+          </button>
+          <button type="button">
+            <i className="far fa-envelope"></i>
+          </button>
+          <button type="button">
+            <i className="fab fa-linkedin-in"></i>
+          </button>
+        </div>
       </div>
       <Snackbar />
       <Sidebar open={sidebar} sFunc={this.sidebarToggle} />

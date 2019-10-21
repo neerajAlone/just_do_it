@@ -25,19 +25,19 @@ function lazyComponent(Component) {
 export function Routes() {
   return <Switch>
     <Route exact path="/" component={Home} />
-    <Route path="/student" component={lazyComponent(Student)} />
+    <Route path="/courses" component={lazyComponent(Student)} />
     <Route path="/signbox" component={lazyComponent(SignBox)} />
     <Route path="/admin" component={lazyComponent(Admin)} />
     <Route path="/profile" component={lazyComponent(ProfileBox)} />
-    <Route path="/client" component={lazyComponent(Client)} />
+    <Route path="/portfolio" component={lazyComponent(Client)} />
     <Route path="/contact" component={lazyComponent(Contact)} />
-    <Route path="/blog" component={lazyComponent(Blog)} />
+    <Route path="/blogs" component={lazyComponent(Blog)} />
   </Switch>
 }
 
 export function BlogRoutes() {
   return <Fragment>
-    <Route exact path="/blog" component={lazyComponent(BlogHome)} />
-    <Route path="/blog/blogPage/:b_id" component={lazyComponent(BlogPage)} />
+    <Route exact path="/blogs" component={lazyComponent(BlogHome)} />
+    <Route path="/blogs/blog/:b_id" component={lazyComponent(BlogPage)} />
   </Fragment>
 }

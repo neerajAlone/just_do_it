@@ -71,13 +71,20 @@ class MainAdmin extends Component {
         console.log(emptyArray);
         this.props.getAllUserAdmins(emptyArray)
       })
+    firestore().collection('Inquiry-Mssgs').get()
+      .then(docs=>{ let eArray = [];
+        docs.forEach(doc=>{
+          eArray.push({id: doc.id, ...doc.data()})
+        });
+        this.props.getAllInquiries(eArray);
+      })
   }
   render() {
     const {
       showModal, modalIndex,
       maEmail, maPassword, maRePassword,
     } = this.state;
-    const { userAdminArray } = this.props;
+    const { userAdminArray, allInquiries } = this.props;
     return <Fragment>
       <div className="parentGrid">
         <div className="maChildGrid1">
@@ -139,13 +146,13 @@ class MainAdmin extends Component {
                   </div>
                   <div className="userAdminBoxBody">
                     <div className="usDisplayh5">
-                      <h5>{euObj.username}</h5>
+                      <h5 title={euObj.username}>{euObj.username}</h5>
                     </div>
                     <div className="usDisplayh5">
-                      <h5>{euObj.email}</h5>
+                      <h5 title={euObj.email}>{euObj.email}</h5>
                     </div>
                     <div className="usDisplayh5">
-                      <h5>{euObj.mobile}</h5>
+                      <h5 title={euObj.mobile}>{euObj.mobile}</h5>
                     </div>
                   </div>
                 </div>
@@ -155,57 +162,39 @@ class MainAdmin extends Component {
         </div>
         
         <div className="childGrid3">
-          <img src={require('../../../amar/orangeLogo.png')} alt="" />
+          <img src={require('../../../amar/developerWizardsLogoOrange.png')} alt="" />
         </div>
         
         <div className="maChildGrid4">
           <div className="mssgAnduaHistory">
             <div className="mssgAnduaHistory1">
               <div className="mssgAnduaHistory1Head">
-                <h4>USER-ADMINS HISTORY</h4>
+                <h4>INQUIRY MESSAGES</h4>
               </div>
               <div className="mssgAnduaHistory1Body">
                 <div className="mssgAnduaHistory1Body1">
-                  <div className="maReplyBox">
-                    <div className="userAdminMssgBoxHead1">
-                      <img alt="" src={userImg} />
-                      <div>
-                        <h5>Username</h5>
-                        <h5>12-01-1996 11:30 AM</h5>
-                      </div>
+                {allInquiries && allInquiries.map((eInquiry, index)=>{
+                  return <div className="maReplyBox" key={index}>
+                    <div className="usDisplayh5">
+                      <h5 title={eInquiry.fullname}>{eInquiry.fullname}</h5>
                     </div>
-                    <p>
-                      Text messaging, or texting, is the act
-                      Text messaging, or texting, is the ac
-                      of composing and sending electronic messages.
-                    </p>
-                  </div>
-                  <div className="maReplyBox">
-                    <div className="userAdminMssgBoxHead1">
-                      <img alt="" src={userImg} />
-                      <div>
-                        <h5>Username</h5>
-                        <h5>12-01-1996 11:30 AM</h5>
-                      </div>
+                    <div className="usDisplayh5">
+                      <h5 title={eInquiry.time}>{eInquiry.time}</h5>
                     </div>
-                    <p>
-                      Text messaging, or texting, is the act
-                      of composing and sending electronic messages.
-                    </p>
-                  </div>
-                  <div className="maReplyBox">
-                    <div className="userAdminMssgBoxHead1">
-                      <img alt="" src={userImg} />
-                      <div>
-                        <h5>Username</h5>
-                        <h5>12-01-1996 11:30 AM</h5>
-                      </div>
+                    <div className="usDisplayh5">
+                      <h5 title={eInquiry.email}>{eInquiry.email}</h5>
                     </div>
-                    <p>
-                      Text messaging, or texting, is the act
-                      of composing and sending electronic messages.
-                    </p>
+                    <div className="usDisplayh5">
+                      <h5 title={eInquiry.mobile}>{eInquiry.mobile}</h5>
+                    </div>
+                    <div className="usDisplayh5">
+                      <p>{eInquiry.message}</p>
+                    </div>
+                    <div className="usDisplayh5">
+                      <button type="button">RESOLVED</button>
+                    </div>
                   </div>
+                })}
                 </div>
               </div>
             </div>
@@ -213,7 +202,6 @@ class MainAdmin extends Component {
         </div>
         
         <div className="maChildGrid5">
-          <div className="blogContainerHead"></div>
           <div className="blogContainer">
             <div className="blogContainer1">
               <div className="blogBox">
@@ -249,13 +237,15 @@ class MainAdmin extends Component {
 
 function mapStateToProps(state) {
   return {
-    userAdminArray: state.reqArrays.userAdmins
+    userAdminArray: state.reqArrays.userAdmins,
+    allInquiries: state.reqArrays.inquiryBox
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getAllUserAdmins: (payload)=>{dispatch({type: 'RETRIEVE_ALL_USER_ADMINS', payload})},
-    callSnackbar: (payload)=>{dispatch({type: 'SNACK_IT', payload})}
+    getAllUserAdmins: payload=>{dispatch({type: 'RETRIEVE_ALL_USER_ADMINS', payload})},
+    callSnackbar: payload=>{dispatch({type: 'SNACK_IT', payload})},
+    getAllInquiries: payload=>{dispatch({type: 'RETRIEVE_ALL_INQUIRIES', payload})}
   }
 }
 

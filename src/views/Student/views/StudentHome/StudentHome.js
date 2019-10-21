@@ -6,54 +6,40 @@ import './StudentHome.css';
 
 function StudentHome(props) {
   return <Fragment>
-    <div className="homeBox">
-      <div className="homeBox1">
-        <img src={require('../../../../amar/pic9.png')} alt="" />
-      </div>
-      <div className="homeBox1">
-        <p>
-          We take full responsibilty of every student who
-          joined us for our different courses, that they
-          learned and practised is 101% for there
-          future foundation.
-        </p>
-      </div>
-    </div>
     <div className="studentCourses">
-      <h1>OUR COURSES</h1>
       <div className="studentCoursesBox">
-        {props.courseArray && props.courseArray.map(eCourse=>{
-          return <div className="sCourseBox" key={eCourse._id}>
-            <Link to={`/student/course/${eCourse._id}`}>
-              <div className="sCourseImage"
-                style={{
-                  backgroundImage: `url(${eCourse.image})`
-                }}>
-                <div className="sCourseTag">
-                  <div>
-                    <h5>{eCourse.category.toUpperCase()}</h5>
-                    <i className="fas fa-code"></i>
+      {props.courseArray && props.courseArray.map((eCourse, index)=>{
+        return <div className="studentCourseContainer" key={index}>
+          <Link to={`/courses/course/${eCourse._id}`}>
+            <div className="studentCourseBox">
+              <div className="scbImageBox">
+                <img src={eCourse.image} alt={eCourse.courseName} />
+                <div className="scbImageBox1">
+                  <div className="scbiIconText">
+                    <div className="scbiIconText1">
+                      <i className="fas fa-code"></i>
+                      <h4>{eCourse.category}</h4>
+                    </div>
                   </div>
-                </div>
-                <div className="sCourseTag">
-                  <div>
-                    <h5>{eCourse.startsFrom}</h5>
-                    <i className="fas fa-users"></i>
+                  <div className="scbiIconText">
+                    <div className="scbiIconText1">
+                      <i className="fas fa-users"></i>
+                      <h4>{eCourse.batch}</h4>
+                    </div>
                   </div>
-                </div>
-                <div className="sCourseTag">
-                  <div>
-                    <h5>{eCourse.rating}</h5>
-                    <i className="fas fa-star"></i>
+                  <div className="scbiIconText">
+                    <div className="scbiIconText1">
+                      <i className="fas fa-star"></i>
+                      <h4>4.5</h4>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="sCourseContent">
-                <h3>{eCourse.courseName}</h3>
-              </div>
-            </Link>
-          </div>
-        })}
+              <p>{eCourse.courseName}</p>
+            </div>
+          </Link>
+        </div>
+      })}
       </div>
     </div>
   </Fragment>

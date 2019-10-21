@@ -84,28 +84,28 @@ class SignBox extends Component {
             <div className="SignBoxForm"
               style={{opacity: signin?0:1, zIndex: signin?1:2,
               transform: `scale(${signin?0:1})`}}>
-              <div className="formField">
+              <div className="sformField">
                 <h5>EMAIL</h5>
                 <input type="email" placeholder="EMAIL" name="email"
                   value={email} onChange={this.inputChange} />
               </div>
-              <div className="formField">
+              <div className="sformField">
                 <h5>PASSWORD</h5>
                 <input type="password" placeholder="PASSWORD"
                   name="password" value={password}
                   onChange={this.inputChange} />
               </div>
-              <div className="formField">
+              <div className="sformField">
                 <h5>RE-PASSWORD</h5>
                 <input type="password" placeholder="RE-PASSWORD"
                   name="re_password" value={re_password}
                   onChange={this.inputChange} />
               </div>
-              <div className="formField">
+              <div className="sformField">
                 <button type="button" onClick={this.signUp}
                   >SIGN-UP</button>
               </div>
-              <div className="formField">
+              <div className="sformField">
                 <h4 onClick={()=>this.setState({signin: true})}
                   >SIGN-IN</h4>
               </div>
@@ -113,33 +113,33 @@ class SignBox extends Component {
             <div className="SignBoxForm"
               style={{opacity: !signin?0:1, zIndex: !signin?1:2,
               transform: `scale(${!signin?0:1})`}}>
-              <div className="formField">
+              <div className="sformField">
                 <h5>EMAIL</h5>
                 <input type="email" placeholder="EMAIL" name="email"
                   value={email} onChange={this.inputChange} />
               </div>
-              <div className="formField">
+              <div className="sformField">
                 <h5>PASSWORD</h5>
                 <input type="password" placeholder="PASSWORD" name="password"
                   value={password} onChange={this.inputChange} />
               </div>
-              <div className="formField">
+              <div className="sformField">
                 <button type="button"
                   onClick={this.signIn}>SIGN-IN</button>
               </div>
-              <div className="formField googleSign">
+              <div className="sformField googleSign">
                 <p>OR</p>
                 <button type="button"
                   onClick={this.googleSignInFunc}>GOOGLE</button>
               </div>
-              <div className="formField">
+              <div className="sformField">
                 <h4 onClick={()=>this.setState({signin: false})}
                   >SIGN-UP</h4>
               </div>
             </div>
           </div>
           {!signin?
-            <div className="formField">
+            <div className="sformField">
               <h5>INSTRUCTION TO SIGN-UP</h5>
               <ul>
                 <li>All Fields must be filled.</li>

@@ -47,15 +47,15 @@
   transform-origin: center center;
   transition: all 0.3s;
 }
-.formField{
+.sformField{
   width: 100%;
   margin-top: 20px;
 }
-.formField h5{
+.sformField h5{
   letter-spacing: 2.5px;
   color: gray;
 }
-.formField input{
+.sformField input{
   width: 100%; font-size: 26px;
   letter-spacing: 1.5px;
   background-color: transparent;
@@ -63,10 +63,10 @@
   border-right: 5px solid transparent;
   transition: all 0.25s;
 }
-.formField input:focus{
+.sformField input:focus{
   border-right-color: gray;
 }
-.formField button{
+.sformField button{
   width: 150px; height: 50px;
   padding-bottom: 1px; color: white;
   background-color: #3cba54;
@@ -74,7 +74,7 @@
   letter-spacing: 3px; border-radius: 7px;
   box-shadow: 0px 3px 10px -3px black;
 }
-.formField p{
+.sformField p{
   font-weight: bold; letter-spacing: 2px;
   margin-bottom: 18px; font-size: 20px;
 }
@@ -82,14 +82,14 @@
   background-color: #4885ed;
   color: white;
 }
-.formField h4{
+.sformField h4{
   letter-spacing: 2px;
   cursor: pointer;
   color: royalblue;
   width: 100px;
 }
-.formField ul{margin-top: 15px}
-.formField ul li{
+.sformField ul{margin-top: 15px}
+.sformField ul li{
   list-style: unset;
   font-weight: bold;
   letter-spacing: 1.3px;
@@ -105,5 +105,5 @@
     box-sizing: border-box;
     height: auto; margin-top: 30px;
   }
-  .SignBoxs:nth-child(2){margin-top: 80px}
+  .SignBoxs:nth-child(2){margin: 80px 0}
 }

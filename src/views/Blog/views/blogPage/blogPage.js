@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 import './blogPage.css';
-import blogImg from '../../../../amar/notebook.png';
+import blogImg from '../../../../amar/course_image.png';
 import userImg from '../../../../amar/undraw_profile_pic.svg';
 
 
@@ -23,72 +23,97 @@ function shareBlog(company) {
 }
 
 function BlogPage(props) {
+  useEffect(()=>{
+    let bpbImg = document.querySelector('.blogPageBoxImage');
+    bpbImg.style.height = (bpbImg.clientWidth*3)/5+'px';
+  }, [])
   let [heart, setHeart] = useState(false);
 
   return <Fragment>
-    <div className="blogPage">
-      <div className="blogPageHead">
-        <div className="blogPageHead1">
-          <button type="button"
-            onClick={()=>props.history.push('/blog')}>
-            <i className="fas fa-chevron-left"></i>
-          </button>
-          <h2>Tailwind CSS is a highly customizable.</h2>
+    <div className="blogPageContainer">
+      <div className="blogPageBox">
+        <div className="blogPageBoxImage">
+          <div className="blogPageBoxImage1">
+            <button type="button">
+              <i className="fas fa-heart"></i>
+            </button>
+          </div>
         </div>
-        <img alt="" src={blogImg} />
-      </div>
-      <div className="blogBody">
-        <div className="blogBodySection">
-          <div className="blogBodySection1">
-            <img alt="" src={userImg} />
+        <div className="blogPageBoxHead">
+          <div className="blogPageBoxHead1">
+            <div className="blogPageBoxHead1Img"></div>
             <div>
               <h5>Username</h5>
               <h5>12-01-1996 11:30 AM</h5>
+              <h5>4000</h5>
             </div>
           </div>
-          <div className="blogBodySection1">
-            <button type="button"
-              onClick={()=>setHeart(!heart)}>
-              {heart?
-                <i style={{color: 'red'}}
-                  className="fas fa-heart"></i>:
-                <i style={{color: 'green'}}
-                  className="far fa-heart"></i>}
-            </button>
-            <button type="button" style={{color: '#3C5A99'}}
-              onClick={()=>shareBlog('FACEBOOK')}>
+          <div className="blogPageBoxHead1">
+            <button type="button" style={{color: '#3C5A99'}}>
               <i className="fab fa-facebook-square"></i>
             </button>
-            <button type="button" style={{color: '#0077B5'}}
-              onClick={()=>shareBlog('LINKEDIN')}>
+            <button type="button" style={{color: '#0077B5'}}>
               <i className="fab fa-linkedin"></i>
             </button>
-            <button type="button" style={{color: '#1DA1F2'}}
-              onClick={()=>shareBlog('TWITTER')}>
+            <button type="button" style={{color: '#1DA1F2'}}>
               <i className="fab fa-twitter-square"></i>
             </button>
-            <button type="button" style={{color: '#4AC959'}}
-              onClick={()=>shareBlog('WHATSAPP')}>
+            <button type="button" style={{color: '#4AC959'}}>
               <i className="fab fa-whatsapp-square"></i>
             </button>
           </div>
         </div>
-        <div className="blogBodySection2">
-          <div className="blogBodySection21">
+        <div className="blogPageBoxBody">
+          <h2>
+            A paragraph is a self-contained unit of a discourse
+            in writing dealing with a particular point or idea.
+          </h2>
+          <p>
+            A paragraph is a self-contained unit of a discourse
+            in writing dealing with a particular point or idea.
+            A paragraph consists of one or more sentences.
+            A paragraph is a self-contained unit of a discourse
+            in writing dealing with a particular point or idea.
+            A paragraph consists of one or more sentences.
+          </p>
+          <p>
+            A paragraph is a self-contained unit of a discourse
+            in writing dealing with a particular point or idea.
+            A paragraph consists of one or more sentences.
+          </p>
+        </div>
+      </div>
+      <div className="blogPageBox">
+        <textarea rows="5"
+          placeholder="Your Comment ..." />
+        <div className="blogPageBoxCommentsBox">
+          <h4>ALL COMMENTS ...</h4>
+          <div className="blogPageBoxCommentBox">
+            <div className="blogPageBoxCommentBoxHead">
+              <div className="blogPageBoxCommentBoxHeadImg"></div>
+              <div>
+                <h5>Username</h5>
+                <h5>12-01-1996 11:30 AM</h5>
+              </div>
+            </div>
             <p>
-              A brand is a name, term, design, symbol
-              or any other feature that identifies
-              one seller's good or service as distinct
-              from those of other sellers.
+              A paragraph is a self-contained unit of a discourse
+              in writing dealing with a particular point or idea.
+              A paragraph consists of one or more sentences.
             </p>
-            <h3>" Importance is a subjective indicator of value. "</h3>
           </div>
-          <div className="blogBodySection21">
+          <div className="blogPageBoxCommentBox">
+            <div className="blogPageBoxCommentBoxHead">
+              <div className="blogPageBoxCommentBoxHeadImg"></div>
+              <div>
+                <h5>Username</h5>
+                <h5>12-01-1996 11:30 AM</h5>
+              </div>
+            </div>
             <p>
-              A brand is a name, term, design, symbol
-              or any other feature that identifies
-              one seller's good or service as distinct
-              from those of other sellers.
+              A paragraph is a self-contained unit of a discourse
+              in writing dealing with a particular point or idea.
+              A paragraph consists of one or more sentences.
             </p>
           </div>
         </div>

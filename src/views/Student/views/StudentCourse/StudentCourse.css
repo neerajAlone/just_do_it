@@ -1,87 +1,215 @@
-.StudentCourse{
+.courseContainer{
+  width: 100%; height: auto;
+  max-width: 800px; margin: 30px auto;
+}
+.ccImageBox{
+  width: 100%; height: 480px;
+  background-color: royalblue;
+  overflow: hidden; position: relative;
+  border-radius: 10px;
+}
+.ccImageBox img{
+  width: 100%; height: 100%;
+}
+.ccImageBox1{
+  width: 100%; height: 100%;
+  position: absolute; top: 0px; left: 0px;
+  background-color: #2e303399;
+  display: flex; align-items: center;
+  justify-content: center;
+}
+.ccImageBox11{
+  width: 400px; color: white;
+  text-align: center;
+}
+.ccImageBox11 h5{
+  letter-spacing: 5px;
+  margin-bottom: 15px;
+}
+.ccImageBox11 h1{
+  font-weight: normal;
+  letter-spacing: 2px;
+  line-height: 34px;
+}
+.ccImageBox11 p{
+  font-size: 18px; margin-top: 20px;
+  letter-spacing: 0.6px;
+}
+.ccImageBox11 button{
+  width: 220px; height: 60px;
+  margin: 30px auto 0 auto;
+  font-size: 21px; letter-spacing: 2px;
+  padding-left: 3px; font-weight: bold;
+  color: white; border-radius: 5px;
+  background-color: transparent;
+  border: solid 2px white;
+}
+.ccDetailBox{
+  width: 100%; height: auto;
+  margin-top: 50px;
+}
+.ccdbMiniBoxes{
   width: 100%; display: flex;
+  flex-wrap: wrap;
+}
+.ccdbMiniBox{
+  width: 400px; height: auto;
+  box-sizing: border-box;
+  padding: 8px;
+}
+.ccdbMiniBox1{
+  width: 100%; height: 100%;
+  box-shadow: 0 2px 10px -3px grey;
+  background-color: white;
+  border-radius: 7px; box-sizing: border-box;
+  padding: 11px 15px 15px 15px;
+}
+.ccdbMiniBox1 h2{
+  font-weight: normal; margin-left: -1px;
+  letter-spacing: 1px;
+}
+.ccdbMiniBox1 p{
+  margin-left: -0.5px;
+  letter-spacing: 1px;
+}
+.ccdbMiniBox1Head{
+  display: flex; color: grey;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.ccdbMiniBox1Head h5{
+  letter-spacing: 2px;
+  margin-right: 6px;
+}
+.ccdbMiniBox1Head i{ font-size: 13px }
+.ccdbBigBox, .ccdbLearnBox, .ccExtraBox{
+  width: 100%; height: auto;
+  box-sizing: border-box;
+  padding: 8px;
+}
+.ccdbMiniBox1 li{
+  width: 100%; display: flex;
+  align-items: flex-start;
+  padding-left: 10px;
+  margin-bottom: 7px;
+}
+.ccdbMiniBox1 li i{ margin: 3px 7px 0 0 }
+.ccdbMiniBox1 li p{ font-size: 18px }
+
+.ccExtraBox{
+  margin-top: 35px;
+}
+.ccExtraBox h3{
+  font-weight: normal;
+  font-size: 26px;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+}
+.ccInstructorBoxes{
+  width: 100%; display: flex;
+  flex-wrap: wrap;
+}
+.ccInstructorBox{
+  width: 240px; height: auto;
+  margin-right: 21.33px;
+  background-color: white;
+  border-radius: 10px; text-align: center;
+  box-shadow: 0 1px 10px -4px black;
+}
+.ccInstructorBoxImg{
+  width: 150px; height: 150px;
+  background-color: white;
+  margin: 30px auto 15px auto;
+  border-radius: 100%;
+  box-shadow: 0 2px 10px -4px black;
+}
+.ccInstructorBox h4{
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  font-weight: normal;
+}
+.ccInstructorBox h5{
+  letter-spacing: 1.5px;
+  margin: 3px 0 10px 0;
+}
+.ccInstructorBox p{
+  width: 90%; margin: 0 auto;
+  letter-spacing: 0.8px;
+  padding-bottom: 20px;
+}
+.enrollContainer{
+  width: 100%; display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-top: 20px;
 }
-.scSection{
-  width: 48%; height: auto;
+.enrollBox{
+  box-shadow: 0 1px 10px -4px black;
+  border-radius: 10px; padding: 16px 21px;
+  box-sizing: border-box; height: auto;
 }
-.scSection:nth-child(1) img{
+.enrollBox:nth-child(1){ width: 50% }
+.enrollBoxTitle{
+  width: 100%; display: flex;
+  margin-bottom: 15px;
+}
+.enrollBoxTitle h5{
+  background-color: orangered;
+  color: white; letter-spacing: 2px;
+  padding: 4px 12px 5px 13px;
   border-radius: 5px;
 }
-.scSection:nth-child(1) h3{
-  font-weight: normal;
-  font-size: 30px;
-  margin: 10px 0;
-  letter-spacing: 1.5px;
-}
-.scSection:nth-child(1) p{
-  font-weight: bold;
-  letter-spacing: 0.5px;
-}
-.scSection:nth-child(1) button{
-  width: 250px; height: 55px;
-  margin-top: 20px; font-weight: bold;
-  letter-spacing: 4px; font-size: 18px;
-  padding-bottom: 2px; border-radius: 7px;
-  background-color: white; color: goldenrod;
-  box-shadow: 0px 2px 8px goldenrod;
-}
-.scSection:nth-child(1) h4{
-  color: red; margin-top: 20px;
-  letter-spacing: 2px;
-}
-
-.scSection:nth-child(2) h2{
-  letter-spacing: 2px;
-  font-weight: normal;
-  font-size: 38px;
-  line-height: 36px;
-  margin-bottom: 30px;
-}
-.eachCourseDetail,
-.eachCourseDetailList{
-  width: 100%; box-sizing: border-box;
-  padding: 0 2px; margin-bottom: 15px;
-}
-.eachCourseDetail h5,
-.eachCourseDetailList h5{
-  padding-left: 1px;
-  color: royalblue;
-  letter-spacing: 2px;
-}
-.eachCourseDetail h3{
-  font-weight: normal;
-  font-size: 25px;
-  letter-spacing: 0.8px;
-}
-.eachCourseDetailGrp{
+.enrollBox:nth-child(1) li{
   width: 100%; display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 3px;
+  margin-top: 10px;
 }
-.eachCourseDetailGrp .eachCourseDetail{width: 48%}
-.eachCourseDetailList{ margin-bottom: 20px }
-.eachCourseDetailList ul{
-  width: 100%; margin-top: 10px;
+.enrollBox:nth-child(1) li i{ margin: 3px 8px 0 0 }
+.enrollBox:nth-child(1) li p{ font-size: 18px }
+
+.enrollBox:nth-child(2){ width: 48% }
+.ebBoxes{
+  width: 100%; display: flex;
+  align-items: center;
+  margin-top: -5px;
 }
-.eachCourseDetailList ul li{
+.ebBox{
   display: flex;
-  margin-bottom: 10px;
+  align-items: center;
 }
-.eachCourseDetailList ul li p{
-  font-weight: bold;
-  font-size: 20px;
-  margin-top: -5.5px;
-  margin-left: 10px;
-  letter-spacing: 1px;
+.ebBox i{ color: green; }
+.ebBox h1{
+  font-weight: normal; font-size: 50px;
+  margin-left: 5px; color: orangered;
+  margin-right: 10px;
+}
+.ebBox h3{
+  margin: 0 0 0 7px;
+  letter-spacing: 2px;
+  color: orangered;
+}
+.enrollBox button{
+  width: 150px; height: 50px; color: white;
+  font-size: 18px; font-weight: bold;
+  padding: 0px 0px 1px 3px; margin-top: 20px;
+  letter-spacing: 3px; border-radius: 5px;
+  background-color: green;
 }
 
 @media screen and (max-width: 420px) {
-  .StudentCourse{flex-wrap: wrap}
-  .scSection{
-    width: 100%; padding: 0 15px;
-    box-sizing: border-box;
+  .enrollContainer{ flex-wrap: wrap }
+  .enrollBox:nth-child(1){ width: 100% }
+  .enrollBox:nth-child(2){ 
+    width: 100%; margin-top: 30px;
   }
-  .scSection:nth-child(1) p{font-size: 18px}
-  .scSection:nth-child(2){margin-top: 50px}
+  .ccInstructorBoxes{
+    justify-content: space-between;
+  }
+  .ccInstructorBox{
+    width: 47%; margin: 0px;
+  }
+  .ccInstructorBoxImg{
+    width: 120px; height: 120px;
+    margin: 20px auto 15px auto;
+  }
 }

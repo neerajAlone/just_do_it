@@ -13,6 +13,7 @@ function AdminModal(props) {
     let AdminModal = document.querySelector('.AdminModal');
     let AdminModal2 = document.querySelector('.AdminModal2');
     if(props.openMod) {
+      document.querySelector('body').style.overflow = 'hidden';
       AdminModal.style.display = 'flex';
       setTimeout(()=>{
         AdminModal2.style.transform = 'scale(1.1)';
@@ -26,6 +27,7 @@ function AdminModal(props) {
         AdminModal2.style.transform = 'scale(0)';
       }, 220);
       setTimeout(()=>{
+        document.querySelector('body').style.overflow = 'hidden scroll';
         AdminModal.style.display = 'none';
       }, 440);
     }

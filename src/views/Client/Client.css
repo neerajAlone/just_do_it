@@ -1,43 +1,83 @@
-.homeBox{
+.portfolioHead{
+  width: 100%; height: auto;
+  box-sizing: border-box;
+  padding: 0 13px;
+}
+.portfolioHead h1{
+  font-weight: normal;
+  letter-spacing: 3px;
+  color: orangered;
+  padding-left: 1px;
+}
+
+.portfolioBody{
+  width: 100%; height: auto;
+  margin-top: 40px; display: flex;
+  flex-wrap: wrap;
+}
+.portfolioProjectContainer{
+  width: calc(1100px / 3); height: 625px;
+  box-sizing: border-box; padding: 0 15px;
+  margin-bottom: 30px;
+}
+.portfolioProjectBox{
+  width: 100%; height: 100%;
+  background-color: #bbb;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.ppImage{
+  width: 100%; height: 202px;
+  background-color: #2e3033;
+  border-radius: 7px;
+}
+.ppDetails{
+  box-sizing: border-box;
+  padding: 0 14px;
+}
+.ppDetails h2{
+  font-weight: normal;
+  margin-left: -1px;
+  letter-spacing: 1.5px;
+  margin-top: 10px;
+  font-size: 27px;
+}
+.ppDetails p{
+  font-size: 18px;
+  letter-spacing: 0.6px;
+  margin-top: 15px; 
+}
+.ppDetailsField{
+  width: 100%; height: auto;
+  margin-top: 15px;
+}
+.ppDetailsField h5{
+  letter-spacing: 2px;
+}
+.ppDetailsField h3{
+  font-size: 22px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  word-wrap: break-word;
+}
+.ppdfImages{
   width: 100%; display: flex;
-  align-items: center;
+  margin-top: 7px;
 }
-.homeBox1{
-  width: 50%; height: 60vh;
-  display: flex; align-items: center;
-  justify-content: center;
+.ppdfImage{
+  width: 50px; height: 50px;
+  margin-right: 10px;
+  background-color: #2e3033;
+  border-radius: 5px;
 }
-.homeBox1 img{
-  width: 400px; height: auto;
+.ppdfImage img{
+  width: 100%; height: 100%;
+  display: block;
 }
-.homeBox1 p{
-  font-size: 28px;
-  width: 70%;
-}
-.hb2 .homeBox1 p{
-  text-align: right;
-}
-
-@media screen and (max-width: 420px) {
-  .homeHeader{
-    flex-wrap: wrap-reverse;
-    margin-bottom: 20px;
-  }
-  .homeHeader1{width: 100%; height: 40vh}
-  .quotes{width: 80%}
-  .quotes p,.quotes h4{
-    text-align: center;
-    font-size: 18px;
-  }
-
-  .homeBox{flex-wrap: wrap}
-  .hb2{flex-wrap: wrap-reverse}
-  .homeBox1{
-    width: 100%; height: auto;
-    text-align: center;
-    margin-top: 70px;
-  }
-  .hb2 .homeBox1 p{text-align: center}
-  .homeBox1 img,.homeBox1 p{width: 85%}
-  .extraBox{width: 100%; height: 50px;}
+.ppDetailsField button{
+  width: 100%; height: 50px;
+  font-size: 18px; padding: 0 0 2px 3px;
+  letter-spacing: 3px; font-weight: bold;
+  background-color: orangered;
+  border-radius: 5px; color: white;
 }

@@ -1,91 +1,106 @@
 import React, {Fragment, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Home.css';
 
 function Home(props) {
-  function homeHeader1ImgAni() {
-    let hImg = document.querySelector('.hImg');
-    setTimeout(()=>{
-      hImg.style.transform = 'scale(1.2)';
-    }, 20);
-    setTimeout(()=>{
-      hImg.style.transform = 'scale(1)';
-    }, 385)
-  }
-
-  useEffect(()=>{
-    homeHeader1ImgAni()
-  }, [])
-
   return <Fragment>
-    <div className="homeHeader">
-      <div className="homeHeader1">
-        <div className="quotes">
-          <p>
-            " Success is not final; failure is not
-            fatal: It is the courage to continue that counts. "
-          </p>
-          <h4> -- Winston S. Churchill</h4>
-          <p style={{marginTop: 35}}>
-            " Try not to become a man of success.
-            Rather become a man of value. "
-          </p>
-          <h4> -- Albert Einstein</h4>
+    <div className="homeBoxes">
+      <div className="homeBoxe">
+        <div className="homeBoxCnts">
+          <div className="homeBoxCnt">
+            <p>
+              We are group of result driven developer,
+              our aim is to develop smart innovative solutions,
+              that creates positive impact on your business.
+            </p>
+          </div>
+          <div className="homeBoxCnt">
+            <p>
+              To check out some of our projects
+              vist our <Link to="/">Portfolio</Link>
+            </p>
+          </div>
+          <div className="homeBoxCnt">
+            <p>
+              Wanted to join out developer group?
+              ...<Link to="/">Contact-Us</Link>
+            </p>
+          </div>
+        </div>
+        <div className="homeBoxImg">
+          <img src={require('../../amar/organizing.svg')} alt="" />
         </div>
       </div>
-      <div className="homeHeader1">
-        <img src={require('../../amar/orangeLogo.png')}
-          alt="" className="hImg" />
+      <div className="homeBoxe">
+        <div className="homeBoxImg">
+          <img src={require('../../amar/professor.svg')} alt="" />
+        </div>
+        <div className="homeBoxCnts">
+          <div className="homeBoxCnt">
+            <p>
+              DeveloperWizards also serve as KSP(Knowledge Sharing Platform)
+              where one can share their knowledge via a:
+            </p>
+          </div>
+          <div className="homeBoxCnt">
+            <li>
+              <i className="fas fa-long-arrow-alt-right"></i>
+              <Link to="/"><p>Seminar</p></Link>
+            </li>
+            <li>
+              <i className="fas fa-long-arrow-alt-right"></i>
+              <Link to="/"><p>Webinar</p></Link>
+            </li>
+            <li>
+              <i className="fas fa-long-arrow-alt-right"></i>
+              <Link to="/"><p>Blogs</p></Link>
+            </li>
+            <li>
+              <i className="fas fa-long-arrow-alt-right"></i>
+              <Link to="/"><p>Courses</p></Link>
+            </li>
+            <li>
+              <i className="fas fa-long-arrow-alt-right"></i>
+              <Link to="/"><p>WorkShop</p></Link>
+            </li>
+          </div>
+          <div className="homeBoxCnt">
+            <p>
+              Love to share your Knowledge?
+              <br />... become MAVEN
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="homeBoxe">
+        <div className="homeBoxCnts">
+          <div className="homeBoxCnt">
+            <p>
+              DeveloperWizards also act as a hiring partner
+              for your business where hiring manager of 
+              company can post:
+            </p>
+          </div>
+          <div className="homeBoxCnt">
+            <li> <i className="fas fa-long-arrow-alt-right"></i>
+              <Link to="/"><p>Hiring Challenges</p></Link>
+            </li>
+            <li> <i className="fas fa-long-arrow-alt-right"></i>
+              <Link to="/"><p>Advertisement of the Hiring</p></Link>
+            </li>
+          </div>
+          <div className="homeBoxCnt">
+            <p>
+            </p>
+          </div>
+        </div>
+        <div className="homeBoxImg">
+          <img src={require('../../amar/interview.svg')} alt="" />
+        </div>
       </div>
     </div>
-    <div className="homeBox">
-      <div className="homeBox1">
-        <img src={require('../../amar/pic2.png')} alt="" />
-      </div>
-      <div className="homeBox1">
-        <p>
-          Here we serve both Clients and Student with our best Knowledge
-          in Information Technology. 
-        </p>
-      </div>
-    </div>
-    <div className="homeBox hb2">
-      <div className="homeBox1">
-        <p>
-          For Students we provide great courses based on Web &
-          Mobile development, also on different computer languages.
-        </p>
-      </div>
-      <div className="homeBox1">
-        <img src={require('../../amar/pic10.png')} alt="" />
-      </div>
-    </div>
-    <div className="homeBox">
-      <div className="homeBox1">
-        <img src={require('../../amar/pic11.png')} alt="" />
-      </div>
-      <div className="homeBox1">
-        <p>
-          For Clients we provide them better solution &
-          development services from our top class
-          developers.
-        </p>
-      </div>
-    </div>
-    <div className="homeBox hb2">
-      <div className="homeBox1">
-        <p>
-          We always believe in our knowledge and
-          ability for better and successful future
-          for all who need us.
-        </p>
-      </div>
-      <div className="homeBox1">
-        <img src={require('../../amar/pic1.png')} alt="" />
-      </div>
-    </div>
-    <div className="extraBox"></div>
   </Fragment>
 }
 
