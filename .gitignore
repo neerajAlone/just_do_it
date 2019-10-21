@@ -3,7 +3,7 @@
 
 # dependencies
 /node_modules
-./src/firebaseInitializer.js
+/src
 /.pnp
 .pnp.js
 
