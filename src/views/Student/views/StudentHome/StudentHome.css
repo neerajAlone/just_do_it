@@ -1,52 +1,54 @@
-.studentCoursesBox{
-  width: 100%; display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 50px;
-  margin-top: 40px;
+.sCourseContainer{
+  width: 100%; height: auto;
+  display: flex; flex-wrap: wrap;
 }
-.studentCourseContainer{
-  width: calc(1100px / 3); height: auto;
-  box-sizing: border-box; padding: 0 13.3px;
+.sCourseBox{
+  width: 335px; height: 320px;
+  background-color: rgba(255, 68, 0, 0.5);
+  margin-right: 31.6px;
+  overflow: hidden; border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 0px 0px 0px gray;
+  transition: all 0.2s;
 }
-.studentCourseBox{
-  width: 100%; height: 100%;
-  border-radius: 7px;
-  background-color: #bbb;
-  overflow: hidden;
-  padding-bottom: 20px;
+.sCourseBox:hover{
+  box-shadow: 0 2px 7px 2px gray;
 }
-.studentCourseBox p{
-  font-size: 26px; line-height: 30px;
-  letter-spacing: 1.5px;
-  color: black; padding: 9px 13px;
-}
-.scbImageBox{
-  width: 100%; height: 204px;
+.sCourseImage{
+  width: 100%; height: 201px;
   background-color: #2e3033;
-  position: relative; overflow: hidden;
-  overflow: hidden; border-radius: 5px;
-}
-.scbImageBox img{width: 100%; height: 100%;}
-.scbImageBox1{
-  width: 100%; height: 100%; padding: 10px;
-  position: absolute; top: 0px; left: 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px; padding: 15px;
   box-sizing: border-box;
 }
-.scbiIconText{
+.sCourseTag{
   width: 100%; display: flex;
-  margin-bottom: 7px;
+  justify-content: flex-end;
 }
-.scbiIconText1{
-  display: flex; align-items: center;
-  background-color: rgba(255, 255, 255, 0.85);
-  color: black; border-radius: 4px;
-  padding: 3px 8px 4px 8px;
+.sCourseTag h4{
+  background-color: orangered;
+  letter-spacing: 2px; color: white;
+  padding: 6px 12px 7px 15px; border-radius: 8px;
+  box-shadow: 0 1px 7px 1px black;
 }
-.scbiIconText1 i{
-  font-size: 15px;
-  margin-right: 5px;
+.sCourseBody{
+  width: 100%; height: 119px;
+  padding: 6px 11px;
+  box-sizing: border-box;
 }
-.scbiIconText1 h4{ letter-spacing: 1px }
+.sCourseBody p{
+  width: 100%; height: 77px;
+  font-size: 20px; letter-spacing: 1px;
+  color: #2e3033; font-weight: bold;
+  overflow: hidden;
+}
+
+
+
+
+
 @media screen and (max-width: 420px) {
   .homeBox{flex-wrap: wrap}
   .hb2{flex-wrap: wrap-reverse}

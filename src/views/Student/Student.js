@@ -20,31 +20,29 @@ function lazyComponent(Component) {
 function Student(props) {
   let [student, setstudent] = useState(false);
   useEffect(()=>{
-    if(props.courseArray.length === 0) {
+    if(auth().currentUser) setstudent(true);
+    if(props.allCourss.length === 0||props.allTrimmedCourss.length === 0) {
       firestore().collection('Courses').get()
-        .then(allCourse=>{
-          let emptyArray = []
-          allCourse.docs.forEach(eCourse=>{
-            emptyArray.push({
-              _id: eCourse.id,
-              ...eCourse.data()
-            })
+        .then(res=>{ let cArray = [], rcArray = [];
+          res.docs.forEach(doc=>{
+            cArray.push({id: doc.id, ...doc.data()});
+          });
+          props.getAllCourss(cArray);
+          cArray && cArray.forEach(course=>{
+            let eachCourseObject = {};
+            eachCourseObject.id = course.id;
+            eachCourseObject.image = course.image;
+            eachCourseObject.courseOffer = course.courseOffer;
+            eachCourseObject.courseName = course.courseName;
+            eachCourseObject.status = course.status;
+            eachCourseObject.cName = course.cName;
+            eachCourseObject.cImage = course.cImage;
+            eachCourseObject.cUid = course.cUid;
+            eachCourseObject.createdOn = course.createdOn;
+            rcArray.push(eachCourseObject);
           })
-          props.getAllCourses(emptyArray);
+          props.getAllTrimmedCourss(rcArray);
         })
-    }
-    if(auth().currentUser) {
-      setstudent(true);
-      if(props.pCourses.length === 0) {
-        firestore().collection('Students').doc(auth().currentUser.uid)
-          .collection('courses').get().then(resData=>{
-            if(!resData.empty) {
-              let eArray = []
-              resData.docs.forEach(doc=>{eArray.push(doc.id)});
-              props.addProfileCourses(eArray);
-            }
-          })
-      }
     }
 
   }, [])
@@ -68,14 +66,14 @@ function Student(props) {
 
 function mapStateToProps(state) {
   return {
-    courseArray: state.reqArrays.allCourses,
-    pCourses: state.profile.courses
+    allCourss: state.reqArrays.allCourss,
+    allTrimmedCourss: state.reqArrays.allTrimmedCourss,
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getAllCourses: (payload)=>{dispatch({type: 'RETRIEVE_ALL_COURSES', payload})},
-    addProfileCourses: (payload)=>{dispatch({type: 'ADD_PROFILE_COURSES', payload})}
+    getAllCourss: payload=>{dispatch({type: 'RETRIEVE_ALL_COURSS', payload})},
+    getAllTrimmedCourss: payload=>{dispatch({type: 'RETRIEVE_ALL_TRIMMED_COURSS', payload})},
   }
 }
 

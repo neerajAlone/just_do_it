@@ -6,48 +6,33 @@ import './StudentHome.css';
 
 function StudentHome(props) {
   return <Fragment>
-    <div className="studentCourses">
-      <div className="studentCoursesBox">
-      {props.courseArray && props.courseArray.map((eCourse, index)=>{
-        return <div className="studentCourseContainer" key={index}>
-          <Link to={`/courses/course/${eCourse._id}`}>
-            <div className="studentCourseBox">
-              <div className="scbImageBox">
-                <img src={eCourse.image} alt={eCourse.courseName} />
-                <div className="scbImageBox1">
-                  <div className="scbiIconText">
-                    <div className="scbiIconText1">
-                      <i className="fas fa-code"></i>
-                      <h4>{eCourse.category}</h4>
-                    </div>
-                  </div>
-                  <div className="scbiIconText">
-                    <div className="scbiIconText1">
-                      <i className="fas fa-users"></i>
-                      <h4>{eCourse.batch}</h4>
-                    </div>
-                  </div>
-                  <div className="scbiIconText">
-                    <div className="scbiIconText1">
-                      <i className="fas fa-star"></i>
-                      <h4>4.5</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div className="sCourseContainer">
+    {props.courseArray && props.courseArray
+      .filter(eCourse=>eCourse.status)
+      .map((eCourse, index)=>{
+        return <div className="sCourseBox" key={index}>
+          <Link to={`/courses/course/${eCourse.id}`}>
+            <div className="sCourseImage"
+              style={{backgroundImage: `url(${eCourse.image})`}}>
+              {eCourse.courseOffer?
+                <div className="sCourseTag">
+                  <h4>{eCourse.courseOffer}% Off.</h4>
+                </div>:null
+              }
+            </div>
+            <div className="sCourseBody">
               <p>{eCourse.courseName}</p>
             </div>
           </Link>
         </div>
       })}
-      </div>
     </div>
   </Fragment>
 }
 
 function mapStateToProps(state) {
   return {
-    courseArray: state.reqArrays.allCourses
+    courseArray: state.reqArrays.allTrimmedCourss
   }
 }
 

@@ -38,7 +38,7 @@ function Contact(props) {
         <h2>Get in touch with Us.</h2>
         <p>
           Use the form below to drop us a notification.
-          Or call our sales & billing team >> +35635500106.</p>
+          Or call our team >> +917715005441.</p>
       </div>
       <div className="contactUsBody">
         <div className="contactUsBodyForm">
@@ -74,12 +74,19 @@ function Contact(props) {
           <h3>OUR TEAM</h3>
           <div className="cubMembers">
             <div className="cubMember">
-              <div className="cubMemberImg"></div>
+              <div className="cubMemberImg">
+                <img src={require('../../amar/undraw_profile_pic.svg')} />
+              </div>
               <h4>Neeraj K. Vishwakarma</h4>
               <h5>neerajkv03@gmail.com</h5>
             </div>
-            <div className="cubMember"></div>
-            <div className="cubMember"></div>
+            <div className="cubMember">
+              <div className="cubMemberImg">
+                <img src={require('../../amar/undraw_profile_pic.svg')} />
+              </div>
+              <h4>Amardeep Gupta</h4>
+              <h5>amardeepg35@gmail.com</h5>
+            </div>
           </div>
         </div>
       </div>

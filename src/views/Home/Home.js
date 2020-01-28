@@ -11,21 +11,23 @@ function Home(props) {
         <div className="homeBoxCnts">
           <div className="homeBoxCnt">
             <p>
-              We are group of result driven developer,
-              our aim is to develop smart innovative solutions,
-              that creates positive impact on your business.
+              We are the team of result driven, smart,
+              talented developers. We are a software solutions
+              company who have passion to combine creativity
+              and technology to build great solutions having
+              great impact on wide range of businesses.
             </p>
           </div>
           <div className="homeBoxCnt">
             <p>
               To check out some of our projects
-              vist our <Link to="/">Portfolio</Link>
+              vist our <Link to="/portfolio">Portfolio</Link>
             </p>
           </div>
           <div className="homeBoxCnt">
             <p>
               Wanted to join out developer group?
-              ...<Link to="/">Contact-Us</Link>
+              ... <Link to="/contact">Contact-Us</Link>
             </p>
           </div>
         </div>

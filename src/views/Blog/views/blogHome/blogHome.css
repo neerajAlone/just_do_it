@@ -1,80 +1,59 @@
-.bContainerHead{
-  width: 100%; padding: 0 6px;
-  box-sizing: border-box;
-}
-.bContainerHead h1{
-  font-weight: normal;
-  letter-spacing: 3px;
-  color: orangered;
-}
-.bContainerBody{
+.blogBoxes{
   width: 100%; height: auto;
-  margin-top: 40px;
-  display: flex; flex-wrap: wrap;
+  margin-top: 20px; columns: 275px 4;
+  column-gap: 0px;
 }
-.blogBodyContainer{
-  width: calc(1100px / 4);
-  height: 415px; padding: 7.5px;
+.blogBox{
+  width: 100%; height: auto;
+  break-inside: avoid; padding: 0 7px;
   box-sizing: border-box;
+  margin-bottom: 15px;
 }
-.blogBodyBox{
-  width: 100%; height: 100%;
-  background-color: white;
-  box-shadow: 0 1px 10px -2px gray;
-  overflow: hidden; border-radius: 7px;
+.blog{
+  width: 100%; height: 100%; padding: 5px 10px;
+  background-color: rgba(255, 68, 0, 0.3);
+  border-radius: 8px; box-sizing: border-box;
 }
-.blogBodyBoxImage{
-  width: 100%; height: 150px;
-  background-color: #2e3033;
+.blogBody p:nth-child(1){
+  font-size: 22px; color: black;
+  letter-spacing: 0.6px;
+  margin-top: 3px;
 }
-.blogBodyBoxHead,
-.blogBodyBoxFoot{
-  width: 100%; height: 45px;
-  box-sizing: border-box; padding: 0 7px;
-  display: flex; align-items: center;
+.blogBody p:nth-child(2){
+  letter-spacing: 0.8px; font-weight: bold;
+  margin: 5px 0 10px 0; line-height: 19px;
+  color: #2e3033;
+}
+.blogBody img{
+  width: 100%; border-radius: 5px;
+}
+.blogFoot{
+  width: 100%; display: flex;
+  align-items: center; margin: 3px 0;
   justify-content: space-between;
 }
-.blogBodyBoxFoot{ height: 36px }
-.blogBodyBoxHead1,
-.blogBodyBoxFoot1{
+.bIconText{
   display: flex;
   align-items: center;
 }
-.blogBodyBoxHead1Img{
-  width: 32px; height: 32px;
-  background-color: #2e3033;
-  margin-right: 7px;
-  border-radius: 4px;
-}
-.blogBodyBoxHead1 h5{
-  letter-spacing: 1px;
-  line-height: 17px;
-  color: #2e3033;
-}
-.blogBodyBoxBody{
-  width: 100%; height: 169px;
-  font-weight: bold; padding: 5px 8px;
-  letter-spacing: 0.6px; overflow: hidden;
-  box-sizing: border-box; color: #2e3033;
-}
-.blogBodyBoxFoot1 h4{
-  font-size: 18px;
-  padding-bottom: 1px;
+.bIconText i{ font-size: 12px }
+.bIconText h5{
+  font-size: 15px;
   margin-left: 5px;
-  color: #2e3033;
-}
-.blogBodyBoxFoot1:nth-child(1) i{ color: royalblue }
-.blogBodyBoxFoot1:nth-child(2) i{
-  font-size: 17px; color: red;
-  padding-bottom: 1px;
+  letter-spacing: 1px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 420px) {
-  .bContainerBody{
-    margin-top: 30px;
-    justify-content: center;
-  }
-  .blogBodyContainer{
-    width: 80%; margin-bottom: 20px;
-  }
 }

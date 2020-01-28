@@ -81,7 +81,11 @@
 .cubMemberImg{
   width: 130px; height: 130px;
   margin: 0 auto; border-radius: 100%;
-  background-color: #eee;
+  background-color: #eee; overflow: hidden;
+}
+.cubMemberImg img{
+  width: 100%; height: 100%;
+  display: block;
 }
 .cubMember h4{
   letter-spacing: 1px; font-weight: normal;
@@ -91,6 +95,9 @@
 }
 .cubMember h5{
   letter-spacing: 0.6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 420px){

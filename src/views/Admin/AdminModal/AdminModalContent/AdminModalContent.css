@@ -53,55 +53,162 @@
   letter-spacing: 2px;
   background-color: goldenrod;
 }
-.resCourseInfoPopup h2{
-  letter-spacing: 1px;
-  font-weight: normal;
-  color: royalblue;
+
+.courseNblogTextarea{
+  width: 100%; resize: none; display: block;
+  overflow: hidden; margin-bottom: 7px;
+  background-color: #ddd; border-radius: 5px;
+  box-sizing: border-box; padding: 5px 9px;
+  font-weight: bold; letter-spacing: 0.8px;
 }
-.popTextFlex{
-  width: 100%;
-  display: flex;
+.courseNblogCnt{
+  width: 100%; display: flex;
+  margin-bottom: 7px;
 }
-.popTextFlex h5{
-  background-color: royalblue;
-  margin-top: 6px; color: goldenrod;
-  letter-spacing: 2px;
-  padding: 5px 20px 6px 12px;
-  border-radius: 0 20px 20px 0;
+.courseNblogCnt button{
+  width: 100px; font-weight: bold; font-size: 15px;
+  margin-left: 8px; letter-spacing: 2px;
+  padding-left: 3px; border-radius: 5px;
+  background-color: red; color: white;
 }
-.adminMoveBox{
-  margin-top: 20px;
-}
-.adminMoveBox button{
+.courseNblogBox,
+.blogNcourseBox{
   display: flex; align-items: center;
+  background-color: royalblue;
+  padding: 6px 10px 6px 8px;
+  border-radius: 5px; color: #2e3033;
+}
+.courseNblogBox i,
+.blogNcourseBox i{
+  font-size: 15px; margin-right: 5px;
+  width: 18px; text-align: center;
+}
+.courseNblogBox h5,
+.blogNcourseBox h5{
+  font-size: 15px;
   letter-spacing: 1px;
-  background-color: transparent;
 }
-.adminMoveBox button h4{
-  font-size: 14px;
-  margin-right: 7px;
+.courseNblogEditBtn{
+  width: 120px; border-radius: 7px;
+  padding: 10px 0px 11px 0px;
+  display: flex; align-items: center;
+  justify-content: center; color: white;
+  background-color: green;
 }
-.adminMoveBox input{
-  border-width: 2px; border-style: solid;
-  border-color: transparent; margin-bottom: 10px;
-  width: 100%; font-size: 16px; border-radius: 7px;
-  font-weight: bold; letter-spacing: 1px;
-  padding: 12px 15px 13px 15px; transition: 0.25s;
+.courseNblogEditBtn h5{
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-right: 6px;
 }
-.adminMoveBox:nth-child(6) input:focus{
-  border-color: green;
+.courseNblogEditBtn i{ font-size: 17px; }
+.cabEditRoom{
+  width: 100%; margin-top: 20px;
 }
-.adminMoveBox:nth-child(7) input:focus{
-  border-color: goldenrod;
+.cabEditRoomForm{
+  width: 100%; box-sizing: border-box;
+  background-color: #ddd;
+  padding: 10px 10px 0.1px 10px;
+  margin-top: 7px; border-radius: 7px;
 }
-.admbBtns{
-  display: flex;
-  justify-content: flex-end;
+.cabEditRoomField{
+  width: 100%; margin-bottom: 15px;
 }
-.admbBtns button{
-  font-weight: bold; font-size: 15px;
-  margin-left: 15px; letter-spacing: 2px;
+.cabEditRoomField h5{
+  letter-spacing: 2px; font-size: 12px;
+  padding-left: 2px; margin-bottom: 3px;
 }
+.cabEditRoomFieldTa{
+  width: 100%; margin-bottom: 10px;
+}
+.cabEditRoomField input,
+.cabEditRoomField textarea,
+.cabEditRoomFieldTa textarea{
+  width: 100%; font-size: 16px;
+  padding: 10px 12px; resize: vertical;
+  letter-spacing: 0.8px; border-radius: 5px;
+  overflow: hidden;
+}
+.cabEditRoomFieldTa2 textarea{
+  margin-top: 5px; width: 95%;
+  margin-left: 5%;
+}
+.acfIntern{
+  width: 100%; display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.acfIntern button{
+  width: 18px; height: 18px;
+  background-color: white;
+  border-radius: 3px;
+  font-size: 13px; color: #DB4437;
+}
+.acfIntern button:active{
+  transform: scale(1);
+}
+.acfIntern h5{
+  color: white;
+  margin-left: 10px;
+}
+.cabEditRoomField .acfIntern h5{
+  color: black;
+}
+.cabImageContainer1{
+  width: 333.33px; height: 200px;
+  background-color: #2e3033;
+  margin: 0 auto; border-radius: 7px;
+  overflow: hidden;
+}
+.cabImageContainer1 img{
+  width: 100%; height: 100%;
+}
+.cabImageContainer{
+  width: 250px; height: 200px;
+  margin: 0 auto; border-radius: 5px;
+  background-color: #ccc;
+  overflow: hidden;
+}
+.cabImageBox{
+  width: 100%; height: 150px;
+  background-color: gray;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.cabImageBox img{
+  width: 100%; height: 100%;
+}
+.cabImageCntrl{
+  width: 100%; height: 50px;
+}
+.cabImageCntrlBtns{
+  width: 100%; height: 100%;
+  display: flex; align-items: center;
+  justify-content: space-around;
+}
+.cabImageCntrlBtns button{
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  padding: 8px 11px 8px 12px;
+}
+.cabEditRoomBtns{
+  width: 100%; display: flex;
+  justify-content: space-between;
+}
+.cabEditRoomBtns button{
+  font-weight: bold; color: white;
+  letter-spacing: 2px;
+  margin: 10px 0 15px 0;
+  padding: 10px 14px 11px 16px;
+  border-radius: 5px;
+}
+
+.blogNcourseBox{
+  background-color: orangered;
+}
+
+
+
 
 .confirmAdminRemove h4{
   letter-spacing: 2px;
@@ -246,39 +353,126 @@
   width: 100%; height: auto;
   text-align: center;
 }
-.maBlogConfirmation h3{
-  letter-spacing: 1.5px;
-  color: gray; font-size: 20px;
-  margin-bottom: 7px;
+.maBlogDetails h3{
   font-weight: normal;
-}
-.maBlogImage,.maBlogImage img{
-  width: 100%; height: auto;
-  border-radius: 7px; display: block;
-}
-.maBlogConfirmation p{
-  margin-top: 7px; font-size: 17px;
+  font-size: 20px;
   letter-spacing: 0.6px;
 }
-.maBlogConfirmation textarea{
-  width: 100%; font-size: 14px;
-  letter-spacing: 1px; resize: none;
-  background-color: #ddd;
-  box-sizing: border-box;
-  padding: 9px 15px; font-weight: bold;
-  border-radius: 7px; margin-top: 7px;
+.maBlogDetails h4{
+  letter-spacing: 0.8px;
+  line-height: 17px;
+  margin-top: 10px;
 }
-.blogResButns{
-  width: 100%; display: flex;
-  justify-content: center;
+.maBlogImage{
+  width: 100%; height: auto; margin: 15px 0;
+  box-shadow: 0px 1px 10px -2px gray;
+}
+.maBlogImage img{
+  display: block;
+  width: 100%; height: auto;
+  border-radius: 7px;
+}
+.maBlogDetails p,
+.maCourseDetails p{
+  letter-spacing: 0.4px;
+  margin-top: 10px;
+  font-size: 17px;
+}
+.maBlogGap{
+  width: 100%; margin: 35px 0;
+}
+.maBlogDetails b{
+  font-size: 18px;
+  letter-spacing: 0.6px;
+  margin-top: 10px;
+}
+.maBlogDetails textarea,
+.maBlogFoot1 textarea{
+  width: 100%; font-weight: bold;
+  background-color: #ddd;
+  margin-top: 10px; padding: 7px 10px;
+  letter-spacing: 0.8px; resize: none;
+  border-radius: 7px; overflow: hidden;
+}
+
+.maBlogFoot{
+  width: 100%;
   margin-top: 50px;
 }
-.blogResButns button{
-  width: 120px; height: 40px; color: white;
+.maBlogResButns{
+  width: 100%; display: flex;
+  justify-content: center;
+}
+.maBlogResButns button{
+  width: 120px; height: 40px;
   font-weight: bold; border-radius: 5px;
   letter-spacing: 2px; margin: 0 10px;
   background-color: rgb(248, 3, 3);
+  font-size: 16px; color: white;
+  padding-left: 2px;
 }
-.blogResButns button:nth-child(2){
+.maBlogResButns button:nth-child(2){
   background-color: green;
+}
+.maBlogFoot1 textarea{
+  border: solid 1px gray;
+  background-color: white;
+  margin-bottom: 15px; resize: vertical;
+}
+
+.maCourseDetails{
+  width: 100%; margin-bottom: 30px;
+}
+.maCourseDetails h2{
+  font-weight: normal;
+  letter-spacing: 1px;
+  line-height: 27px;
+}
+.maCourseBox{
+  width: 100%;
+  margin-top: 20px;
+}
+.maCourseBox h5{
+  color: gray;
+  margin-bottom: 4px;
+  letter-spacing: 2.5px;
+}
+.maCourseBox p{
+  font-size: 22px;
+  letter-spacing: 1.5px;
+}
+.maCourseBox1 p{ 
+  font-size: 19px; line-height: 22px;
+}
+.maCourseBox ul{
+  width: 100%; margin-top: 2px;
+  box-sizing: border-box;
+  padding-left: 12px;
+  margin-bottom: 7px;
+}
+.maCourseBox ul li{
+  width: 100%; display: flex;
+  align-items: center;
+  margin-top: 1px;
+}
+.maCourseBox ul li i{
+  font-size: 7px;
+  margin-right: 5px;
+}
+.maCourseBox ul li p{
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.maCourseExtraForm{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.maCourseExtraForm input,
+.maCourseExtraForm textarea{
+  width: 100%; font-weight: bold;
+  background-color: #ddd; resize: vertical;
+  font-size: 15px; padding: 14px; border: none;
+  letter-spacing: 1.5px; border-radius: 5px;
+  margin-bottom: 10px; overflow: hidden;
 }

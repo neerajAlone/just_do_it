@@ -14,6 +14,7 @@ class MainAdmin extends Component {
     this.state = {
       showModal: false,
       modalIndex: 0,
+      mData: null,
 
       maEmail: '',
       maPassword: '',
@@ -68,7 +69,6 @@ class MainAdmin extends Component {
             disabled: eUserAdmin.data().disabled
           })
         })
-        console.log(emptyArray);
         this.props.getAllUserAdmins(emptyArray)
       })
     firestore().collection('Inquiry-Mssgs').get()
@@ -81,10 +81,10 @@ class MainAdmin extends Component {
   }
   render() {
     const {
-      showModal, modalIndex,
+      showModal, modalIndex, mData,
       maEmail, maPassword, maRePassword,
     } = this.state;
-    const { userAdminArray, allInquiries } = this.props;
+    const { userAdminArray, allInquiries, allTrimmedBlogs, allTrimmedCourss } = this.props;
     return <Fragment>
       <div className="parentGrid">
         <div className="maChildGrid1">
@@ -204,33 +204,70 @@ class MainAdmin extends Component {
         <div className="maChildGrid5">
           <div className="blogContainer">
             <div className="blogContainer1">
-              <div className="blogBox">
-                <div className="blogBoxHead">
-                  <img src={userImg} alt="" />
-                  <button type="button"
-                    onClick={()=>this.toggleModal(true, 10, {})}>
-                    <i className="fas fa-eye"></i>
-                  </button>
+            {allTrimmedBlogs && allTrimmedBlogs
+              .filter(eBlog=>eBlog.status===null)
+              .map((eBlog, index)=>{
+                return <div className="mablogBox" key={index}
+                  style={{backgroundImage: `url(${eBlog.image && eBlog.image.value})`}}>
+                  <div className="blogBoxHead">
+                    <img src={eBlog.cImage?eBlog.cImage:userImg} alt="" />
+                    <button type="button"
+                      onClick={()=>this.toggleModal(true, 101, {bId: eBlog.id, index})}>
+                      <i className="fas fa-eye"></i>
+                    </button>
+                  </div>
+                  <div className="blogBoxBody">
+                    <div className="blogBTile">
+                      <h5>BLOG</h5>
+                    </div>
+                    <div className="blogBTile">
+                      <h5>{eBlog.cName}</h5>
+                    </div>
+                    <div className="blogBTile">
+                      <h5>{eBlog.createdOn}</h5>
+                    </div>
+                    <div className="blogBTile">
+                      <h5 title={eBlog.title}>{eBlog.title}</h5>
+                    </div>
+                  </div>
                 </div>
-                <div className="blogBoxBody">
-                  <div className="blogBTile">
-                    <h5>Username</h5>
+              })}
+            </div>
+            <div className="blogContainer1">
+            {allTrimmedCourss && allTrimmedCourss
+              .filter(eBlog=>eBlog.status===null)
+              .map((eCourse, index)=>{
+                return <div className="mablogBox" key={index}
+                  style={{backgroundImage: `url(${eCourse.image})`}}>
+                  <div className="blogBoxHead">
+                    <img src={eCourse.cImage?eCourse.cImage:userImg} alt="" />
+                    <button type="button"
+                      onClick={()=>this.toggleModal(true, 102, {cId: eCourse.id, index})}>
+                      <i className="fas fa-eye"></i>
+                    </button>
                   </div>
-                  <div className="blogBTile">
-                    <h5>12-01-1996 11:30 AM</h5>
-                  </div>
-                  <div className="blogBTile">
-                    <h5>BlogTitle</h5>
+                  <div className="blogBoxBody">
+                    <div className="blogBTile">
+                      <h5>COURSE</h5>
+                    </div>
+                    <div className="blogBTile">
+                      <h5>{eCourse.cName}</h5>
+                    </div>
+                    <div className="blogBTile">
+                      <h5>{eCourse.createdOn}</h5>
+                    </div>
+                    <div className="blogBTile">
+                      <h5 title={eCourse.courseName}>{eCourse.courseName}</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="blogBox"></div>
+              })}
             </div>
           </div>
         </div>
       </div>
       <AdminModal openMod={showModal} modIndex={modalIndex}
-        mFunc={this.toggleModal} />
+        mFunc={this.toggleModal} mData={mData} />
     </Fragment>
   }
 }
@@ -238,7 +275,9 @@ class MainAdmin extends Component {
 function mapStateToProps(state) {
   return {
     userAdminArray: state.reqArrays.userAdmins,
-    allInquiries: state.reqArrays.inquiryBox
+    allInquiries: state.reqArrays.inquiryBox,
+    allTrimmedBlogs: state.reqArrays.allTrimmedBlogs,
+    allTrimmedCourss: state.reqArrays.allTrimmedCourss,
   }
 }
 function mapDispatchToProps(dispatch) {

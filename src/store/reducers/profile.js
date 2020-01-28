@@ -5,7 +5,7 @@ const initialSate = {
   image: null,
   mobile: null,
   joined_at: null,
-  courses: []
+  courses: [],
 }
 
 export default function(state=initialSate, actions) {

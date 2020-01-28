@@ -51,6 +51,13 @@ function Navbar(props) {
         </Link>
       </div>
       <div className="NavbarLink">
+        {signedIn?
+          <li>
+            <Link to="/profile">
+              <img src={props.profileImg?props.profileImg:defaultImg} alt="" />
+            </Link>
+          </li>:null
+        }
         <li>
           <NavLink to="/courses">COURSES</NavLink>
         </li>
@@ -77,13 +84,6 @@ function Navbar(props) {
               onClick={()=>signOut(props)}
               >SIGN-OUT</button>
           </li>
-        }
-        {signedIn?
-          <li>
-            <Link to="/profile">
-              <img src={props.profileImg?props.profileImg:defaultImg} alt="" />
-            </Link>
-          </li>:null
         }
       </div>
     </div>

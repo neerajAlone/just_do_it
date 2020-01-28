@@ -1,6 +1,5 @@
 const initialState = {
   userAdmins: [],
-  allCourses: [],
   respCourseMssgs: {
     _id: null,
     box: []
@@ -8,7 +7,12 @@ const initialState = {
   adminMssgBox: [],
   adminSubmitsBox: [],
   studentSubmitsBox: null,
-  inquiryBox: []
+  inquiryBox: [],
+  allBlogs: [],
+  allTrimmedBlogs: [],
+  blogAllComment: [],
+  allCourss: [],
+  allTrimmedCourss: [],
 }
 
 export default function(state=initialState, actions) {
@@ -22,11 +26,6 @@ export default function(state=initialState, actions) {
       return {
         ...state,
         userAdmins: []
-      }
-    case 'RETRIEVE_ALL_COURSES':
-      return {
-        ...state,
-        allCourses: actions.payload
       }
     case 'RESPECTIVE_COURSE_MSSG_BOX':
       return {
@@ -61,6 +60,31 @@ export default function(state=initialState, actions) {
       return {
         ...state,
         inquiryBox: actions.payload
+      }
+    case 'RETRIEVE_ALL_BLOGS':
+      return {
+        ...state,
+        allBlogs: actions.payload
+      }
+    case 'RETRIEVE_ALL_TRIMMED_BLOGS':
+      return {
+        ...state,
+        allTrimmedBlogs: actions.payload
+      }
+    case 'RETRIEVE_ALL_COMMENT_BLOG':
+      return {
+        ...state,
+        blogAllComment: actions.payload
+      }
+    case 'RETRIEVE_ALL_COURSS':
+      return {
+        ...state,
+        allCourss: actions.payload
+      }
+    case 'RETRIEVE_ALL_TRIMMED_COURSS':
+      return {
+        ...state,
+        allTrimmedCourss: actions.payload
       }
     default:
       return state

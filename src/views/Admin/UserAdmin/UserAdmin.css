@@ -10,48 +10,56 @@
 .childGrid1{
   background-color: #4285F4;
   grid-column: 1/6; grid-row: 1/5;
-  box-sizing: border-box;
-  padding: 15px 10px 10px 15px;
 }
-.adminCourseBoxes{
+.aBlogsAndCourses{
   width: 100%; height: 100%;
-  overflow-y: scroll; overflow-x: hidden;
 }
-.adminCourseBoxes h3{
-  line-height: 18px;
-  margin-bottom: 15px;
-  letter-spacing: 2px;
+.aBlogsAndCoursesHead{
+  width: 100%; padding: 4px 10px;
+  box-sizing: border-box;
+  letter-spacing: 2px; color: white;
 }
-.adminCourseBoxes1{
+.aBlogsAndCoursesBody{
+  width: 100%; height: 410px;
+  overflow: hidden scroll;
+  box-sizing: border-box;
+  padding: 0px 5px 0px 10px;
+}
+.aBlogsAndCoursesBody::-webkit-scrollbar{width: 7px;}
+.aBlogsAndCoursesBody::-webkit-scrollbar-thumb{
+  background-color: #2e3033;
+  border-radius: 10px;
+}
+.aBlogsAndCoursesBoxes{
   width: 100%; height: auto;
   display: flex; flex-wrap: wrap;
   justify-content: space-between;
 }
-.adminCourseBox{
-  width: 256px; height: 160px;
-  overflow: hidden; border-radius: 5px;
+.aBlogsAndCoursesBox{
+  width: 260px; height: 180px;
+  background-color: white;
+  border-radius: 7px; position: relative;
+  margin-top: 10px; overflow: hidden;
+}
+.aBlogsAndCoursesBoxBack{
+  width: 100%; height: 100%;
   background-size: cover;
   background-position: center;
+  position: absolute;
+  top: 0px; left: 0px;
 }
-.adminCourseBox1{
+.aBlogsAndCoursesBoxFront{
   width: 100%; height: 100%;
-  box-sizing: border-box; padding: 10px;
-  background-color: rgba(0, 0, 0, 0.15);
+  box-sizing: border-box; padding: 8px 9px;
+  position: absolute; top: 0px; left: 0px;
+  display: flex; align-items: flex-end;
+  justify-content: flex-end;
 }
-.acb1Div{
-  width: 100%; height: 50%;
-  display: flex; 
-}
-.acb1Div button{
+.aBlogsAndCoursesBoxFront button{
   width: 50px; height: 50px;
   border-radius: 100%;
-  background-color: black;
-  color: white; font-size: 22px;
-  box-shadow: 0px 0px 7px white;
-}
-.acb1Div:nth-child(2){
-  align-items: flex-end;
-  justify-content: flex-end;
+  border: solid 4px white;
+  font-size: 20px; color: white;
 }
 
 .childGrid2{
@@ -82,7 +90,7 @@
   margin-bottom: 15px;
 }
 .imgUploadBox{
-  width: 400px; height: 270px;
+  width: 400px; height: 240px;
   background-color: black;
   margin-top: 5px; position: relative;
   border-radius: 5px; overflow: hidden;
@@ -119,34 +127,79 @@
   border-radius: 5px; resize: none;
   letter-spacing: 1px; font-weight: bold;
 }
+.fieldLabelGroup2{
+  width: 100%; display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fieldLabelGroup2 button{
+  width: 7%; height: 60px;
+  margin-top: 5px;
+  border-radius: 5px;
+  padding-left: 2px;
+}
+.fieldLabelGroup2 textarea{
+  width: 92%;
+}
 .addCourseField input::-webkit-input-placeholder,
 .addCourseField textarea::-webkit-input-placeholder{
   color: gray; font-weight: normal;
 }
 .addCourseField select{
-  width: 100%; font-size: 18px; color: #4285F4;
+  width: 100%; font-size: 16px;
   box-sizing: border-box; display: block;
-  padding: 10px 8px; margin-top: 4px;
+  padding: 9px 8px; margin-top: 4px;
   letter-spacing: 1px; border-radius: 5px;
 }
 .addCourseField select:focus{outline: none;}
+.acfIntern{
+  width: 100%; display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.acfIntern button{
+  width: 18px; height: 18px;
+  background-color: white;
+  border-radius: 3px;
+  font-size: 13px; color: #DB4437;
+}
+.acfIntern button:active{
+  transform: scale(1);
+}
+.acfIntern h5{
+  color: white;
+  margin-left: 10px;
+}
 .addCourseField ul{
   width: 100%; box-sizing: border-box;
   background-color: rgb(255, 126, 115);
-  padding: 4px 10px 5px 10px;
+  padding: 5px 7px 0.1px 7px;
   border-radius: 7px; margin-top: 5px;
 }
-.addCourseField ul li{
+.addCourseField ul li{ margin-bottom: 10px }
+.primaryCnt p{
+  letter-spacing: 0.6px;
+  line-height: 18px;
+}
+.secondaryCnt{ margin-top: 4px; }
+.secondaryCnt div{
   width: 100%; display: flex;
   align-items: flex-start;
-  font-size: 13px; letter-spacing: 1px;
-  font-weight: bold; cursor: context-menu;
-  line-height: 15px; margin-bottom: 5px;
+  box-sizing: border-box;
+  padding-left: 10px;
+  margin-bottom: 3px;
 }
-.addCourseField ul li p:nth-child(1){
-  width: 25px; text-align: right;
-  margin-right: 4px;
+.secondaryCnt div i{
+  font-size: 7px;
+  margin-right: 6px;
+  margin-top: 5px;
 }
+.secondaryCnt div p{
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
 .addCourseFieldGroup{
   width: 100%; display: flex;
   justify-content: space-between;
@@ -158,8 +211,8 @@
   margin-bottom: 5px;
 }
 .fieldLabelGroup button{
-  width: 55px; height: 25px; color: #DB4437;
-  padding-bottom: 1px; padding-left: 3px;
+  width: 50px; height: 22px; color: #DB4437;
+  padding: 0 0 1px 3px; font-size: 12px;
   margin-left: 10px; font-weight: bold;
   border-radius: 20px; letter-spacing: 2px;
   box-shadow: 0px 0px 5px -1px black;
@@ -318,10 +371,81 @@
   box-sizing: border-box;
   padding: 10px;
 }
+.cBlogExtraCnt{
+  width: 100%; height: auto;
+  position: relative;
+}
 .cBlogBodyForm input,
 .cBlogBodyForm textarea{
   width: 100%; font-size: 15px;
   padding: 10px 12px; resize: none;
   letter-spacing: 1px; border-radius: 5px;
   margin-bottom: 10px;
+}
+.cBlogExtraCnt button{
+  font-size: 15px; color: red;
+  position: absolute; top: 5px;
+  left: calc(100% - 20px);
+  background-color: transparent;
+}
+.cBlogGap{
+  display: flex;
+  margin-bottom: 10px;
+}
+.cBlogGap p{
+  background-color: white; font-weight: bold;
+  font-size: 15px; padding: 10px 12px;
+  letter-spacing: 2px; border-radius: 5px;
+}
+.cBlogImageBox{
+  width: 100%; height: auto;
+  margin-bottom: 10px;
+}
+.cBlogImageBtns{
+  width: 100%; display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cBlogImageBtns button:nth-child(1){
+  font-size: 14px; font-weight: bold;
+  padding: 10px 15px; letter-spacing: 1px;
+  border-radius: 5px;
+}
+.cBlogImageBtns button:nth-child(2){
+  font-size: 15px; color: red;
+  background-color: transparent;
+}
+.cBlogImage{
+  width: 100%; height: auto;
+  position: relative; overflow: hidden;
+  border-radius: 5px;
+}
+.cBlogImage img{
+  width: 100%; height: auto;
+  display: block;
+}
+.cBlogImageCntrl{
+  width: 100%; height: auto;
+  position: absolute;
+  top: 0px; left: 0px;
+  box-sizing: border-box;
+  padding: 10px; display: flex;
+  justify-content: flex-end;
+}
+.cBlogImageCntrl div{display: flex;}
+.cBlogImageCntrl button{
+  font-weight: bold; margin-left: 10px;
+  letter-spacing: 2px; border-radius: 5px;
+  padding: 5px 10px 6px 12px;
+  color: white; background-color: red;
+}
+.cBlogImageCntrl button:nth-child(2){
+  background-color: green;
+}
+.cBlogPublishBtn{
+  width: 200px; height: 45px; color: white;
+  margin: 15px auto; letter-spacing: 5px;
+  font-size: 17px; font-weight: bold;
+  padding-left: 5px; border-radius: 5px;
+  background-color: royalblue;
 }

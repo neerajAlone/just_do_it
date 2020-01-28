@@ -22,36 +22,29 @@ class UserAdmin extends Component {
       imageState: false,
       imageFile: null,
       uploadState: false,
-      estimatedTime: '',//done
-      courseContent: '',//done
-      courseContentBox: [],
-      createdBy: '',
-      category: '',
-      createdOn: '',
-      courseFee: '',//done
-      description: '',//done
       image: '',//done
+      estimatedTime: '',//done
+      courseContentBox: [],
+      withIntern: false,
+      description: '',//done
       technologyUsed: '',//done
-      location: '',//done
       courseName: '',//done
-      offer: '',//done
-      preReq: '',//done
       preReqBox: [],
       programme: '',//done
-      batch: '',//done
-      youLearn: '',//done
       youLearnBox: [],
+      textareaCoursePrimaryPreview: '',
+      textareaCourseSecondary: '',
+      textareaCourseSecondaryArray: [],
+      textareaLearnPrimaryPreview: '',
+      textareaLearnSecondary: '',
+      textareaLearnSecondaryArray: [],
+      textareaRequirePrimaryPreview: '',
+      textareaRequireSecondary: '',
+      textareaRequireSecondaryArray: [],
 
-      blogName: '',
-      blogImage0: null,
-      blogImage0File: null,
-      blogImage0Uploaded: false,
-      blogQuote0: '',
-      blogPara0: '',
-      blogError: '',
-
-      blogExtraContents: [
-      ]
+      bTitle: '',
+      bSubTitle: '',
+      blogExtraContents: [],
     }
   }
 
@@ -68,78 +61,157 @@ class UserAdmin extends Component {
   }
   uploadImageToServer =()=> {
     const { image, imageFile } = this.state;
+    const trimmedDate = Date.now().toString().slice(7, 13);
     if(image && imageFile) {
-      storage().refFromURL(`gs://developer-wizard.appspot.com/courses/${imageFile.name}`)
+      storage().refFromURL(`gs://developer-wizard.appspot.com/courses/${imageFile.name}-${trimmedDate}`)
         .put(imageFile).on('state_changed',
           null, null,
           ()=>{
-            storage().refFromURL(`gs://developer-wizard.appspot.com/courses/${imageFile.name}`)
+            storage().refFromURL(`gs://developer-wizard.appspot.com/courses/${imageFile.name}-${trimmedDate}`)
               .getDownloadURL().then(url=>this.setState({
                 image: url, imageState: false, uploadState: true}))
           })
     } else console.log('IMAGE OR IMAGEFILE IS MISSING !');
   }
-  addDetailInArray =(stateProp)=> {
-    const { courseContent, preReq, youLearn } = this.state;
-    switch(stateProp) {
-      case 1:
-        this.setState(preState=>{
-          preState.courseContentBox.push(courseContent);
-          return {
-            courseContentBox: [...preState.courseContentBox],
-            courseContent: ''
-          }
+  textareaPrimaryPreview =(to, e)=> {
+    switch(to) {
+      case 'COURSE_CONTENT':
+        this.setState({
+          textareaCoursePrimaryPreview: e.target.value
         });
         break;
-      case 2:
-        this.setState(preState=>{
-          preState.youLearnBox.push(youLearn);
-          return {
-            youLearnBox: [...preState.youLearnBox],
-            youLearn: ''
-          }
+      case 'YOU_LEARN':
+        this.setState({
+          textareaLearnPrimaryPreview: e.target.value
         });
         break;
-      case 3:
-        this.setState(preState=>{
-          preState.preReqBox.push(preReq);
-          return {
-            preReqBox: [...preState.preReqBox],
-            preReq: ''
-          }
+      case 'PRE_REQUIRE':
+        this.setState({
+          textareaRequirePrimaryPreview: e.target.value
         });
         break;
-      default:
-        return null;
+    }
+  }
+  textareaArrayPush =to=> {
+    const { textareaCourseSecondary, textareaLearnSecondary, textareaRequireSecondary } = this.state;
+    switch(to) {
+      case 'COURSE_CONTENT':
+        if(textareaCourseSecondary) {
+          this.setState(preState=>{
+            return {
+              textareaCourseSecondaryArray: [
+                ...preState.textareaCourseSecondaryArray,
+                textareaCourseSecondary],
+              textareaCourseSecondary: ''
+            }
+          });
+        }
+        break;
+      case 'YOU_LEARN':
+        if(textareaLearnSecondary) {
+          this.setState(preState=>{
+            return {
+              textareaLearnSecondaryArray: [
+                ...preState.textareaLearnSecondaryArray,
+                textareaLearnSecondary],
+              textareaLearnSecondary: ''
+            }
+          });
+        }
+        break;
+      case 'PRE_REQUIRE':
+        if(textareaRequireSecondary) {
+          this.setState(preState=>{
+            return {
+              textareaRequireSecondaryArray: [
+                ...preState.textareaRequireSecondaryArray,
+                textareaRequireSecondary],
+              textareaRequireSecondary: ''
+            }
+          });
+        }
+        break;
+    }
+  }
+  addTextareaAddFunc =to=> {
+    const { textareaCoursePrimaryPreview, textareaCourseSecondaryArray,
+      textareaLearnPrimaryPreview, textareaLearnSecondaryArray,
+      textareaRequirePrimaryPreview, textareaRequireSecondaryArray } = this.state;
+    switch(to) {
+      case 'COURSE_CONTENT':
+        if(textareaCoursePrimaryPreview) {
+          this.setState(preState=>{
+            return {
+              courseContentBox: [
+                ...preState.courseContentBox,
+                {pri: textareaCoursePrimaryPreview,
+                  sec: textareaCourseSecondaryArray}],
+              textareaCoursePrimaryPreview: '',
+              textareaCourseSecondaryArray: [],
+            }
+          })
+        }
+        break;
+      case 'YOU_LEARN':
+        if(textareaLearnPrimaryPreview) {
+          this.setState(preState=>{
+            return {
+              youLearnBox: [
+                ...preState.youLearnBox,
+                {pri: textareaLearnPrimaryPreview,
+                  sec: textareaLearnSecondaryArray}],
+              textareaLearnPrimaryPreview: '',
+              textareaLearnSecondaryArray: [],
+            }
+          })
+        }
+        break;
+      case 'PRE_REQUIRE':
+        if(textareaRequirePrimaryPreview) {
+          this.setState(preState=>{
+            return {
+              preReqBox: [...preState.preReqBox,
+                {pri: textareaRequirePrimaryPreview,
+                  sec: textareaRequireSecondaryArray}],
+              textareaRequirePrimaryPreview: '',
+              textareaRequireSecondaryArray: [],
+            }
+          })
+        }
+        break;
     }
   }
   addCourse1 =(pDetail)=> {
-    const {
-      courseName, image, description, category,
-      programme, technologyUsed, batch, courseFee,
-      courseContentBox, preReqBox, youLearnBox,
-      location, offer, estimatedTime
+    const { courseName, image, description,
+      programme, technologyUsed,
+      estimatedTime, courseContentBox,
+      youLearnBox, preReqBox, withIntern,
     } = this.state;
-    firestore().collection('Courses').add({
-      courseName, image, description, category,
-      programme, technologyUsed, batch, offer: 0,
-      courseContentBox, preReqBox, youLearnBox,
-      createdOn: Date.now(), createdBy: pDetail.id,
-      contact: pDetail.contact, courseFee,
-      location, offer, estimatedTime
-    }).then(res=>res.get()).then(res=>{
-      firestore().collection('User-Admin').doc(pDetail.id)
-        .collection('courses').doc(res.id).set({
-          courseName: res.data().courseName,
-          batch: res.data().batch,
-          offer: res.data().offer,
-          image: res.data().image,
-          courseFee: res.data().courseFee,
-        }).then(()=>{
-          this.setState({uploadState: false});
-          window.location.reload();
+    // trimmed course includes => image, offer, name, id 
+    firestore().collection('Courses')
+      .add({
+        courseName, image, description,
+        programme, technologyUsed,
+        estimatedTime, courseContentBox,
+        youLearnBox, preReqBox, withIntern,
+        attainedBy: null, report: null,
+        status: null, location: null,
+        batch: null, batchCapacity: null,
+        courseFee: null, courseOffer: null,
+        cName: auth().currentUser.displayName,
+        cImage: auth().currentUser.photoURL,
+        cUid: auth().currentUser.uid,
+        createdOn: Date.now()
+      }).then(()=>{
+        this.setState({
+          courseName: '', image: '', imageState: false,
+          uploadState: false,  description: '',
+          programme: '', technologyUsed: '',
+          estimatedTime: '', courseContentBox: [],
+          youLearnBox: [], preReqBox: [], withIntern: false,
         });
-    })
+        this.props.snackbar('Course Added For Approval ...');
+      })
   }
   toggleModal =(showModal, modalIndex, mData)=> {
     this.setState({showModal, modalIndex, mData});
@@ -159,83 +231,79 @@ class UserAdmin extends Component {
     }
   }
   testTing =()=> {
-    firestore().collection('Context').add({name: 'FU#K U'})
-      .then(resy=>resy.get())
-      .then(resyy=>console.log(resyy));
+    
   }
 
-  blogImageChanged =e=> {
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload =()=> {
-      this.setState({blogImage0: reader.result})
-    }
-    this.setState({blogImage0File: e.target.files[0]})
-  }
-  uploadBlogImage0 =()=> {
-    const { blogImage0, blogImage0File } = this.state;
-    if(blogImage0 && blogImage0File) {
-      storage().refFromURL(`gs://developer-wizard.appspot.com/blogs/${blogImage0File.name}`)
-        .put(blogImage0File).on('state_changed',
-          null, null,
-          ()=>{
-            storage().refFromURL(`gs://developer-wizard.appspot.com/blogs/${blogImage0File.name}`)
-              .getDownloadURL().then(url=>this.setState({
-                blogImage0: url, blogImage0Uploaded: true}));
-          })
-    } else {
-      this.setState({blogError: 'Blog\'s req Image is Invalid'});
-      setTimeout(()=>{this.blogContainer.scrollTo(0, 0)}, 50);
-    }
-  }
   BlogFieldProducer =props=> {
     switch(props.type) {
-      case 'quote':
-        return <div className="addCourseField">
-          <h5>BLOG QUOTE</h5>
-          <input type="text" placeholder="BLOG QUOTE"
+      case 'header':
+        return <div className="cBlogExtraCnt">
+          <input spellCheck="false" type="text" placeholder="BLOG HEADER"
             value={props.value} autoComplete="off"
-            onChange={e=>props.changeTextFunc(e, props.index)} />
+            onChange={e=>props.cFunc(e, props.index)} />
+          <button type="button" onClick={props.rFunc}>
+            <i className="fas fa-trash-alt"></i>
+          </button>
         </div>
-      case 'para':
-        return <div className="addCourseField">
-          <h5>BLOG PARA</h5>
-          <textarea rows="5" autoComplete="off"
+      case 'gap':
+        return <div className="cBlogExtraCnt">
+          <div className="cBlogGap"><p>BLOG GAP</p></div>
+          <button type="button" onClick={props.rFunc}>
+            <i className="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      case 'paragraph':
+        return <div className="cBlogExtraCnt">
+          <textarea spellCheck="false" rows="5" autoComplete="off"
             placeholder="BLOG PARA" value={props.value}
-            onChange={e=>props.changeTextFunc(e, props.index)} />
+            onChange={e=>props.cFunc(e, props.index)} />
+          <button type="button" onClick={props.rFunc}>
+            <i className="fas fa-trash-alt"></i>
+          </button>
         </div>
       case 'image':
-        return <div className="addCourseField">
-          <h5>BLOG IMAGE</h5>
-          <div className="blogImage"
-            style={{backgroundImage: `url(${props.value})`}}>
-            <button type="button" style={{display: !props.value?'block':'none'}}
-              onClick={()=>this[`blogImageInput${props.index}`].click()}>
-              <i className="fas fa-file-upload"></i>
+        return <div className="cBlogImageBox">
+          <input spellCheck="false" type="file" style={{display: 'none'}} 
+            ref={r=>this['fileInput'+props.index]=r}
+            onChange={e=>this.extraBlogImageChanged(e, props.index)} />
+          <div className="cBlogImageBtns">
+            <button type="button"
+              onClick={()=>this['fileInput'+props.index].click()}
+              style={{display: !props.image?'block':'none'}}
+              >UPLOAD BLOG IMAGE</button>
+            <button type="button" onClick={props.rFunc}
+              style={{display: !props.image?'block':'none'}}>
+              <i className="fas fa-trash-alt"></i>
             </button>
-            <div className="blogImageBtns"
-              style={{display: !props.valueUploaded?(props.value?'block':'none'):'none'}}>
-              <button type="button"
-                onClick={()=>props.imageControlFunc(true, props.index)}>
-                <i className="far fa-check-circle"></i>
-              </button>
-              <div style={{height: 10}}></div>
-              <button type="button"
-                onClick={()=>props.imageControlFunc(false, props.index)}>
-                <i className="far fa-times-circle"></i>
-              </button>
+          </div>
+          <div className="cBlogImage"
+            style={{display: props.image?'block':'none'}}>
+            <img src={props.image} alt="" />
+            <div className="cBlogImageCntrl">
+            {!props.iuState?
+              <div>
+                <button type="button" onClick={()=>{
+                    this['fileInput'+props.index].value = '';
+                    this.setState(preState=>{
+                      preState.blogExtraContents[props.index].value = null;
+                      preState.blogExtraContents[props.index].valueFile = null;
+                      return { blogExtraContents: [...preState.blogExtraContents] }
+                    });
+                  }}>CANCEL</button>
+                <button type="button" onClick={props.uFunc}>UPLOAD</button>
+              </div>:<button type="button" onClick={props.ruImage}>DELETE</button>
+            }
             </div>
           </div>
-          <input type="file" style={{display: 'none'}}
-            ref={r=>{this[`blogImageInput${props.index}`]=r}}
-            onChange={e=>props.changeImageFunc(e, props.index)} />
         </div>
       case 'code':
-        return <div className="addCourseField">
-          <h5>BLOG CODE</h5>
-          <textarea rows="5" autoComplete="off"
+        return <div className="cBlogExtraCnt">
+          <textarea spellCheck="false" rows="5" autoComplete="off"
             placeholder="BLOG CODE" value={props.value}
-            onChange={e=>props.changeTextFunc(e, props.index)} />
+            onChange={e=>props.cFunc(e, props.index)} />
+          <button type="button" onClick={props.rFunc} >
+            <i className="fas fa-trash-alt"></i>
+          </button>
         </div>
       default:
         return null;
@@ -243,16 +311,23 @@ class UserAdmin extends Component {
   }
   addExtraBlogField =type=> {
     switch(type) {
-      case 'quote':
+      case 'header':
         this.state.blogExtraContents
-          .push({type: 'quote', value: ''});
+          .push({type: 'header', value: ''});
         this.setState({
           blogExtraContents: this.state.blogExtraContents
         });
         break;
-      case 'para':
+      case 'gap':
         this.state.blogExtraContents
-          .push({type: 'para', value: ''});
+          .push({type: 'gap'});
+        this.setState({
+          blogExtraContents: this.state.blogExtraContents
+        });
+        break;
+      case 'paragraph':
+        this.state.blogExtraContents
+          .push({type: 'paragraph', value: ''});
         this.setState({
           blogExtraContents: this.state.blogExtraContents
         });
@@ -273,8 +348,14 @@ class UserAdmin extends Component {
         break;
     }
     setTimeout(()=>{
-      this.blogContainer.scrollTo(0, this.blogContainer.clientHeight);
+      this.cBlogBody.scrollTo(0, this.cBlogBody.clientHeight);
     }, 50);
+  }
+  removeExtraBlogField =index=> {
+    this.setState(preState=>{
+      preState.blogExtraContents.splice(index, 1);
+      return { blogExtraContents: [...preState.blogExtraContents] }
+    })
   }
   extraBlogTextChanged =(e, index)=> {
     this.state.blogExtraContents[index].value = e.target.value
@@ -297,105 +378,39 @@ class UserAdmin extends Component {
       blogExtraContents: [...this.state.blogExtraContents]
     });
   }
-  extraBlogImageControl =(booly, index)=> {
-    if(booly) {
-      // upload image
-      const { value, valueFile } = this.state.blogExtraContents[index];
-      console.log(value);
-      console.log(valueFile)
-      if(value && valueFile) {
-        storage().refFromURL(`gs://developer-wizard.appspot.com/blogs/${valueFile.name}`)
-          .put(valueFile).on('state_changed',
-            null, null,
-            ()=>{
-              storage().refFromURL(`gs://developer-wizard.appspot.com/blogs/${valueFile.name}`)
-                .getDownloadURL().then(url=>{
-                  this.state.blogExtraContents[index].value = url;
-                  this.state.blogExtraContents[index].valueUploaded = true;
-                  this.setState({
-                    blogExtraContents: [...this.state.blogExtraContents]
-                  });
-                });
-            })
-      } else {
-        this.setState({blogError: 'Blog\'s req Image is Invalid'});
-        setTimeout(()=>{this.blogContainer.scrollTo(0, 0)}, 50);
-      }
-    } else {
-      this.state.blogExtraContents[index].value = null;
-      this.state.blogExtraContents[index].valueFile = null;
-      this[`blogImageInput${index}`].value = '';
-      this.setState({
-        blogExtraContents: [...this.state.blogExtraContents]
+  uploadExtraImage =(index)=> {
+    const bec = this.state.blogExtraContents;
+    storage().refFromURL(`gs://developer-wizard.appspot.com/blogs/${bec[index].valueFile.name}`)
+      .put(bec[index].valueFile).on('state_changed', null, null, ()=>{
+        storage().refFromURL(`gs://developer-wizard.appspot.com/blogs/${bec[index].valueFile.name}`)
+          .getDownloadURL().then(url=>{
+            bec[index].value = url;
+            bec[index].valueFile = null;
+            bec[index].valueUploaded = true;
+            this.setState({blogExtraContents: [...bec]})
+          })
       })
-    }
+  }
+  removeUploadExtraImage =index=> {
+    const imgNameArray = this.state.blogExtraContents[index].value.split('/'),
+          imgName = imgNameArray[imgNameArray.length - 1].split('?'),
+          imgTrimedName = imgName[0].replace('%2F', '/')
+    storage().refFromURL(`gs://developer-wizard.appspot.com/${imgTrimedName}`)
+      .delete().then(()=>this.removeExtraBlogField(index));
   }
   moveToQueue =()=> {
-    const { blogName, blogImage0, blogImage0Uploaded,
-      blogQuote0, blogPara0, blogExtraContents,
-    } = this.state;
-    if(blogName===''||!blogImage0Uploaded||
-      blogQuote0===''||blogPara0==='') {
-      this.setState({blogError: 'Blog\'s required field is Empty'});
-      setTimeout(()=>{this.blogContainer.scrollTo(0, 0)}, 50);
-    } else {
-      if(blogExtraContents.length!==0){
-        let anyError = false;
-        blogExtraContents.forEach(eP=>{
-          if((eP.type==='image' && !eP.valueUploaded) ||
-            ((eP.type==='quote' || eP.type==='para') && eP.value==='')
-          ){ anyError = true }
-        })
-        if(!anyError) {
-          firestore().collection('Blogs').add({
-            blogName, blogImage0, blogQuote0,
-            blogPara0, blogExtraContents,
-            status: null, createdOn: Date.now(),
-            createdBy: {
-              _id: auth().currentUser.uid,
-              image: auth().currentUser.photoURL,
-              username: auth().currentUser.displayName
-            }
-          }).then(blogy=>blogy.get())
-          .then(afterBlogy=>{
-            return firestore().collection('User-Admin')
-              .doc(auth().currentUser.uid)
-              .collection('blogs').doc(afterBlogy.id)
-              .set({blogName, status: null})
-          }).then(()=>{
-            this.props.history.push('/profile');
-          }).catch(err=>{
-            this.setState({anyError: err.message});
-            setTimeout(()=>{this.blogContainer.scrollTo(0, 0)}, 50);
-          })
-        } else { 
-          this.setState({blogError: 'Any added Field of Blog is Invalid'});
-          setTimeout(()=>{this.blogContainer.scrollTo(0, 0)}, 50);
-        }
-      } else {
-        firestore().collection('Blogs').add({
-          blogName, blogImage0, blogQuote0,
-          blogPara0, blogExtraContents: [],
-          status: null, createdOn: Date.now(),
-          createdBy: {
-            _id: auth().currentUser.uid,
-            image: auth().currentUser.photoURL,
-            username: auth().currentUser.displayName
-          }
-        }).then(blogy=>blogy.get())
-        .then(afterBlogy=>{
-          return firestore().collection('User-Admin')
-            .doc(auth().currentUser.uid)
-            .collection('blogs').doc(afterBlogy.id)
-            .set({blogName, status: null})
-        }).then(()=>{
-          this.props.history.push('/profile');
-        }).catch(err=>{
-          this.setState({anyError: err.message});
-          setTimeout(()=>{this.blogContainer.scrollTo(0, 0)}, 50);
-        })
-      }
-    }
+    const { bTitle, bSubTitle, blogExtraContents } = this.state;
+    firestore().collection('Blogs').add({
+      bTitle, bSubTitle, blogExtraContents,
+      cName: auth().currentUser.displayName,
+      cUid: auth().currentUser.uid,
+      cImage: auth().currentUser.photoURL,
+      createdOn: Date.now(), views: 0, fav_users: [],
+      status: null, report: null, attainedBy: null,
+    }).then(()=>{
+      this.setState({bTitle: '', bSubTitle: '', blogExtraContents: []});
+      this.props.snackbar('BLOG ADDED FOR APPROVAL');
+    })
   }
 
   componentWillMount() {
@@ -404,60 +419,87 @@ class UserAdmin extends Component {
         storage().refFromURL(`gs://developer-wizard.appspot.com/courses/${this.state.imageFile.name}`)
           .delete();
       }
-      if(this.state.blogImage0Uploaded) {
-        storage().refFromURL(`gs://developer-wizard.appspot.com/blogs/${this.state.blogImage0File.name}`)
-          .delete();
-      }
-      if(this.state.blogExtraContents.length !== 0){
-        this.state.blogExtraContents.forEach(eObji=>{
-          if(eObji.type==='image' && eObji.valueUploaded) {
-            storage().refFromURL(`gs://developer-wizard.appspot.com/blogs/${eObji.valueFile.name}`)
-              .delete();
-          }
-        })
-      }
     }
   }
   render() {
     const {
-      imageState, image, uploadState, showModal, modalIndex,
-      courseName, description, courseFee, offer, technologyUsed,
-      programme, batch, estimatedTime, category,
-      courseContent, courseContentBox, preReq, mData,
-      preReqBox, youLearn, youLearnBox, location,
+      showModal, modalIndex, mData,
 
-      blogName, blogImage0, blogImage0Uploaded, blogError,
-      blogPara0, blogQuote0, blogExtraContents
+      imageState, image, uploadState,
+      courseName, description, technologyUsed,
+      programme, estimatedTime,
+      courseContentBox, preReqBox, youLearnBox,
+      textareaCoursePrimaryPreview, withIntern,
+      textareaCourseSecondary,
+      textareaCourseSecondaryArray,
+      textareaLearnPrimaryPreview,
+      textareaLearnSecondary,
+      textareaLearnSecondaryArray,
+      textareaRequirePrimaryPreview,
+      textareaRequireSecondary,
+      textareaRequireSecondaryArray,
+
+      bTitle, bSubTitle, blogExtraContents,
     } = this.state;
-    const { pCourses, pDetail, adminMssgBox, adminSubmitsBox } = this.props;
+    const { pDetail, adminMssgBox, adminSubmitsBox,
+      allTrimmedBlogs, allTrimmedCourss } = this.props;
     return <Fragment>
       <div className="parentGrid">
         <div className="childGrid1">
-          <div className="adminCourseBoxes">
-            <h3>ADDED COURSES...</h3>
-            <div className="adminCourseBoxes1">
-              {pCourses && pCourses.map(eCourse=>{
-                return <div className="adminCourseBox" key={eCourse._id}
-                  style={{backgroundImage: `url(${eCourse.image})`}}>
-                  <div className="adminCourseBox1">
-                    <div className="acb1Div"></div>
-                    <div className="acb1Div">
-                      <button type="button"
-                        onClick={()=>this.toggleModal(true, 4, eCourse)}>
-                        <i className="fas fa-egg"></i>
-                      </button>
-                    </div>
+          <div className="aBlogsAndCourses">
+            <div className="aBlogsAndCoursesHead">
+              <h3>YOUR COURSES & BLOGS</h3>
+            </div>
+            <div className="aBlogsAndCoursesBody">
+              <div className="aBlogsAndCoursesBoxes">
+              {allTrimmedCourss && allTrimmedCourss.map((eCourse, index)=>{
+                return <div className="aBlogsAndCoursesBox" key={index}>
+                  <div className="aBlogsAndCoursesBoxBack"
+                    style={{backgroundImage: `url(${eCourse.image})`}}>
+                  </div>
+                  <div className="aBlogsAndCoursesBoxFront">
+                    <button type="button"
+                      onClick={()=>this.setState({
+                        showModal: true, modalIndex: 41, mData: {cId: eCourse.id, index}
+                      })}
+                      style={{backgroundColor: eCourse.status===null?'royalblue':eCourse.status?'green':'red'}}>
+                        {eCourse.status===null?<i className="fas fa-question"></i>
+                          :eCourse.status?<i className="fas fa-check"></i>:<i className="fas fa-exclamation"></i>}
+                    </button>
                   </div>
                 </div>
               })}
+              </div>
+              <div className="aBlogsAndCoursesBoxes">
+              {allTrimmedBlogs && allTrimmedBlogs
+                .filter(eBlog=>eBlog.cUid===auth().currentUser.uid)
+                .map((eBlog, index)=>{
+                  return <div className="aBlogsAndCoursesBox" key={index}>
+                    <div className="aBlogsAndCoursesBoxBack"
+                      style={{backgroundImage: `url(${eBlog.image && eBlog.image.value})`}}>
+                    </div>
+                    <div className="aBlogsAndCoursesBoxFront">
+                      <button type="button"
+                        onClick={()=>this.setState({
+                          showModal: true, modalIndex: 42, mData: {bId: eBlog.id, index}
+                        })}
+                        style={{backgroundColor: eBlog.status===null?'royalblue':eBlog.status?'green':'red'}}>
+                        {eBlog.status===null?<i className="fas fa-question"></i>
+                          :eBlog.status?<i className="fas fa-check"></i>:<i className="fas fa-exclamation"></i>}
+                      </button>
+                    </div>
+                  </div>
+                })}
+              </div>
             </div>
           </div>
         </div>
+
         <div className="childGrid2">
           <div className="addCourse">
             <div className="addCourseField">
               <h5>COURSE NAME</h5>
-              <input type="text" placeholder="COURSE NAME"
+              <input spellCheck="false" type="text" placeholder="COURSE NAME"
                 name="courseName" value={courseName} autoComplete="off"
                 onChange={this.inputChanged} />
             </div>
@@ -493,62 +535,46 @@ class UserAdmin extends Component {
                     </button>
                   </div>
                 </div>
-                <input type="file" ref={r=>{this.inputTag=r}}
+                <input spellCheck="false" type="file" ref={r=>{this.inputTag=r}}
                   style={{display: 'none'}} onChange={this.imageChanged} />
               </div>
             </div>
             <div className="addCourseField">
               <h5>DESCRIPTION</h5>
-              <textarea name="description" rows="3"
+              <textarea spellCheck="false" name="description" rows="3"
                 placeholder="DESCRIPTION" value={description}
                 onChange={this.inputChanged} autoComplete="off" />
-            </div>
-            <div className="addCourseField">
-              <h5>COURSE FEE</h5>
-              <input type="text" placeholder="COURSE FEE"
-                name="courseFee" value={courseFee} autoComplete="off"
-                onChange={this.inputChanged} />
-            </div>
-            <div className="addCourseField">
-              <h5>OFFER</h5>
-              <input type="text" placeholder="OFFER"
-                name="offer" value={offer} autoComplete="off"
-                onChange={this.inputChanged} />
-            </div>
-            <div className="addCourseField">
-              <h5>CATEGORY</h5>
-              <select value={category} name="category"
-                onChange={this.inputChanged}>
-                <option value="" disabled>SELECT CATEGORY</option>
-                <option value="web">Web</option>
-                <option value="ml">ML</option>
-                <option value="mobile">Mobile</option>
-              </select>
             </div>
             <div className="addCourseField">
               <h5>PROGRAMME</h5>
               <select value={programme} name="programme"
                 onChange={this.inputChanged}>
                 <option value="" disabled>SELECT PROGRAMME</option>
-                <option value="internShip">InternShip</option>
-                <option value="crashCourse">CrashCourse</option>
+                <option value="course">Course</option>
+                <option value="events">Events</option>
+                <option value="workShop">WorkShop</option>
               </select>
             </div>
             <div className="addCourseField">
+              <div className="acfIntern"
+                onClick={()=>this.setState(preState=>{
+                  return {withIntern: !preState.withIntern}
+                })}>
+                <button type="button">
+                  {withIntern?<i className="fas fa-check"></i>:null}
+                </button>
+                <h5>{withIntern?'with':'withOut'} INTERN-SHIP</h5>
+              </div>
+            </div>
+            <div className="addCourseField">
               <h5>TECHNOLOGY USED</h5>
-              <input type="text" placeholder="TECHNOLOGY USED"
+              <input spellCheck="false" type="text" placeholder="TECHNOLOGY USED"
                 name="technologyUsed" value={technologyUsed}
                 autoComplete="off" onChange={this.inputChanged} />
             </div>
             <div className="addCourseField">
-              <h5>BATCH</h5>
-              <input type="text" placeholder="DD-MM-YYYY HR:MN AM/PM"
-                name="batch" value={batch}
-                onChange={this.inputChanged} autoComplete="off" />
-            </div>
-            <div className="addCourseField">
               <h5>ESTIMATED TIME</h5>
-              <input type="text" placeholder="ESTIMATED TIME"
+              <input spellCheck="false" type="text" placeholder="ESTIMATED TIME"
                 name="estimatedTime" value={estimatedTime}
                 onChange={this.inputChanged} autoComplete="off" />
             </div>
@@ -556,64 +582,181 @@ class UserAdmin extends Component {
               <div className="fieldLabelGroup">
                 <h5>COURSE CONTENTS</h5>
                 <button type="button"
-                  onClick={()=>this.addDetailInArray(1)}
+                  onClick={()=>this.addTextareaAddFunc('COURSE_CONTENT')}
                   >ADD</button>
               </div>
-              <textarea name="courseContent" rows="3"
-                placeholder="COURSE CONTENT" value={courseContent}
-                onChange={this.inputChanged} autoComplete="off" />
+              <textarea spellCheck="false" rows="2" placeholder="COURSE PRIMARY CONTENT"
+                value={textareaCoursePrimaryPreview} autoComplete="off"
+                onChange={e=>this.textareaPrimaryPreview('COURSE_CONTENT', e)} />
+              <div className="fieldLabelGroup2">
+                <button type="button" onClick={()=>this.textareaArrayPush('COURSE_CONTENT')}
+                  disabled={textareaCoursePrimaryPreview!==''?false:true}>
+                  <i className="fas fa-plus"></i>
+                </button>
+                <textarea spellCheck="false" name="textareaCourseSecondary" rows="2"
+                  placeholder="COURSE SECONDARY CONTENT" value={textareaCourseSecondary}
+                  onChange={this.inputChanged} autoComplete="off" />
+              </div>
               <ul>
-                {courseContentBox && courseContentBox.map((eachProp, index)=>{
-                  return <li key={index} onClick={()=>{
-                    courseContentBox.splice(index, 1);
-                    this.setState({courseContentBox});
-                    }}><p>{index+1}.</p><p>{eachProp}</p></li>
+                <li>
+                  <div className="primaryCnt">
+                    <p>{textareaCoursePrimaryPreview}</p>
+                    <div className="secondaryCnt">
+                      {textareaCourseSecondaryArray &&
+                        textareaCourseSecondaryArray.map((eEle, index)=>{
+                          return <div key={index} onClick={()=>{
+                            textareaCourseSecondaryArray.splice(index, 1);
+                            this.setState({textareaCourseSecondaryArray})
+                          }}>
+                            <i className="fas fa-circle"></i>
+                            <p>{eEle}</p>
+                          </div>
+                        })
+                      }
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul>
+                {courseContentBox && courseContentBox.map((eCourse, index)=>{
+                  return <li key={index}>
+                    <div className="primaryCnt">
+                      <p onClick={()=>{
+                        courseContentBox.splice(index, 1);
+                        this.setState({courseContentBox});
+                      }}>{eCourse.pri}</p>
+                      <div className="secondaryCnt">
+                        {eCourse.sec && eCourse.sec.map((eSec, index)=>{
+                          return <div key={index}>
+                            <i className="fas fa-circle"></i>
+                            <p>{eSec}</p>
+                          </div>
+                        })}
+                      </div>
+                    </div>
+                  </li>
                 })}
               </ul>
             </div>
             <div className="addCourseField">
               <div className="fieldLabelGroup">
-                <h5>YOU LEARN</h5>
+                <h5>YOU'LL LEARN</h5>
                 <button type="button"
-                  onClick={()=>this.addDetailInArray(2)}
+                  onClick={()=>this.addTextareaAddFunc('YOU_LEARN')}
                   >ADD</button>
               </div>
-              <textarea name="youLearn" rows="3"
-                placeholder="YOU LEARN" value={youLearn}
-                onChange={this.inputChanged} autoComplete="off" />
+              <textarea spellCheck="false" rows="2" placeholder="LEARN PRIMARY CONTENT"
+                value={textareaLearnPrimaryPreview} autoComplete="off"
+                onChange={e=>this.textareaPrimaryPreview('YOU_LEARN', e)} />
+              <div className="fieldLabelGroup2">
+                <button type="button" onClick={()=>this.textareaArrayPush('YOU_LEARN')}
+                  disabled={textareaLearnPrimaryPreview!==''?false:true}>
+                  <i className="fas fa-plus"></i>
+                </button>
+                <textarea spellCheck="false" name="textareaLearnSecondary" rows="2"
+                  placeholder="LEARN SECONDARY CONTENT" value={textareaLearnSecondary}
+                  onChange={this.inputChanged} autoComplete="off" />
+              </div>
               <ul>
-                {youLearnBox && youLearnBox.map((eachProp, index)=>{
-                  return <li key={index} onClick={()=>{
-                    youLearnBox.splice(index, 1);
-                    this.setState({youLearnBox});
-                    }}><b>{index+1}.</b> {eachProp}</li>
+                <li>
+                  <div className="primaryCnt">
+                    <p>{textareaLearnPrimaryPreview}</p>
+                    <div className="secondaryCnt">
+                      {textareaLearnSecondaryArray &&
+                        textareaLearnSecondaryArray.map((eEle, index)=>{
+                          return <div key={index} onClick={()=>{
+                            textareaCourseSecondaryArray.splice(index, 1);
+                            this.setState({textareaLearnSecondaryArray})
+                          }}>
+                            <i className="fas fa-circle"></i>
+                            <p>{eEle}</p>
+                          </div>
+                        })
+                      }
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul>
+                {youLearnBox && youLearnBox.map((eLearn, index)=>{
+                  return <li key={index}>
+                    <div className="primaryCnt">
+                      <p onClick={()=>{
+                        youLearnBox.splice(index, 1);
+                        this.setState({youLearnBox});
+                      }}>{eLearn.pri}</p>
+                      <div className="secondaryCnt">
+                        {eLearn.sec && eLearn.sec.map((eSec, index)=>{
+                          return <div key={index}>
+                            <i className="fas fa-circle"></i>
+                            <p>{eSec}</p>
+                          </div>
+                        })}
+                      </div>
+                    </div>
+                  </li>
                 })}
               </ul>
             </div>
             <div className="addCourseField">
               <div className="fieldLabelGroup">
-                <h5>PRE REQUIREMENT</h5>
+                <h5>PRE REQUIREMENTS</h5>
                 <button type="button"
-                  onClick={()=>this.addDetailInArray(3)}
+                  onClick={()=>this.addTextareaAddFunc('PRE_REQUIRE')}
                   >ADD</button>
               </div>
-              <textarea name="preReq" rows="3"
-                placeholder="PRE REQUIREMENT" value={preReq}
-                onChange={this.inputChanged} autoComplete="off" />
+              <textarea spellCheck="false" rows="2" placeholder="REQUIRE PRIMARY CONTENT"
+                value={textareaRequirePrimaryPreview} autoComplete="off"
+                onChange={e=>this.textareaPrimaryPreview('PRE_REQUIRE', e)} />
+              <div className="fieldLabelGroup2">
+                <button type="button" onClick={()=>this.textareaArrayPush('PRE_REQUIRE')}
+                  disabled={textareaRequirePrimaryPreview!==''?false:true}>
+                  <i className="fas fa-plus"></i>
+                </button>
+                <textarea spellCheck="false" name="textareaRequireSecondary" rows="2"
+                  placeholder="REQUIRE SECONDARY CONTENT" value={textareaRequireSecondary}
+                  onChange={this.inputChanged} autoComplete="off" />
+              </div>
               <ul>
-                {preReqBox && preReqBox.map((eachProp, index)=>{
-                  return <li key={index} onClick={()=>{
-                    preReqBox.splice(index, 1);
-                    this.setState({preReqBox});
-                    }}><b>{index+1}.</b> {eachProp}</li>
+                <li>
+                  <div className="primaryCnt">
+                    <p>{textareaRequirePrimaryPreview}</p>
+                    <div className="secondaryCnt">
+                      {textareaRequireSecondaryArray &&
+                        textareaRequireSecondaryArray.map((eEle, index)=>{
+                          return <div key={index} onClick={()=>{
+                            textareaRequireSecondaryArray.splice(index, 1);
+                            this.setState({textareaRequireSecondaryArray})
+                          }}>
+                            <i className="fas fa-circle"></i>
+                            <p>{eEle}</p>
+                          </div>
+                        })
+                      }
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul>
+                {preReqBox && preReqBox.map((eReq, index)=>{
+                  return <li key={index}>
+                    <div className="primaryCnt">
+                      <p onClick={()=>{
+                        preReqBox.splice(index, 1);
+                        this.setState({preReqBox});
+                      }}>{eReq.pri}</p>
+                      <div className="secondaryCnt">
+                        {eReq.sec && eReq.sec.map((eSec, index)=>{
+                          return <div key={index}>
+                            <i className="fas fa-circle"></i>
+                            <p>{eSec}</p>
+                          </div>
+                        })}
+                      </div>
+                    </div>
+                  </li>
                 })}
               </ul>
-            </div>
-            <div className="addCourseField">
-              <h5>LOCATION</h5>
-              <input type="text" placeholder="LOCATION"
-                name="location" value={location}
-                onChange={this.inputChanged} autoComplete="off" />
             </div>
             <div className="addCourseField">
               <button type="button" className="courseSBtn"
@@ -621,10 +764,12 @@ class UserAdmin extends Component {
             </div>
           </div>
         </div>
+
         <div className="childGrid3">
           <img src={require('../../../amar/developerWizardsLogoOrange.png')} alt=""
             onClick={this.testTing} />
         </div>
+
         <div className="childGrid4">
           <div className="repliesAndHistory">
             <div className="repliesAndHistory1">
@@ -711,21 +856,45 @@ class UserAdmin extends Component {
             </div>
           </div>
         </div>
+
         <div className="childGrid5">
           <div className="cBlogContainer">
             <div className="cBlogHead">
               <h3>CREATE BLOG HERE</h3>
               <div className="cBlogHeadCntrl">
-                <button type="button" title="HEADING">H</button>
-                <button type="button" title="PARAGRAPH">P</button>
-                <button type="button" title="IMAGE">I</button>
-                <button type="button" title="CODE">C</button>
+                <button type="button" title="HEADING"
+                  onClick={()=>this.addExtraBlogField('header')}
+                  >H</button>
+                <button type="button" title="HEADING"
+                  onClick={()=>this.addExtraBlogField('gap')}
+                  >G</button>
+                <button type="button" title="PARAGRAPH"
+                  onClick={()=>this.addExtraBlogField('paragraph')}
+                  >P</button>
+                <button type="button" title="IMAGE"
+                  onClick={()=>this.addExtraBlogField('image')}
+                  >I</button>
+                <button type="button" title="CODE"
+                  onClick={()=>this.addExtraBlogField('code')}
+                  >C</button>
               </div>
             </div>
-            <div className="cBlogBody">
+            <div className="cBlogBody" ref={r=>this.cBlogBody=r}>
               <div className="cBlogBodyForm">
-                <input type="text" placeholder="BLOG TITLE" />
-                <textarea rows="3" placeholder="BLOG SUB-TITLE" />
+                <input spellCheck="false" type="text" name="bTitle" value={bTitle}
+                  onChange={this.inputChanged} placeholder="BLOG TITLE" />
+                <textarea spellCheck="false" rows="3" name="bSubTitle" value={bSubTitle}
+                  onChange={this.inputChanged} placeholder="BLOG SUB-TITLE" />
+                {blogExtraContents && blogExtraContents.map((eField, index)=>{
+                  return <this.BlogFieldProducer key={index}
+                    index={index} type={eField.type} iuState={eField.valueUploaded}
+                    image={eField.value} cFunc={this.extraBlogTextChanged}
+                    rFunc={()=>this.removeExtraBlogField(index)}
+                    uFunc={()=>this.uploadExtraImage(index)}
+                    ruImage={()=>this.removeUploadExtraImage(index)} />
+                })}
+                <button type="button" className="cBlogPublishBtn"
+                  onClick={this.moveToQueue}>PUBLISH</button>
               </div>
             </div>
           </div>
@@ -740,13 +909,16 @@ class UserAdmin extends Component {
 function mapStateToProps(state) {
   return {
     pDetail: { contact: state.profile.mobile, id: state.profile._id },
-    pCourses: state.profile.courses,
     adminMssgBox: state.reqArrays.adminMssgBox,
     adminSubmitsBox: state.reqArrays.adminSubmitsBox,
+    allTrimmedBlogs: state.reqArrays.allTrimmedBlogs,
+    allTrimmedCourss: state.reqArrays.allTrimmedCourss,
   }
 }
 function mapDispatchToProps(dispatch) {
-  return {}
+  return {
+    snackbar: payload=>{dispatch({type: 'SNACK_IT', payload})},
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserAdmin));

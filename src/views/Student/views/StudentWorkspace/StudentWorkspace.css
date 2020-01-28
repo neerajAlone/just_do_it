@@ -1,210 +1,56 @@
-.StudentWorkspace{
+.swAppliedCourseContainer{
   width: 100%; height: auto;
 }
-.swsSection{
-  width: 100%; height: auto;
-  display: flex; flex-wrap: wrap;
-  margin-top: 20px;
-}
-.swsSectionCourse{
-  width: 350px; height: 210px;
-  margin: 0 16px 16px 0;
-  overflow: hidden; border-radius: 10px;
-  background-size: cover;
-  display: flex; flex-wrap: wrap;
-  background-color: #ccc;
-}
-.swsSectionCourse1{
-  width: 100%; display: flex;
-  margin: 0 0 auto 0;
-}
-.swsSectionCourse1 h3{
-  width: 100%; padding: 5px 10px 6px 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  letter-spacing: 2px; color: goldenrod;
-}
-.swsSectionCourse1:nth-child(2){
-  margin: auto 0 0 0; padding: 10px;
-  box-sizing: border-box;
-  justify-content: flex-end;
-}
-.swsSectionCourse1 button{
-  width: 50px; height: 50px;
-  border-radius: 100%;
-  font-size: 22px; color: goldenrod;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.swsCourseInfo{
-  width: 100%; height: auto;
-  margin-top: 50px;
-  padding-bottom: 50px;
-}
-.swsCancelBtn{
-  margin: 0 0 0 auto; color: red;
-  font-size: 20px; padding: 0 6px;
-  background-color: transparent;
-}
-.swsCourseInfo h2{
+.swAppliedCourseContainer h2{
   text-align: center;
-  letter-spacing: 2px;
   font-weight: normal;
-  font-size: 38px;
-}
-.swsSectionCInfo{
-  width: 50%; height: auto;
-  box-sizing: border-box;
-}
-.swsSectionCInfo:nth-child(1){padding-right: 15px}
-.swsSectionCInfo:nth-child(2){padding-left: 15px}
-.swsSectionCInfoField{
-  width: 100%; height: auto;
-  margin-bottom: 15px;
-}
-.swsSectionCInfoField h5{
-  letter-spacing: 2px;
-}
-.swsSectionCInfoField h3{
-  font-weight: normal;
+  letter-spacing: 5px;
   font-size: 28px;
-  letter-spacing: 1.5px;
 }
-.ssci1 .swsSectionCInfoField{text-align: right}
-.ssci1 .swsSectionCInfoField h5{padding-right: 2px}
-.ssci2 .swsSectionCInfoField h5{padding-left: 2px}
-.progressBars{
-  width: 80%; height: 30px;
-  background-color: #aaa;
-  margin-top: 6px; position: relative;
-  border-radius: 0 20px 20px 0;
-}
-.progressBar{
-  position: absolute; height: 100%;
-  box-sizing: border-box;
-  font-weight: bold; letter-spacing: 2px;
-  padding: 4px 0 0 10px;
-  border-radius: 0 20px 20px 0;
-}
-.progressBar:nth-child(1){
-  background-color: #ddd;
-  padding: 0px;
-}
-.swsSectionCInfoField input{
-  margin-top: 6px; width: 80%;
-  background-color: #ddd; font-weight: bold;
-  font-size: 15px; padding: 10px 12px;
-  letter-spacing: 1.5px; border-radius: 5px;
-  border: 2px solid transparent;
-  transition: all 0.25s;
-}
-.swsSectionCInfoField input:focus{
-  border: 2px solid black;
-}
-.swsSectionCInfoField button{
-  margin: 10px 20% 0 auto;
-  width: 75px; height: 30px;
-  border-radius: 5px; font-weight: bold;
-  letter-spacing: 1px; padding-left: 2px;
-}
-.swsMssgBtn{
-  width: 60px; height: 60px;
-  margin: 0 auto; border-radius: 100%;
-  font-size: 25px; padding: 3px 0 0 2px;
-  box-shadow: 0px 2px 5px black;
-}
-
-.ruleForGitSubmit{
+.swAppliedCourses{
   width: 100%; display: flex;
   justify-content: center;
-  margin-bottom: 5px;
-}
-.ruleForGitSubmit i{
-  font-size: 15px; margin-top: 1px;
-  margin-right: 5px; color: red;
-}
-.ruleForGitSubmit h5{letter-spacing: 1px}
-.ruleForGitSubmit h5 b{color: red}
-
-.swsSubmitContainer{
-  width: 100%; height: auto;
-  margin-top: 50px;
-}
-.swsSubmitContainer h3{
-  letter-spacing: 1px;
-  font-size: 25px;
-}
-.swsSubmitContainer h3:nth-child(1){
-  font-size: 18px;
-  letter-spacing: 2px;
-  padding-left: 2px;
-}
-.swsSubmitBoxes{
-  width: 100%; height: auto;
-  display: flex; flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-top: 20px;
 }
-.swsSubmitBox{
-  width: 260px; height: auto;
-  margin: 0 15px 15px 0; padding: 7px 10px;
-  overflow: hidden; box-sizing: border-box;
-  overflow: hidden; border-radius: 10px;
+.swAppliedCourse{
+  width: 255px; height: 153px;
+  background-color: #ccc;
+  background-size: cover;
+  overflow: hidden; cursor: pointer;
+  background-position: center center;
+  margin: 10px; border-radius: 7px;
+  box-shadow: 0 0 0px 0 gray;
+  transition: all 0.3s;
+}
+.swAppliedCourse:hover{
+  box-shadow: 0 0px 10px 0px gray;
+}
+.swEachCourseBox,.swEachCourse{
+  width: 100%; height: auto;
+  margin-top: 40px;
+}
+.swEachCourseBox hr{
+  width: 200px; height: 2px;
+  margin: 0 auto 0px auto;
   background-color: #ccc;
 }
-.swsSubmitBox1{
-  width: 100%;
-  margin-bottom: 10px;
+.swEachCourse h2{
+  text-align: center;
+  font-weight: normal;
+  color: orangered;
+  letter-spacing: 3px;
+  font-size: 30px;
+  margin-bottom: 8px;
 }
-.swsSubmitBox1 h6{
-  font-size: 12px;
-  letter-spacing: 2px;
-  padding-left: 2px;
-  margin-bottom: 3px;
-}
-.swsSubmitBox2{
+.swEachCourse_id{
   width: 100%; display: flex;
+  justify-content: center;
 }
-.swsSubmitBox2 h5{
-  background-color: white;
-  padding: 4px 8px 5px 7px;
-  border-radius: 5px; color: royalblue;
-  letter-spacing: 1px; font-size: 16px;
-}
-.swsSubmitBox button{
+.swEachCourse_id h4{
   background-color: orangered;
-  color: white; font-size: 14px;
-  width: 125px; height: 35px;
-  padding-bottom: 2px;
-  font-weight: bold; letter-spacing: 2px;
-  margin-bottom: 5px; border-radius: 8px;
-}
-
-@media screen and (max-width: 420px) {
-  .swsSection{justify-content: center}
-  .swsSectionCourse{margin: 0 0 20px 0}
-  .swsCancelBtn{
-    margin-right: 20px;
-    font-size: 25px;
-  }
-  .swsCourseInfo h2{
-    margin: 20px 0 25px 0px;
-    text-align: left;
-  }
-  .swsSectionCInfo:nth-child(1){padding-right: 0px}
-  .swsSectionCInfo:nth-child(2){padding-left: 0px}
-  .swsSectionCInfo{width: 100%}
-  .ssci1 .swsSectionCInfoField,
-  .swsSectionCInfoField{
-    text-align: left; padding: 0px;
-    box-sizing: border-box;
-  }
-  .progressBars,
-  .swsSectionCInfoField textarea{width: 100%}
-  .swsCourseInfo .swsSectionCInfo{margin-bottom: 20px}
-  .swsSectionCInfoField button{
-    margin: 15px 0 0 auto;
-    width: 150px; height: 50px;
-    font-size: 20px; letter-spacing: 2px;
-  }
-  .swsSectionCInfoField input{ width: 100%; }
-  
+  letter-spacing: 3px; color: white;
+  padding: 7px 12px 8px 16px;
+  border-radius: 7px;
+  margin-bottom: 5px;
 }

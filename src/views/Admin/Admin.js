@@ -23,19 +23,19 @@ class Admin extends Component {
   }
   componentDidMount() {
     let ssRole = sessionStorage.getItem('roleAs');
-    if(this.props.courseArray.length === 0) {
-      firestore().collection('Courses').get()
-        .then(allCourse=>{
-          let emptyArray = []
-          allCourse.docs.forEach(eCourse=>{
-            emptyArray.push({
-              _id: eCourse.id,
-              ...eCourse.data()
-            })
-          })
-          this.props.getAllCourses(emptyArray);
-        })
-    }
+    // if(this.props.courseArray.length === 0) {
+    //   firestore().collection('Courses').get()
+    //     .then(allCourse=>{
+    //       let emptyArray = []
+    //       allCourse.docs.forEach(eCourse=>{
+    //         emptyArray.push({
+    //           _id: eCourse.id,
+    //           ...eCourse.data()
+    //         })
+    //       })
+    //       this.props.getAllCourses(emptyArray);
+    //     })
+    // }
     if(ssRole === 'signedInAsUserAdmin') {
       if(this.props.profileCourses.length === 0) {
         firestore().collection('User-Admin').doc(auth().currentUser.uid)
@@ -68,6 +68,55 @@ class Admin extends Component {
           })
       }
     }
+    if(this.props.allBlogs.length === 0||this.props.allTrimmedBlogs.length === 0) {
+      firestore().collection('Blogs').get()
+        .then(res=>{ let bArray = [], rbArray = [];
+          res.docs.forEach(doc=>{
+            bArray.push({id: doc.id, ...doc.data()});
+          });
+          this.props.getAllBlogs(bArray);
+          bArray && bArray.forEach(blog=>{
+            let eachBlogObject = {};
+            eachBlogObject.id = blog.id;
+            eachBlogObject.cUid = blog.cUid;
+            eachBlogObject.cImage = blog.cImage;
+            eachBlogObject.cName = blog.cName;
+            eachBlogObject.createdOn = blog.createdOn;
+            eachBlogObject.title = blog.bTitle;
+            eachBlogObject.subTitle = blog.bSubTitle;
+            eachBlogObject.views = blog.views;
+            eachBlogObject.heart = blog.fav_users && blog.fav_users.length;
+            eachBlogObject.status = blog.status;
+            eachBlogObject.image = blog.blogExtraContents
+              .find(bi=>bi.type === 'image');
+            rbArray.push(eachBlogObject);
+          })
+          this.props.getAllTrimmedBlogs(rbArray);
+        })
+    }
+    if(this.props.allCourss.length === 0||this.props.allTrimmedCourss.length === 0) {
+      firestore().collection('Courses').get()
+        .then(res=>{ let cArray = [], rcArray = [];
+          res.docs.forEach(doc=>{
+            cArray.push({id: doc.id, ...doc.data()});
+          });
+          this.props.getAllCourss(cArray);
+          cArray && cArray.forEach(course=>{
+            let eachCourseObject = {};
+            eachCourseObject.id = course.id;
+            eachCourseObject.image = course.image;
+            eachCourseObject.courseOffer = course.courseOffer;
+            eachCourseObject.courseName = course.courseName;
+            eachCourseObject.status = course.status;
+            eachCourseObject.cName = course.cName;
+            eachCourseObject.cImage = course.cImage;
+            eachCourseObject.cUid = course.cUid;
+            eachCourseObject.createdOn = course.createdOn;
+            rcArray.push(eachCourseObject);
+          })
+          this.props.getAllTrimmedCourss(rcArray);
+        })
+    }
   }
   render() {
     const {userAdmin, mainAdmin} = this.state;
@@ -83,6 +132,10 @@ function mapStateToProps(state) {
     profileCourses: state.profile.courses,
     adminMssgBox: state.reqArrays.adminMssgBox,
     adminSubmitsBox: state.reqArrays.adminSubmitsBox,
+    allBlogs: state.reqArrays.allBlogs,
+    allTrimmedBlogs: state.reqArrays.allTrimmedBlogs,
+    allCourss: state.reqArrays.allCourss,
+    allTrimmedCourss: state.reqArrays.allTrimmedCourss,
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -90,7 +143,11 @@ function mapDispatchToProps(dispatch) {
     getAllCourses: (payload)=>{dispatch({type: 'RETRIEVE_ALL_COURSES', payload})},
     addProfileCourses: (payload)=>{dispatch({type: 'ADD_PROFILE_COURSES', payload})},
     getAllAdminMssg: (payload)=>{dispatch({type: 'ADMIN_MSSG_BOX', payload})},
-    getAllAdminSubmits: (payload)=>{dispatch({type: 'ADMIN_SUBMITS_BOX', payload})}
+    getAllAdminSubmits: (payload)=>{dispatch({type: 'ADMIN_SUBMITS_BOX', payload})},
+    getAllBlogs: payload=>{dispatch({type: 'RETRIEVE_ALL_BLOGS', payload})},
+    getAllTrimmedBlogs: payload=>{dispatch({type: 'RETRIEVE_ALL_TRIMMED_BLOGS', payload})},
+    getAllCourss: payload=>{dispatch({type: 'RETRIEVE_ALL_COURSS', payload})},
+    getAllTrimmedCourss: payload=>{dispatch({type: 'RETRIEVE_ALL_TRIMMED_COURSS', payload})},
   }
 }
 

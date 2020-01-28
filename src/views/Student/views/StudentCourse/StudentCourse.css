@@ -4,7 +4,7 @@
 }
 .ccImageBox{
   width: 100%; height: 480px;
-  background-color: royalblue;
+  background-color: orangered;
   overflow: hidden; position: relative;
   border-radius: 10px;
 }
@@ -44,172 +44,203 @@
   background-color: transparent;
   border: solid 2px white;
 }
-.ccDetailBox{
-  width: 100%; height: auto;
+
+.ccDetails{
+  width: 100%;
   margin-top: 50px;
 }
-.ccdbMiniBoxes{
+.ccDetailMiniBoxes{
   width: 100%; display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 25px;
 }
-.ccdbMiniBox{
-  width: 400px; height: auto;
-  box-sizing: border-box;
-  padding: 8px;
-}
-.ccdbMiniBox1{
-  width: 100%; height: 100%;
-  box-shadow: 0 2px 10px -3px grey;
+.ccDetailMiniBox{
+  width: 385px; height: auto;
   background-color: white;
-  border-radius: 7px; box-sizing: border-box;
-  padding: 11px 15px 15px 15px;
+  box-sizing: border-box;
+  padding: 10px 15px; border-radius: 8px;
+  box-shadow: 0 1px 4px 0px gray;
 }
-.ccdbMiniBox1 h2{
-  font-weight: normal; margin-left: -1px;
-  letter-spacing: 1px;
-}
-.ccdbMiniBox1 p{
-  margin-left: -0.5px;
-  letter-spacing: 1px;
-}
-.ccdbMiniBox1Head{
-  display: flex; color: grey;
+.ccDetailLabel{
+  width: 100%; display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  color: #ff4500;
 }
-.ccdbMiniBox1Head h5{
-  letter-spacing: 2px;
-  margin-right: 6px;
+.ccDetailLabel h5{
+  font-size: 14px;
+  letter-spacing: 3px;
 }
-.ccdbMiniBox1Head i{ font-size: 13px }
-.ccdbBigBox, .ccdbLearnBox, .ccExtraBox{
+.ccDetailLabel i{
+  font-size: 14px;
+  margin-left: 10px;
+}
+.ccDetailMiniBox h2{
+  font-weight: normal; font-size: 26px;
+  letter-spacing: 1.5px;
+  margin-left: -1.5px; margin-top: 5px;
+  color: rgb(150, 150, 150);
+}
+.ccDetailLongBox{
   width: 100%; height: auto;
+  background-color: white;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box; margin-bottom: 25px;
+  padding: 10px 15px; border-radius: 8px;
+  box-shadow: 0 1px 4px 0px gray;
+}
+.ccDetailLongBody{
+  width: 100%;
+  margin-top: 10px;
+}
+.ccDetailLongBody p{
+  font-size: 20px; letter-spacing: 1px;
+  color: rgb(92, 92, 92);
+}
+.ccDetailLongBody ul{
+  width: 100%; margin-top: 5px;
   box-sizing: border-box;
-  padding: 8px;
+  padding-left: 20px;
 }
-.ccdbMiniBox1 li{
-  width: 100%; display: flex;
-  align-items: flex-start;
-  padding-left: 10px;
-  margin-bottom: 7px;
+.ccDetailLongBody ul li{
+  font-size: 18px;
+  letter-spacing: 1px;
 }
-.ccdbMiniBox1 li i{ margin: 3px 7px 0 0 }
-.ccdbMiniBox1 li p{ font-size: 18px }
-
-.ccExtraBox{
-  margin-top: 35px;
+.ccDetailsEnrollBox{
+  width: 100%; height: auto; background-color: white;
+  background-image: url('../../../../amar/payments.svg');
+  background-size: contain; background-position: center;
+  background-repeat: no-repeat; box-sizing: border-box;
+  border-radius: 8px; margin-bottom: 25px;
+  box-shadow: 0 1px 4px 0px gray;
+  padding: 10px 30px 30px 15px; 
 }
-.ccExtraBox h3{
-  font-weight: normal;
-  font-size: 26px;
-  letter-spacing: 5px;
-  margin-bottom: 20px;
-}
-.ccInstructorBoxes{
-  width: 100%; display: flex;
-  flex-wrap: wrap;
-}
-.ccInstructorBox{
-  width: 240px; height: auto;
-  margin-right: 21.33px;
-  background-color: white;
-  border-radius: 10px; text-align: center;
-  box-shadow: 0 1px 10px -4px black;
-}
-.ccInstructorBoxImg{
-  width: 150px; height: 150px;
-  background-color: white;
-  margin: 30px auto 15px auto;
-  border-radius: 100%;
-  box-shadow: 0 2px 10px -4px black;
-}
-.ccInstructorBox h4{
-  font-size: 20px;
-  letter-spacing: 1.5px;
-  font-weight: normal;
-}
-.ccInstructorBox h5{
-  letter-spacing: 1.5px;
-  margin: 3px 0 10px 0;
-}
-.ccInstructorBox p{
-  width: 90%; margin: 0 auto;
-  letter-spacing: 0.8px;
-  padding-bottom: 20px;
-}
-.enrollContainer{
+.ccDetailsEnrollBody{
   width: 100%; display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  margin-top: 7px;
 }
-.enrollBox{
-  box-shadow: 0 1px 10px -4px black;
-  border-radius: 10px; padding: 16px 21px;
-  box-sizing: border-box; height: auto;
+.ccDetailsEnrollText{
+  width: 54%; height: auto;
 }
-.enrollBox:nth-child(1){ width: 50% }
-.enrollBoxTitle{
-  width: 100%; display: flex;
-  margin-bottom: 15px;
+.ccDetailsEnrollText h1{
+  font-weight: normal;
+  letter-spacing: 4px;
+  margin-left: -2px;
+  margin-bottom: 25px;
 }
-.enrollBoxTitle h5{
-  background-color: orangered;
-  color: white; letter-spacing: 2px;
-  padding: 4px 12px 5px 13px;
-  border-radius: 5px;
+.ccDetailsEnrollText ul{
+  width: 100%; height: auto;
+  box-sizing: border-box;
+  padding-left: 10px;
 }
-.enrollBox:nth-child(1) li{
+.ccDetailsEnrollText ul li{
   width: 100%; display: flex;
   align-items: flex-start;
-  padding-left: 3px;
-  margin-top: 10px;
+  margin-bottom: 3px;
 }
-.enrollBox:nth-child(1) li i{ margin: 3px 8px 0 0 }
-.enrollBox:nth-child(1) li p{ font-size: 18px }
-
-.enrollBox:nth-child(2){ width: 48% }
-.ebBoxes{
-  width: 100%; display: flex;
-  align-items: center;
-  margin-top: -5px;
-}
-.ebBox{
-  display: flex;
-  align-items: center;
-}
-.ebBox i{ color: green; }
-.ebBox h1{
-  font-weight: normal; font-size: 50px;
-  margin-left: 5px; color: orangered;
-  margin-right: 10px;
-}
-.ebBox h3{
-  margin: 0 0 0 7px;
-  letter-spacing: 2px;
+.ccDetailsEnrollText ul li i{
+  font-size: 14px; margin-top: 5px;
   color: orangered;
 }
-.enrollBox button{
-  width: 150px; height: 50px; color: white;
-  font-size: 18px; font-weight: bold;
-  padding: 0px 0px 1px 3px; margin-top: 20px;
-  letter-spacing: 3px; border-radius: 5px;
+.ccDetailsEnrollText ul li p{
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-left: 12px;
+}
+
+.ccDetailsEnrollPay{
+  width: 42%; height: auto;
+  box-shadow: 0 1px 5px 0 gray;
+  border-radius: 7px; padding: 15px 20px;
+  box-sizing: border-box;
+}
+.ccDetailsEnrollPayBody h2{
+  display: flex; font-size: 46px;
+  letter-spacing: 2px;
+  font-weight: normal;
+  margin-top: 15px;
+  color: #ff4500;
+}
+.ccDetailsEnrollPayBody h2 i{
+  font-size: 22px;
+  margin: 13px 6px 0 0;
+  color: goldenrod;
+}
+.ccDetailsEnrollPayBody1{
+  width: 100%; display: flex;
+}
+.ccDetailsEnrollPayBody1 h3{
+  display: flex; font-size: 21px;
+  letter-spacing: 1.5px;
+  color: #ff4500;
+}
+.ccDetailsEnrollPayBody1 h3:nth-child(1){
+  text-decoration: line-through;
+  margin-right: 20px;
+}
+.ccDetailsEnrollPayBody1 h3:nth-child(1) i{
+  text-decoration: none; color: goldenrod;
+  font-size: 16px; margin: 6px 3px 0 0;
+}
+.ccDetailsEnrollPayBody button{
+  width: 200px; height: 55px;
+  margin: 35px auto 20px auto;
+  font-weight: bold; font-size: 18px;
+  padding-bottom: 2px; border-radius: 7px;
+  letter-spacing: 2px; color: white;
   background-color: green;
 }
 
-@media screen and (max-width: 420px) {
-  .enrollContainer{ flex-wrap: wrap }
-  .enrollBox:nth-child(1){ width: 100% }
-  .enrollBox:nth-child(2){ 
-    width: 100%; margin-top: 30px;
-  }
-  .ccInstructorBoxes{
-    justify-content: space-between;
-  }
-  .ccInstructorBox{
-    width: 47%; margin: 0px;
-  }
-  .ccInstructorBoxImg{
-    width: 120px; height: 120px;
-    margin: 20px auto 15px auto;
-  }
+.ccUsersReviewsBox .ccDetailLabel{
+  justify-content: center;
+  margin: 60px 0 25px 0;
+}
+.ccUsersReviewsBoxBody{
+  width: 100%; margin-top: 10px;
+  display: flex; flex-wrap: wrap;
+}
+.ccUserReview{
+  width: 240px; height: auto;
+  margin: 0 13.33px 26.66px 13.33px;
+  border-radius: 7px; padding: 20px 15px;
+  box-sizing: border-box; text-align: center;
+  box-shadow: 0 2px 5px 1px gray;
+}
+.ccUserReviewHead{
+  width: 100%; display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ccUserReviewImage{
+  width: 100px; height: 100px;
+  background-color: #2e3033;
+  border-radius: 100%;
+  margin-right: 15px;
+}
+.ccUserReviewImage img{
+  width: 100%; height: 100%;
+}
+.ccUserReviewHead h3{
+  display: flex; font-size: 24px;
+  align-items: center;
+  letter-spacing: 1px;
+  color: goldenrod;
+}
+.ccUserReviewHead h3 i{
+  font-size: 20px;
+  margin-left: 3px;
+}
+.ccUserReview p{
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 1px;
+  margin: 15px 0 20px 0;
+}
+.ccUserReview h5{
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: gray;
 }
